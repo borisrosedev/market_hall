@@ -2,14 +2,14 @@
 
 ## Liste des commandes
 
-# Creation procjet
+### Creation procjet
 
 ```bash
 git init
 git remote add origin market_hall
 ```
 
-# Modification du procjet
+### Modification du procjet
 
 ```bash
 git add .
@@ -17,11 +17,17 @@ git commit -m 'Commentaire'
 git push origin main
 ```
 
-# Les branches
+### Les branches
 
 ```bash
 git branch
 git log
 git checkout -b develop
+```
+
+#### Pour revenir sur la branche
+
+```bash
+git checkout develop
 
 ```
