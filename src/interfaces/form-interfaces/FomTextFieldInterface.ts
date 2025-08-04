@@ -1,4 +1,4 @@
-export interface FormTextField {
+export interface FormTextFieldInterface {
     id: string 
     labelContent: string
     helpId: string
