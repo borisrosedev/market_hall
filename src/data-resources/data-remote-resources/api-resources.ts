@@ -1,0 +1,40 @@
+
+const API_URL_PREFIX = "http://localhost/api/v1"
+
+
+const apiResource = {
+    async get(endpoint: string , method="GET",credentials = 'include'){
+
+        const requestInit = { method, headers: {} }
+        if(credentials) {
+            requestInit.headers["credentials"] = credentials
+        }
+
+        try {
+            const serverResponse = await fetch(API_URL_PREFIX + endpoint, requestInit)
+            const parsedResponse = await serverResponse.json()
+            return parsedResponse
+        } catch(err){
+            console.log(err)
+        }
+    },
+
+    async send(data:any, endpoint: string , method: 'POST'|'PATCH'|'PUT' = "POST", credentials?: 'include'){
+        const requestInit = { method, headers: {} } as { method:'POST'|'PATCH'|'PUT', headers: any, body: string }
+        if(credentials) {
+            requestInit.headers["credentials"] = credentials;
+        }
+
+        requestInit.headers["Content-Type"]="application/json";
+        requestInit.body = JSON.stringify(data); 
+        try {
+            const serverResponse = await fetch(API_URL_PREFIX + endpoint, requestInit);
+            const parsedResponse = await serverResponse.json();
+            return parsedResponse
+        } catch(err){
+            console.log(err)
+        }
+    }
+}
+
+export default apiResource

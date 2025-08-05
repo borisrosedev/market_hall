@@ -1,17 +1,11 @@
+import apiResource from "../data-resources/data-remote-resources/api-resources";
+
 const userService = {
   async signup(data: any) {
-    try {
-      const serverResponse = await fetch("http://localhost:5000/api/v1/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      const parsedResponse = await serverResponse.json();
-
+    try { 
+      const parsedResponse = await apiResource.send(data, "/users","POST")
       console.log(parsedResponse);
+      return parsedResponse
     } catch (err) {
       console.log(err);
     }
@@ -19,4 +13,4 @@ const userService = {
 };
 
 
-export default userService
+export default userService;

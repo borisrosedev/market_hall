@@ -2,6 +2,7 @@
   <article :class="'mb-3 ' + (obj.classNames ?? '')">
     <label :for="obj.id" class="form-label">{{ obj.labelContent }}</label>
     <input
+      :data-testid="obj.id"
       :type="obj.type ?? 'text'"
       class="form-control"
       :id="obj.id"

@@ -3,12 +3,13 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import {
     createVuePlugin
 } from 'harlem';
-
+import { createPinia } from 'pinia';
 import './style.css';
 import App from './App.vue';
 import LoginPage from './pages/LoginPage.vue';
 import LandingPage from './pages/LandingPage.vue';
 import SignupPage from './pages/SignupPage.vue';
+import NotFoundPage from './pages/NotFoundPage.vue';
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -27,10 +28,16 @@ const router = createRouter({
             path: '/signup',
             component: SignupPage,
             alias: '/register'
-        }
+        }, 
+        { 
+            path: '/:pathMatch(.*)*', 
+            name: 'not-found', 
+            component: NotFoundPage 
+
+        },
     ]
 })
 
 
-createApp(App).use(createVuePlugin()).use(router).mount('#app')
+createApp(App).use(createPinia()).use(createVuePlugin()).use(router).mount('#app')
 
