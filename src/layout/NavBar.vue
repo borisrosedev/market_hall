@@ -21,6 +21,9 @@ import { RouterLink } from 'vue-router';
             <RouterLink class="nav-link active" aria-current="page" to="/landing">Home</RouterLink>
           </li>
           <li class="nav-item">
+            <RouterLink class="nav-link active" aria-current="page" to="/products">Products</RouterLink>
+          </li>
+          <li class="nav-item">
             <RouterLink class="nav-link" to="/signin">Login</RouterLink>
           </li>
           <li class="nav-item">

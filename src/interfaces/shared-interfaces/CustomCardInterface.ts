@@ -7,4 +7,6 @@ export interface CustomCardInterface {
     title?: string 
     name?: string 
     description: string
+    url?: string
+    classNames?: string
 }
