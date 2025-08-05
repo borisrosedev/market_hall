@@ -29,9 +29,9 @@ const footerText =
   "© 2025 Market Hall. Tous droits réservés. | Antiquités authentiques depuis 2025";
 </script>
 
-<style>
+<style scoped>
 .milieu-page-content {
-  background-image: url("@/assets/img/fond.jpg");
+  background-image: url("https://www.roseandmoore.fr/cdn/shop/files/table-bois-extensible.jpg?v=1694160047&width=823");
   text-align: center;
   padding: 2rem;
 }
