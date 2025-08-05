@@ -32,6 +32,7 @@ const footerText =
 <style scoped>
 .milieu-page-content {
   background-image: url("https://www.roseandmoore.fr/cdn/shop/files/table-bois-extensible.jpg?v=1694160047&width=823");
+  background-repeat: no-repeat;
   text-align: center;
   padding: 2rem;
 }

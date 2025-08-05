@@ -94,6 +94,7 @@ function onReset() {
 }
 
 function onSubmit() {
+  messages.value = [];
   if (!fieldsValues.firstname) {
     window.scrollBy(0, window.innerHeight);
     messages.value.push({
@@ -112,6 +113,12 @@ function onSubmit() {
   if (!fieldsValues.email) {
     messages.value.push({
       content: "Email missing",
+      classNames: "text-danger signup__message",
+    });
+  }
+  if (!fieldsValues.password) {
+    messages.value.push({
+      content: "Password missing",
       classNames: "text-danger signup__message",
     });
   }
