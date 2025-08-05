@@ -1,11 +1,11 @@
 <template>
   <main class="app__main landing__main">
     <!-- Header -->
-    <header class="header">
+    <section class="header">
       <nav class="nav-container">
         <a href="#" class="logo">{{ title }}</a>
       </nav>
-    </header>
+    </section>
 
     <!-- Mileu Section -->
     <section class="milieu-page">
