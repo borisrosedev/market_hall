@@ -1,6 +1,6 @@
 <template>
   <form
-    class="col-12 col-xl-3 col-md-6 col-sm-8"
+    :class="'col-12 col-xl-3 col-md-6 col-sm-8 ' + (classNames ?? '')"
     @submit.prevent="onSubmit"
     @reset="onReset"
   >

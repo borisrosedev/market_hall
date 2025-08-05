@@ -1,4 +1,5 @@
 <template>
+  <main class="app__main">
   <div>
     <h1>{{ title }}</h1>
     <p>{{ description }}</p>
@@ -15,6 +16,7 @@
     </div>
     <button @click="increment">Incrémenter</button>
   </div>
+  </main>
 </template>
 <script setup>
 import { ref } from "vue";

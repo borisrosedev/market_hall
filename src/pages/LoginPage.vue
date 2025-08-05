@@ -19,7 +19,7 @@
   </main>
 </template>
 <script setup lang="ts">
-import CustomForm from "../components/shared/CustomForm.vue";
+import CustomForm from "../components/shared-components/CustomForm.vue";
 import type { FormTextFieldInterface } from "../interfaces/form-interfaces/FomTextFieldInterface";
 import { reactive, ref } from "vue";
 import type { CustomButtonInterface } from "../interfaces/shared-interfaces/CustomButtonInterface";
@@ -61,7 +61,7 @@ const { id, buttons, fields } = {
   ] as FormTextFieldInterface[],
 };
 
-const fieldsValues = reactive({}) as { email?: string; password?: string };
+const fieldsValues = reactive<{ email?: string; password?: string }>({}) ;
 
 const onFieldUpdated = ({ value, name }) => {
   fieldsValues[name] = value;

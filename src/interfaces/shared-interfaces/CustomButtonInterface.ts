@@ -1,6 +1,6 @@
 export interface CustomButtonInterface {
-    type: 'submit'|'button'|'reset'
     content: string
+    type?: 'submit'|'button'|'reset'
     id?: string 
     classNames?: string
     

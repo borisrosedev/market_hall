@@ -1,5 +1,5 @@
 <template>
-  <article class="mb-3">
+  <article :class="'mb-3 ' + (obj.classNames ?? '')">
     <label :for="obj.id" class="form-label">{{ obj.labelContent }}</label>
     <input
       :type="obj.type ?? 'text'"
@@ -8,7 +8,7 @@
       :aria-describedby="obj.helpId"
       v-on:input="(e) => onInput(e, obj.id)"
     />
-    <div :id="obj.helpId" class="form-text">{{ obj.helpContent }}</div>
+    <div v-if="obj.helpId" :id="obj.helpId" class="form-text">{{ obj.helpContent }}</div>
   </article>
 </template>
 

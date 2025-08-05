@@ -4,4 +4,5 @@ export interface FormTextFieldInterface {
     helpId: string
     helpContent: string
     type?: 'email' | 'text' | 'password',
+    classNames?: string
 }

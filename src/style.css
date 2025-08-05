@@ -1,6 +1,8 @@
+
 .app__main {
   min-height: 100vh;
   display: flex;
+  padding-top: 10vh;
 }
 
 
