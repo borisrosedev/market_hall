@@ -16,15 +16,14 @@
 </template>
 
 <script lang="ts" setup>
-import { FormTextFieldInterface } from "../interfaces/FormTextFieldInterface"
+import { FormTextFieldInterface } from "../../interfaces/form-interfaces/FomTextFieldInterface"
 
-defineProps<{ obj: FormTexFieldInterface }>()
+defineProps<{ obj: FormTextFieldInterface }>()
 const emit = defineEmits(["onInputUpdated"])
 
 
-
 const onInput = (event, name) => {
-  emit("onInputUpdated", { value: event.target.value, name: name});
+  emit("onInputUpdated", { value: event.target.value, name: name});
 }
 
 </script>
