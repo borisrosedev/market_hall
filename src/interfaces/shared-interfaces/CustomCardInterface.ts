@@ -1,8 +1,8 @@
 import { CardBodyLinksListInterface } from "../card-interfaces/CardBodyLinksListInterface";
-import type { CardListInterface } from "../card-interfaces/CardListItemsInterface";
+import type { CardListItemsInterface } from "../card-interfaces/CardListItemsInterface";
 
 export interface CustomCardInterface {
-    listItems?: CardListInterface
+    listItems?: CardListItemsInterface
     listLinks?: CardBodyLinksListInterface
     title?: string 
     name?: string 
