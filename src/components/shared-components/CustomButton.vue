@@ -15,6 +15,5 @@ import type {
 } from "../../interfaces/shared-interfaces/CustomButtonInterface";
 defineProps<{
   obj: CustomButtonInterface & CustomButtonHandlerType;
-  key: number;
 }>();
 </script>

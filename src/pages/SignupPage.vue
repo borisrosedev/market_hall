@@ -135,7 +135,7 @@ function onSubmit(){
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 100px;
+    padding-bottom: 100px;
 }
 
 .signup__message {
