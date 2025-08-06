@@ -2,6 +2,7 @@ import { CardBodyLinksListInterface } from "../card-interfaces/CardBodyLinksList
 import type { CardListItemsInterface } from "../card-interfaces/CardListItemsInterface";
 
 export interface CustomCardInterface {
+
     listItems?: CardListItemsInterface
     listLinks?: CardBodyLinksListInterface
     title?: string 
@@ -10,3 +11,4 @@ export interface CustomCardInterface {
     url?: string
     classNames?: string
 }
+
