@@ -24,6 +24,7 @@ import type { FormTextFieldInterface } from "../interfaces/form-interfaces/FomTe
 import { reactive, ref } from "vue";
 import type { CustomButtonInterface } from "../interfaces/shared-interfaces/CustomButtonInterface";
 import type { CustomMessageInterface } from "../interfaces/shared-interfaces/CustomMessageInterface";
+import { login } from "../stores/auth-store"
 
 const messages = ref<CustomMessageInterface[]>([]);
 
@@ -73,7 +74,7 @@ function onReset() {
   messages.value = [];
 }
 
-function onSubmit() {
+async function onSubmit() {
   if (!fieldsValues.email && !fieldsValues.password) {
     messages.value = messages.value.filter(
       (mess: CustomMessageInterface) =>
@@ -135,6 +136,9 @@ function onSubmit() {
 
   if (fieldsValues.email && fieldsValues.password) {
     messages.value = [];
+    await login({ email: fieldsValues.email, password: fieldsValues.password })
+    onReset()
+
   }
 }
 </script>

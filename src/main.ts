@@ -10,6 +10,7 @@ import LoginPage from './pages/LoginPage.vue';
 import LandingPage from './pages/LandingPage.vue';
 import SignupPage from './pages/SignupPage.vue';
 import NotFoundPage from './pages/NotFoundPage.vue';
+import ProductsPage from './pages/ProductsPage.vue';
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -29,6 +30,10 @@ const router = createRouter({
             component: SignupPage,
             alias: '/register'
         }, 
+        {
+            path: '/products',
+            component: ProductsPage
+        },
         { 
             path: '/:pathMatch(.*)*', 
             name: 'not-found', 
