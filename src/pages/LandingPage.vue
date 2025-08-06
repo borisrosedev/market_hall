@@ -1,19 +1,13 @@
 <template>
   <main class="app__main landing__main">
-   
-
     <!-- Mileu Section -->
-     <section class="row justify-content-center w-100 milieu-page-content"> 
-     
-      <h1>{{ title }}</h1>
-      <p>{{ description }} </p>
-      <p></br> </br> </br> <a href="#" class="cta-button">{{ collectionText }}</a> </p>
-       
-       
+    <section class="row justify-content-center w-100 milieu-page-content">
+      <h1 class="milieu-page-h1">{{ title }}</h1>
+      <p class="milieu-page-p">{{ description }}</p>
+      <p>
+        <a href="#" class="cta-button">{{ collectionText }}</a>
+      </p>
     </section>
-     
-   
-    
   </main>
 </template>
 
@@ -31,16 +25,23 @@ const footerText =
 </script>
 
 <style scoped>
- 
 .cta-button {
-  background-color:   #8b4513 ;
+  background-color: #8b4513;
   color: white;
 }
 
 .milieu-page-content {
-  background-image: url("https://www.roseandmoore.fr/cdn/shop/files/table-bois-extensible.jpg?v=1694160047&width=823");
+  background-image: url("../assets/images/landing-background.jpg");
   background-repeat: no-repeat;
+  background-position: center;
   text-align: center;
   padding: 2rem;
+}
+
+.milieu-page-h1 {
+  font-size: 2.5rem;
+}
+.milieu-page-p {
+  font-size: 1.2rem;
 }
 </style>
