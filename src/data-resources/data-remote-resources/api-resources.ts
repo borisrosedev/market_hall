@@ -1,5 +1,5 @@
 
-const API_URL_PREFIX = "http://localhost/api/v1"
+const API_URL_PREFIX = "http://localhost:5000/api/v1"
 
 
 const apiResource = {

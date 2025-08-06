@@ -1,7 +1,7 @@
 <template>
 
     <article :class="'card ' + (obj.classNames ?? '')">
-      <img v-if="obj.url" :src="obj.url" class="card-img-top" :alt="'Image of' + (obj.title ?? obj.name)" />
+      <img v-if="obj.url" :src="obj.url" class="card-img-top" :alt="'Image of ' + (obj.title ?? obj.name)" />
       <div class="card-body">
         <h5 class="card-title">{{ obj.title ?? obj.name }}</h5>
         <p class="card-text">{{ obj.description }}</p>
