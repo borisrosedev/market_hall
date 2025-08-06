@@ -123,13 +123,26 @@ function onSubmit() {
     });
   }
 
-  console.log(fieldsValues);
+  var emailReg = new RegExp(
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/i
+  );
+  if (fieldsValues.email != undefined) {
+    console.log(emailReg.test(fieldsValues.email));
+    if (!emailReg.test(fieldsValues.email)) {
+      messages.value.push({
+        content: "Email is not valid",
+        classNames: "text-danger signup__message",
+      });
+    }
+
+    console.log(fieldsValues);
+  }
 }
 </script>
 
 <style lang="css">
 .signup__main {
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   padding: 100px;
