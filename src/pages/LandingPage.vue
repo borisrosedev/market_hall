@@ -1,18 +1,19 @@
 <template>
   <main class="app__main landing__main">
-    <!-- Header -->
-    <section>
-      <nav>
-        <a href="#">{{ title }}</a>
-      </nav>
-    </section>
+   
 
     <!-- Mileu Section -->
-    <section class="milieu-page-content">
+     <section class="row justify-content-center w-100 milieu-page-content"> 
+     
       <h1>{{ title }}</h1>
-      <p>{{ description }}</p>
-      <a href="#" class="cta-button">{{ collectionText }}</a>
+      <p>{{ description }} </p>
+      <p></br> </br> </br> <a href="#" class="cta-button">{{ collectionText }}</a> </p>
+       
+       
     </section>
+     
+   
+    
   </main>
 </template>
 
@@ -30,6 +31,12 @@ const footerText =
 </script>
 
 <style scoped>
+ 
+.cta-button {
+  background-color:   #8b4513 ;
+  color: white;
+}
+
 .milieu-page-content {
   background-image: url("https://www.roseandmoore.fr/cdn/shop/files/table-bois-extensible.jpg?v=1694160047&width=823");
   background-repeat: no-repeat;
