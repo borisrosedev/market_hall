@@ -26,16 +26,19 @@ const footerText =
 
 <style scoped>
 .cta-button {
-  background-color: #8b4513;
-  color: white;
+  color: #8b4513;
 }
 
 .milieu-page-content {
+  display: inline-block;
   background-image: url("../assets/images/landing-background.jpg");
   background-repeat: no-repeat;
+
   background-position: center;
   text-align: center;
   padding: 2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
 }
 
 .milieu-page-h1 {
