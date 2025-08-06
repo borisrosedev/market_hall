@@ -18,6 +18,7 @@ import type { FormTextFieldInterface } from "../interfaces/form-interfaces/FomTe
 import { reactive, ref } from "vue";
 import type { CustomMessageInterface } from "../interfaces/shared-interfaces/CustomMessageInterface";
 import type { CustomButtonInterface } from "../interfaces/shared-interfaces/CustomButtonInterface";
+import checkFormat from "../utils/check-format";
 
 const messages = ref<CustomMessageInterface[]>([]);
 
@@ -122,21 +123,19 @@ function onSubmit() {
       classNames: "text-danger signup__message",
     });
   }
-
-  var emailReg = new RegExp(
-    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/i
-  );
-  if (fieldsValues.email != undefined) {
-    console.log(emailReg.test(fieldsValues.email));
-    if (!emailReg.test(fieldsValues.email)) {
-      messages.value.push({
-        content: "Email is not valid",
-        classNames: "text-danger signup__message",
-      });
-    }
-
-    console.log(fieldsValues);
+  if (!checkFormat.isValidEmail(fieldsValues.email)) {
+    messages.value.push({
+      content: "Email is not valid",
+      classNames: "text-danger signup__message",
+    });
   }
+  if (!checkFormat.isValidPassword(fieldsValues.password)) {
+    messages.value.push({
+      content: "Password is not valid",
+      classNames: "text-danger signup__message",
+    });
+  }
+  console.log(fieldsValues);
 }
 </script>
 
@@ -145,7 +144,7 @@ function onSubmit() {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding: 100px;
+  padding-bottom: 100px;
 }
 
 .signup__message {
