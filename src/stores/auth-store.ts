@@ -15,6 +15,8 @@ export const {
 } = createStore('auth', STATE);
 
 
+export const isConnected = getter('is-connected', (state) => state.isConnected)
+
 export const setIsConnected = mutation('set-is-connected', (state, payload: boolean) => {
     
     state.isConnected = payload;

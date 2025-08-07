@@ -12,7 +12,7 @@
         :obj="field"
       />
     </section>
-    <section>
+    <section v-if="showButtons">
       <CustomButton v-for="(btn, i) in buttons" :obj="btn" :key="i" />
     </section>
     <section

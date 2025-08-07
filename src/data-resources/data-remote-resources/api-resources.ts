@@ -3,11 +3,11 @@ const API_URL_PREFIX = "http://localhost:5000/api/v1"
 
 
 const apiResource = {
-    async get(endpoint: string , method="GET",credentials = 'include'){
+    async get(endpoint: string , method="GET",credentials: RequestCredentials = 'include'){
 
-        const requestInit = { method, headers: {} }
+        const requestInit = { method, headers: {} } as { method: string, headers: any, credentials: RequestCredentials}
         if(credentials) {
-            requestInit.headers["credentials"] = credentials
+            requestInit.credentials = credentials
         }
 
         try {
@@ -19,10 +19,10 @@ const apiResource = {
         }
     },
 
-    async send(data:any, endpoint: string , method: 'POST'|'PATCH'|'PUT' = "POST", credentials?: 'include'){
-        const requestInit = { method, headers: {} } as { method:'POST'|'PATCH'|'PUT', headers: any, body: string }
+    async send(data:any, endpoint: string , method: 'POST'|'PATCH'|'PUT' = "POST", credentials?: RequestCredentials){
+        const requestInit = { method, headers: {} } as { method:'POST'|'PATCH'|'PUT', headers: any, body: string, credentials?: RequestCredentials }
         if(credentials) {
-            requestInit.headers["credentials"] = credentials;
+            requestInit.credentials = credentials;
         }
 
         requestInit.headers["Content-Type"]="application/json";

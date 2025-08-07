@@ -7,5 +7,5 @@ export interface CustomButtonInterface {
 }
 
 export type CustomButtonHandlerType = {
-    onClick?: () => void
+    onClick?: () => void | Promise<void | boolean>
 }
