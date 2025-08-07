@@ -10,6 +10,7 @@
     </section>
 
     <footer class="app__footer">
+      <p>{{ footerText }}</p>
       <!-- p>{{ footerText }}</!-->
     </footer>
   </main>
@@ -83,8 +84,33 @@ const footerText =
   padding: 2rem;
   font-size: 1.1rem;
   font-weight: bold;
-}
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 2rem;
+  animation: fadeInUp 1s ease-out;
+}
+.milieu-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at center,
+    transparent 0%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+}
 .milieu-page-h1 {
   margin-bottom: 1rem;
   color: white;
@@ -93,7 +119,11 @@ const footerText =
   font-size: 2.5rem;
 }
 .milieu-page-p {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  color: #f0f0f0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  animation: slideInFromRight 1.2s ease-out;
 }
 
 .milieu-page {
@@ -119,5 +149,12 @@ const footerText =
     transparent 0%,
     rgba(0, 0, 0, 0.3) 100%
   );
+}
+.app__footer {
+  background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
+  color: white;
+  padding: 3rem 0 1rem;
+  position: relative;
+  overflow: hidden;
 }
 </style>
