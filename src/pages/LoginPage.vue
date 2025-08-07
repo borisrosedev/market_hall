@@ -9,6 +9,7 @@
         :messages="messages"
         :onReset="onReset"
         :onSubmit="onSubmit"
+        :show-buttons="showButtons"
       />
     </section>
     <section class="my-3 row justify-content-center w-100">
@@ -21,13 +22,17 @@
 <script setup lang="ts">
 import CustomForm from "../components/shared-components/CustomForm.vue";
 import type { FormTextFieldInterface } from "../interfaces/form-interfaces/FomTextFieldInterface";
-import { reactive, ref } from "vue";
+import { type Reactive, reactive, ref } from "vue";
 import type { CustomButtonInterface } from "../interfaces/shared-interfaces/CustomButtonInterface";
 import type { CustomMessageInterface } from "../interfaces/shared-interfaces/CustomMessageInterface";
-import { login } from "../stores/auth-store"
+import { useUserAuth } from "../composables/useUserAuth"
+import { useRouter } from "vue-router"
 
-const messages = ref<CustomMessageInterface[]>([]);
+//--------------------------COMPOSABLES------------------
 
+const router = useRouter()
+
+//-----------------------CLASSIC OBJECTS---------------------------
 const { id, buttons, fields } = {
   id: "login-form",
   buttons: [
@@ -62,7 +67,15 @@ const { id, buttons, fields } = {
   ] as FormTextFieldInterface[],
 };
 
+
+//-------------------------REACTIVE OBJECTS-----------------------------
+const messages = ref<CustomMessageInterface[]>([]);
+const showButtons = ref<boolean>(true)
 const fieldsValues = reactive<{ email?: string; password?: string }>({}) ;
+
+
+
+//-------------------------- HANDLERS --------------------------------------
 
 const onFieldUpdated = ({ value, name }) => {
   fieldsValues[name] = value;
@@ -74,8 +87,34 @@ function onReset() {
   messages.value = [];
 }
 
-async function onSubmit() {
-  if (!fieldsValues.email && !fieldsValues.password) {
+
+function onNoPassword(){
+  const mess = messages.value.find(
+      (mess: CustomMessageInterface) =>
+        mess.content == "You forgot the password"
+    );
+    if (!mess) {
+      messages.value.push({
+        classNames: "text-danger login__message",
+        content: "You forgot the password",
+      });
+    }
+}
+
+function onNoEmail(){
+  const mess = messages.value.find(
+      (mess: CustomMessageInterface) => mess.content == "You forgot the email"
+    );
+    if (!mess) {
+      messages.value.push({
+        classNames: "text-danger login__message",
+        content: "You forgot the email",
+      });
+    }
+}
+
+function onNoInputs() {
+ 
     messages.value = messages.value.filter(
       (mess: CustomMessageInterface) =>
         mess.content !== "You forgot the email" &&
@@ -90,32 +129,49 @@ async function onSubmit() {
         content: "Fill in the form",
       });
     }
+    showButtons.value = true
     return;
+  
+}
+
+
+async function onCompleteForm(fieldsValues:Reactive<{ email: string; password: string }>) {
+  showButtons.value = false
+    messages.value = [];
+    const { loginUser } = useUserAuth()
+    const isConnected = await loginUser({ email: fieldsValues.email, password: fieldsValues.password })
+    if(isConnected){
+      onReset()
+      messages.value.push({
+          content: "Connection succeeded - Redirection to Dashboard in 3 secondes",
+          classNames: "text-success login__message"
+      })
+      setTimeout(() => {
+        router.push('/dashboard')
+        return
+      }, 3000)
+     
+    } else {
+       messages.value.push({
+          content: "Failed to log in - Retry",
+          classNames: "text-danger login__message"
+       })
+    }
+}
+
+async function onSubmit() {
+  showButtons.value = false
+  
+  if (!fieldsValues.email && !fieldsValues.password) {
+      onNoInputs()
   }
 
   if (!fieldsValues.email) {
-    const mess = messages.value.find(
-      (mess: CustomMessageInterface) => mess.content == "You forgot the email"
-    );
-    if (!mess) {
-      messages.value.push({
-        classNames: "text-danger login__message",
-        content: "You forgot the email",
-      });
-    }
+      onNoEmail()
   }
 
   if (!fieldsValues.password) {
-    const mess = messages.value.find(
-      (mess: CustomMessageInterface) =>
-        mess.content == "You forgot the password"
-    );
-    if (!mess) {
-      messages.value.push({
-        classNames: "text-danger login__message",
-        content: "You forgot the password",
-      });
-    }
+      onNoPassword()
   }
 
   if (!fieldsValues.password && fieldsValues.email) {
@@ -135,11 +191,10 @@ async function onSubmit() {
   }
 
   if (fieldsValues.email && fieldsValues.password) {
-    messages.value = [];
-    await login({ email: fieldsValues.email, password: fieldsValues.password })
-    onReset()
-
+      onCompleteForm(fieldsValues as Reactive<{ email: string; password: string }>)
   }
+
+  showButtons.value = true
 }
 </script>
 <style lang="css">

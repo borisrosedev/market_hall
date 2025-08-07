@@ -7,6 +7,7 @@ export interface CustomFormInterface {
     messages: CustomMessageInterface[]
     id?: string 
     classNames?: string
+    showButtons?: boolean
     
 }
 

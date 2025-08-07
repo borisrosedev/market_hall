@@ -134,6 +134,8 @@ function onSubmit() {
       content: "Password is not valid",
       classNames: "text-danger signup__message",
     });
+
+    
   }
   console.log(fieldsValues);
 }

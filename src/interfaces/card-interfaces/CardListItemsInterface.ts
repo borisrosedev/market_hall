@@ -1,3 +1,3 @@
 export interface CardListItemsInterface  {
-    listItems: { content: string }[]
+   listItems: { content: string }[]
 }

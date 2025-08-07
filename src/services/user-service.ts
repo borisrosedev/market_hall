@@ -1,6 +1,12 @@
 import apiResource from "../data-resources/data-remote-resources/api-resources";
 
 const userService = {
+
+  async me() {
+    const parsedResponse = await apiResource.get("/users/me")
+    console.log(parsedResponse)
+    return parsedResponse
+  },
   async signup(data: any) {
     try { 
       //http://localhost:5000/api/v1/users
