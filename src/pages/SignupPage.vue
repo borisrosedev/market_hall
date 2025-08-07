@@ -19,6 +19,11 @@ import { reactive, ref } from "vue";
 import type { CustomMessageInterface } from "../interfaces/shared-interfaces/CustomMessageInterface";
 import type { CustomButtonInterface } from "../interfaces/shared-interfaces/CustomButtonInterface";
 import checkFormat from "../utils/check-format";
+import { useRouter } from "vue-router";
+
+//--------------------------COMPOSABLES------------------
+
+const router = useRouter();
 
 const messages = ref<CustomMessageInterface[]>([]);
 
@@ -134,9 +139,38 @@ function onSubmit() {
       content: "Password is not valid",
       classNames: "text-danger signup__message",
     });
-
-    
   }
+  if (!checkFormat.isValidName(fieldsValues.firstname)) {
+    messages.value.push({
+      content: "Firstname must be at least 8 characters long",
+      classNames: "text-danger signup__message",
+    });
+  }
+  // redirection vers la page de connexion si tout est ok
+  if (
+    fieldsValues.email &&
+    fieldsValues.password &&
+    fieldsValues.firstname &&
+    fieldsValues.lastname &&
+    checkFormat.isValidEmail(fieldsValues.email) &&
+    checkFormat.isValidPassword(fieldsValues.password) &&
+    checkFormat.isValidName(fieldsValues.firstname)
+  ) {
+    messages.value.push({
+      content: "Signup successful - Redirecting to login page in 3 seconds",
+      classNames: "text-success signup__message",
+    });
+    setTimeout(() => {
+      router.push("/login");
+    }, 3000);
+  } else {
+    window.scrollBy(0, window.innerHeight);
+    messages.value.push({
+      content: "Invalid form - Please check your inputs",
+      classNames: "text-danger signup__invalid-message",
+    });
+  }
+
   console.log(fieldsValues);
 }
 </script>
