@@ -1,19 +1,21 @@
 <template>
   <main class="app__main landing__main">
     <!-- Mileu Section -->
-    <section class="row justify-content-center w-100 milieu-page-content">
-      <h1 class="milieu-page-h1">{{ title }}</h1>
-      <p class="milieu-page-p">{{ description }}</p>
-      <p>
-        <a href="#" class="cta-button">{{ collectionText }}</a>
-      </p>
+    <section class="milieu-page-content">
+      <header class="milieu-header">
+        <h1 class="milieu-page-h1">{{ title }}</h1>
+        <p class="milieu-page-p">{{ description }}</p>
+      </header>
+      <a href="#" class="cta-button">{{ collectionText }}</a>
+    
     </section>
+
+  </main>
 
     <footer class="app__footer">
       <p>{{ footerText }}</p>
       <!-- p>{{ footerText }}</!-->
     </footer>
-  </main>
 </template>
 
 <script setup lang="ts">
@@ -33,6 +35,8 @@ const footerText =
 .landing__main {
   background-color: rgba(139, 69, 19, 0.3);
   padding: 2rem;
+  align-items: center;
+  justify-content: center;
 }
 .cta-button {
   display: inline-block;
@@ -74,29 +78,32 @@ const footerText =
   left: 100%;
 }
 
-.milieu-page-content {
-  display: inline-block;
-  background-image: url("../assets/images/landing-background.png");
-  background-repeat: no-repeat;
 
-  background-position: center;
-  text-align: center;
-  padding: 2rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  height: 100vh;
+.milieu-header {
+  animation: fadeInUp 1s ease-out;
+}
+.milieu-page-content {
+
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  background-image: url("../assets/images/landing-background.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
   text-align: center;
-  position: relative;
-  overflow: hidden;
+  font-size: 1.1rem;
+  font-weight: bold;
+  height: 500px;
+
+  /*position: relative;*/
+  /*overflow: hidden;*/
 
   position: relative;
-  z-index: 2;
-  max-width: 800px;
-  padding: 2rem;
-  animation: fadeInUp 1s ease-out;
+  /*z-index: 2;*/
+
 }
 .milieu-page::before {
   content: "";

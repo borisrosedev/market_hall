@@ -64,6 +64,7 @@ const { id, buttons, fields } = {
       labelContent: "Message",
       heldId: "messageHelp",
       helpContent: "Briefly describe your issue",
+      textarea: true
     },
     {
       id: "captcha",
@@ -191,6 +192,7 @@ async function onSubmit() {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding-bottom: 100px;
 }
 
 .contactus__message {
