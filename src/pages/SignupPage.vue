@@ -22,6 +22,7 @@ import type { CustomButtonInterface } from "../interfaces/shared-interfaces/Cust
 import checkFormat from "../utils/check-format";
 import { useUserAuth } from "../composables/useUserAuth";
 import { useRouter } from "vue-router";
+import userService from "../services/user-service";
 
 //--------------------------COMPOSABLES------------------
 
@@ -190,16 +191,30 @@ async function onCompleteForm(
   }>
 ) {
   showButtons.value = false;
-  messages.value = [];
 
-  onReset();
-  messages.value.push({
-    content: "Signup successful - Redirecting to login page in 3 seconds",
-    classNames: "text-success signup__message",
-  });
-  setTimeout(() => {
-    router.push("/login");
-  }, 3000);
+  const {firstname, lastname, email, password } = fieldsValues
+  const { message } = await userService.signup({ firstname, lastname, email, password })
+  messages.value = [];
+  if(message == "user created"){
+    onReset();
+      messages.value.push({
+        content: "Signup successful - Redirecting to login page in 3 seconds",
+        classNames: "text-success signup__message",
+      });
+      setTimeout(() => {
+        router.push("/login");
+      }, 3000);
+
+  } else {
+       messages.value.push({
+        content: "Signup fail - Retry",
+        classNames: "text-danger signup__message",
+      });
+
+  }
+
+
+ 
 }
 
 async function onSubmit() {
