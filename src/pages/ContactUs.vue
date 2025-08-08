@@ -34,7 +34,7 @@ const router = useRouter();
 
 //-----------------------CLASSIC OBJECTS---------------------------
 const { id, buttons, fields } = {
-  id: "login-form",
+  id: "contact-form",
   buttons: [
     {
       content: "Contact Us",
@@ -72,7 +72,7 @@ const { id, buttons, fields } = {
       helpId: "cptchaHelp",
       helpContent: "You don't be a robot ...",
     },
-  ] as FormTextFieldInterface[],
+  ] as unknown as FormTextFieldInterface[],
 };
 
 //-------------------------REACTIVE OBJECTS-----------------------------
@@ -84,7 +84,11 @@ const fieldsValues = reactive<{
   objectMail: string;
   messageClient: string;
   captcha?: string;
-}>({});
+}>({
+  email: "",
+  objectMail: "",
+  messageClient: "",
+});
 
 //-------------------------- HANDLERS --------------------------------------
 
