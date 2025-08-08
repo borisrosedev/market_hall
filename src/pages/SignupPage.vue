@@ -119,6 +119,18 @@ function onNoPassword() {
   }
 }
 
+function onNoEqualPasswords() {
+  console.log(fieldsValues.password, fieldsValues.confirmedPassword);
+  const mess = messages.value.find(
+    (mess: CustomMessageInterface) => mess.content == "Passwords are not equal"
+  );
+  if (!mess) {
+    messages.value.push({
+      classNames: "text-danger signup__message",
+      content: "Passwords are not equal",
+    });
+  }
+}
 function onNoEmail() {
   const mess = messages.value.find(
     (mess: CustomMessageInterface) => mess.content == "You forgot the email"
@@ -179,7 +191,6 @@ async function onCompleteForm(
 ) {
   showButtons.value = false;
   messages.value = [];
-  //const { loginUser } = useUserAuth();
 
   onReset();
   messages.value.push({
@@ -192,9 +203,16 @@ async function onCompleteForm(
 }
 
 async function onSubmit() {
+  messages.value = [];
   showButtons.value = false;
 
-  if (!fieldsValues.email) {
+  if (
+    !fieldsValues.firstname &&
+    !fieldsValues.lastname &&
+    !fieldsValues.password &&
+    !fieldsValues.email &&
+    !fieldsValues.confirmedPassword
+  ) {
     onNoInputs();
   }
 
@@ -205,58 +223,21 @@ async function onSubmit() {
   if (!fieldsValues.firstname) {
     onNoFirstname();
   }
-  /*
-  messages.value = [];
-  if (!fieldsValues.firstname) {
-    window.scrollBy(0, window.innerHeight);
-    messages.value.push({
-      content: "Firstname missing",
-      classNames: "text-danger signup__message",
-    });
+
+  if (!fieldsValues.password || !fieldsValues.confirmedPassword) {
+    onNoPassword();
+  }
+  if (fieldsValues.password != fieldsValues.confirmedPassword) {
+    onNoEqualPasswords();
   }
 
-  if (!fieldsValues.lastname) {
-    messages.value.push({
-      content: "Lastname missing",
-      classNames: "text-danger signup__message",
-    });
-  }
-
-  if (!fieldsValues.email) {
-    messages.value.push({
-      content: "Email missing",
-      classNames: "text-danger signup__message",
-    });
-  }
-  if (!fieldsValues.password) {
-    messages.value.push({
-      content: "Password missing",
-      classNames: "text-danger signup__message",
-    });
-  }
-  if (!checkFormat.isValidEmail(fieldsValues.email)) {
-    messages.value.push({
-      content: "Email is not valid",
-      classNames: "text-danger signup__message",
-    });
-  }
-  if (!checkFormat.isValidPassword(fieldsValues.password)) {
-    messages.value.push({
-      content: "Password is not valid",
-      classNames: "text-danger signup__message",
-    });
-  }
-  if (!checkFormat.isValidName(fieldsValues.firstname)) {
-    messages.value.push({
-      content: "Firstname must be at least 8 characters long",
-      classNames: "text-danger signup__message",
-    });
-  }*/
   if (
+    fieldsValues.firstname &&
+    fieldsValues.lastname &&
     fieldsValues.email &&
     fieldsValues.password &&
-    fieldsValues.firstname &&
-    fieldsValues.lastname
+    fieldsValues.confirmedPassword &&
+    fieldsValues.password == fieldsValues.confirmedPassword
   ) {
     onCompleteForm(
       fieldsValues as Reactive<{
