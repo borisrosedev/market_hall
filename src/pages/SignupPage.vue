@@ -3,11 +3,12 @@
     <section class="row justify-content-center w-100">
       <CustomForm
         @on-field-updated="onFormUpdated"
-        :fields="form.fields"
+        :fields="fields"
         :messages="messages"
-        :buttons="form.buttons"
+        :buttons="buttons"
         :onSubmit="onSubmit"
         :onReset="onReset"
+        :show-buttons="showButtons"
       />
     </section>
   </main>
@@ -15,19 +16,21 @@
 <script setup lang="ts">
 import CustomForm from "../components/shared-components/CustomForm.vue";
 import type { FormTextFieldInterface } from "../interfaces/form-interfaces/FomTextFieldInterface";
-import { reactive, ref } from "vue";
+import { type Reactive, reactive, ref } from "vue";
 import type { CustomMessageInterface } from "../interfaces/shared-interfaces/CustomMessageInterface";
 import type { CustomButtonInterface } from "../interfaces/shared-interfaces/CustomButtonInterface";
 import checkFormat from "../utils/check-format";
+import { useUserAuth } from "../composables/useUserAuth";
 import { useRouter } from "vue-router";
 
 //--------------------------COMPOSABLES------------------
 
 const router = useRouter();
 
-const messages = ref<CustomMessageInterface[]>([]);
+//-----------------------CLASSIC OBJECTS---------------------------
+const { id, buttons, fields } = {
+  id: "signup-form",
 
-const form = {
   buttons: [
     {
       content: "Submit",
@@ -77,6 +80,9 @@ const form = {
   ] as FormTextFieldInterface[],
 };
 
+//-------------------------REACTIVE OBJECTS-----------------------------
+const messages = ref<CustomMessageInterface[]>([]);
+const showButtons = ref<boolean>(true);
 const fieldsValues = reactive<{
   firstname?: string;
   lastname?: string;
@@ -84,6 +90,8 @@ const fieldsValues = reactive<{
   password?: string;
   confirmedPassword?: string;
 }>({});
+
+//-------------------------- HANDLERS --------------------------------------
 
 function onFormUpdated({ name, value }) {
   fieldsValues[name] = value;
@@ -99,7 +107,105 @@ function onReset() {
   console.log(fieldsValues);
 }
 
-function onSubmit() {
+function onNoPassword() {
+  const mess = messages.value.find(
+    (mess: CustomMessageInterface) => mess.content == "You forgot the password"
+  );
+  if (!mess) {
+    messages.value.push({
+      classNames: "text-danger signup__message",
+      content: "You forgot the password",
+    });
+  }
+}
+
+function onNoEmail() {
+  const mess = messages.value.find(
+    (mess: CustomMessageInterface) => mess.content == "You forgot the email"
+  );
+  if (!mess) {
+    messages.value.push({
+      classNames: "text-danger signup__message",
+      content: "You forgot the email",
+    });
+  }
+}
+
+function onNoFirstname() {
+  messages.value = messages.value.filter(
+    (mess: CustomMessageInterface) =>
+      mess.content !== "You forgot the firstname"
+  );
+  const mess = messages.value.find(
+    (mess: CustomMessageInterface) => mess.content == "You forgot the firstname"
+  );
+  if (!mess) {
+    messages.value.push({
+      classNames: "text-danger signup__message",
+      content: "You forgot the firstname",
+    });
+  }
+  showButtons.value = true;
+  return;
+}
+
+function onNoInputs() {
+  messages.value = messages.value.filter(
+    (mess: CustomMessageInterface) =>
+      mess.content !== "You forgot the email" &&
+      mess.content !== "Your forget the password"
+  );
+  const mess = messages.value.find(
+    (mess: CustomMessageInterface) => mess.content == "Fill in the form"
+  );
+  if (!mess) {
+    messages.value.push({
+      classNames: "text-danger signup__message",
+      content: "Fill in the form",
+    });
+  }
+  showButtons.value = true;
+  return;
+}
+
+async function onCompleteForm(
+  fieldsValues: Reactive<{
+    firstname?: string;
+    lastname?: string;
+    email?: string;
+    password?: string;
+    confirmedPassword?: string;
+  }>
+) {
+  showButtons.value = false;
+  messages.value = [];
+  //const { loginUser } = useUserAuth();
+
+  onReset();
+  messages.value.push({
+    content: "Signup successful - Redirecting to login page in 3 seconds",
+    classNames: "text-success signup__message",
+  });
+  setTimeout(() => {
+    router.push("/login");
+  }, 3000);
+}
+
+async function onSubmit() {
+  showButtons.value = false;
+
+  if (!fieldsValues.email) {
+    onNoInputs();
+  }
+
+  if (!fieldsValues.email) {
+    onNoEmail();
+  }
+
+  if (!fieldsValues.firstname) {
+    onNoFirstname();
+  }
+  /*
   messages.value = [];
   if (!fieldsValues.firstname) {
     window.scrollBy(0, window.innerHeight);
@@ -145,24 +251,22 @@ function onSubmit() {
       content: "Firstname must be at least 8 characters long",
       classNames: "text-danger signup__message",
     });
-  }
-  // redirection vers la page de connexion si tout est ok
+  }*/
   if (
     fieldsValues.email &&
     fieldsValues.password &&
     fieldsValues.firstname &&
-    fieldsValues.lastname &&
-    checkFormat.isValidEmail(fieldsValues.email) &&
-    checkFormat.isValidPassword(fieldsValues.password) &&
-    checkFormat.isValidName(fieldsValues.firstname)
+    fieldsValues.lastname
   ) {
-    messages.value.push({
-      content: "Signup successful - Redirecting to login page in 3 seconds",
-      classNames: "text-success signup__message",
-    });
-    setTimeout(() => {
-      router.push("/login");
-    }, 3000);
+    onCompleteForm(
+      fieldsValues as Reactive<{
+        firstname?: string;
+        lastname?: string;
+        email?: string;
+        password?: string;
+        confirmedPassword?: string;
+      }>
+    );
   } else {
     window.scrollBy(0, window.innerHeight);
     messages.value.push({
@@ -171,6 +275,7 @@ function onSubmit() {
     });
   }
 
+  showButtons.value = true;
   console.log(fieldsValues);
 }
 </script>
