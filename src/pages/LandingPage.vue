@@ -6,16 +6,18 @@
         <h1 class="milieu-page-h1">{{ title }}</h1>
         <p class="milieu-page-p">{{ description }}</p>
       </header>
-      <a href="#" class="cta-button">{{ collectionText }}</a>
-    
+      <a href="#" class="cta-button">
+        <RouterLink to="/products" class="cta-button">{{
+          collectionText
+        }}</RouterLink></a
+      >
     </section>
-
   </main>
 
-    <footer class="app__footer">
-      <p>{{ footerText }}</p>
-      <!-- p>{{ footerText }}</!-->
-    </footer>
+  <footer class="app__footer">
+    <p>{{ footerText }}</p>
+    <!-- p>{{ footerText }}</!-->
+  </footer>
 </template>
 
 <script setup lang="ts">
@@ -78,12 +80,10 @@ const footerText =
   left: 100%;
 }
 
-
 .milieu-header {
   animation: fadeInUp 1s ease-out;
 }
 .milieu-page-content {
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -103,7 +103,6 @@ const footerText =
 
   position: relative;
   /*z-index: 2;*/
-
 }
 .milieu-page::before {
   content: "";
