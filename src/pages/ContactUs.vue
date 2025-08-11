@@ -27,7 +27,7 @@ import type { CustomButtonInterface } from "../interfaces/shared-interfaces/Cust
 import type { CustomMessageInterface } from "../interfaces/shared-interfaces/CustomMessageInterface";
 import { useUserAuth } from "../composables/useUserAuth";
 import { useRouter } from "vue-router";
-
+import contactus from "../services/contactus-service";
 //--------------------------COMPOSABLES------------------
 
 const router = useRouter();
@@ -64,7 +64,7 @@ const { id, buttons, fields } = {
       labelContent: "Message",
       heldId: "messageHelp",
       helpContent: "Briefly describe your issue",
-      textarea: true
+      textarea: true,
     },
     {
       id: "captcha",
@@ -108,7 +108,29 @@ function onNoEmail() {
     });
   }
 }
+function onNoMessage() {
+  const mess = messages.value.find(
+    (mess: CustomMessageInterface) => mess.content == "You forgot the message"
+  );
+  if (!mess) {
+    messages.value.push({
+      classNames: "text-danger login__message",
+      content: "You forgot the message",
+    });
+  }
+}
 
+function onNoObjectMail() {
+  const mess = messages.value.find(
+    (mess: CustomMessageInterface) => mess.content == "You forgot the object"
+  );
+  if (!mess) {
+    messages.value.push({
+      classNames: "text-danger login__message",
+      content: "You forgot the object",
+    });
+  }
+}
 function onNoInputs() {
   messages.value = messages.value.filter(
     (mess: CustomMessageInterface) => mess.content !== "You forgot the email"
@@ -127,10 +149,27 @@ function onNoInputs() {
 }
 
 async function onCompleteForm(
-  fieldsValues: Reactive<{ email: string; password: string }>
+  fieldsValues: Reactive<{
+    email: string;
+    objectMail: string;
+    messageClient: string;
+    captcha?: string;
+  }>
 ) {
   showButtons.value = false;
   messages.value = [];
+  const { email, objectMail, messageClient } = fieldsValues;
+  const { message } = await contactus.contact({
+    email,
+    objectMail,
+    messageClient,
+  });
+  if (message == "send email successfully") {
+    messages.value.push({
+      content: "Your message has been sent",
+      classNames: "text-success contactus__message",
+    });
+    /*
   const { loginUser } = useUserAuth();
   const isConnected = await loginUser({
     email: fieldsValues.email,
@@ -150,20 +189,36 @@ async function onCompleteForm(
       content: "Failed to log in - Retry",
       classNames: "text-danger login__message",
     });
+  }*/
+  } else {
+    messages.value.push({
+      content: "Failed to send message - Retry",
+      classNames: "text-danger contactus__message",
+    });
   }
 }
 
 async function onSubmit() {
+  messages.value = [];
   showButtons.value = false;
-
-  if (!fieldsValues.email && !messages.value) {
+  if (
+    !fieldsValues.email &&
+    !fieldsValues.messageClient &&
+    !fieldsValues.objectMail
+  ) {
     onNoInputs();
   }
 
   if (!fieldsValues.email) {
     onNoEmail();
   }
-
+  if (!fieldsValues.objectMail) {
+    onNoObjectMail();
+  }
+  if (!fieldsValues.messageClient) {
+    onNoMessage();
+  }
+  /*
   if (!fieldsValues.email) {
     messages.value = messages.value.filter(
       (mess: CustomMessageInterface) =>
@@ -171,17 +226,25 @@ async function onSubmit() {
         mess.content !== "Fill in the form"
     );
   }
-
-  if (fieldsValues.email && fieldsValues.message) {
+*/
+  if (
+    fieldsValues.email &&
+    fieldsValues.messageClient &&
+    fieldsValues.objectMail
+  ) {
     onCompleteForm(
       fieldsValues as Reactive<{
         email: string;
-        password: string;
         objectMail: string;
         messageClient: string;
         captcha?: string;
       }>
     );
+  } else {
+    messages.value.push({
+      content: "Fill in the form",
+      classNames: "text-danger contactus__message",
+    });
   }
 
   showButtons.value = true;
