@@ -13,7 +13,7 @@ const contactus = {
       );
       */
       console.log(data);
-      //return parsedResponse;
+
       return "send email successfully";
     } catch (err) {
       console.log(err);
