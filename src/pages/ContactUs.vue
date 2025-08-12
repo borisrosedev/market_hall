@@ -1,7 +1,18 @@
 <template>
+  <header class="app__header">
+    <section class="my-3 row justify-content-center w-100">
+      <p>
+        Nous envoyé un mail directement à
+        <a href="mailto:antiquiteOcassion@antique.fr"
+          >mail antiquiteOcassion@antique.fr</a
+        >
+      </p>
+    </section>
+  </header>
   <main class="app__main contactus__main">
     <section class="row justify-content-center w-100">
       <CustomForm
+        @on-field-updated="onFormUpdated"
         :id="id"
         :fields="fields"
         :buttons="buttons"
@@ -17,6 +28,17 @@
       </p>
     </section>
   </main>
+  <footer class="app__footer">
+    <section class="my-3 row justify-content-center w-100">
+      <p>
+        Ou nous envoyé un mail directement à
+        <a
+          href="mailto:guillotboris@hotmail.com?subject=Claim subject&body=Client Number : XXXXXX "
+          >mail antiquiteOcassion@antique.fr</a
+        >
+      </p>
+    </section>
+  </footer>
 </template>
 <script setup lang="ts">
 import CustomForm from "../components/shared-components/CustomForm.vue";
@@ -45,7 +67,7 @@ const { id, buttons, fields } = {
 
   fields: [
     {
-      id: "contactEmail",
+      id: "email",
       type: "email",
       labelContent: "Email",
       heldId: "emailHelp",
@@ -78,25 +100,35 @@ const { id, buttons, fields } = {
 
 //-------------------------REACTIVE OBJECTS-----------------------------
 const messages = ref<CustomMessageInterface[]>([]);
+const msgRetour = ref<string[]>([]);
 const showButtons = ref<boolean>(true);
 const fieldsValues = reactive<{
   email: string;
-  message?: string;
+  message: string;
   objectMail: string;
   messageClient: string;
   captcha?: string;
 }>({
   email: "",
+  message: "",
   objectMail: "",
   messageClient: "",
 });
 
 //-------------------------- HANDLERS --------------------------------------
 
-const onFieldUpdated = ({ value, name }) => {
+function onFormUpdated({ name, value }) {
   fieldsValues[name] = value;
-};
-
+}
+function onReset() {
+  fieldsValues.message = "";
+  fieldsValues.email = "";
+  fieldsValues.objectMail = "";
+  fieldsValues.messageClient = "";
+  fieldsValues.captcha = "";
+  messages.value = [];
+  console.log(fieldsValues);
+}
 function onNoEmail() {
   const mess = messages.value.find(
     (mess: CustomMessageInterface) => mess.content == "You forgot the email"
@@ -159,12 +191,14 @@ async function onCompleteForm(
   showButtons.value = false;
   messages.value = [];
   const { email, objectMail, messageClient } = fieldsValues;
-  const { message } = await contactus.contact({
+  /*
+  const { msgRetour } = await contactus.contact({
     email,
     objectMail,
     messageClient,
   });
-  if (message == "send email successfully") {
+  */
+  if ("send email successfully" == "send email successfully") {
     messages.value.push({
       content: "Your message has been sent",
       classNames: "text-success contactus__message",
@@ -201,6 +235,7 @@ async function onCompleteForm(
 async function onSubmit() {
   messages.value = [];
   showButtons.value = false;
+
   if (
     !fieldsValues.email &&
     !fieldsValues.messageClient &&
@@ -208,6 +243,7 @@ async function onSubmit() {
   ) {
     onNoInputs();
   }
+  console.log(fieldsValues.email);
 
   if (!fieldsValues.email) {
     onNoEmail();
@@ -260,5 +296,14 @@ async function onSubmit() {
 
 .contactus__message {
   font-size: 14px;
+}
+
+.app__footer,
+.app_header {
+  background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
+  color: white;
+  padding: 3rem 0 1rem;
+  position: relative;
+  overflow: hidden;
 }
 </style>
