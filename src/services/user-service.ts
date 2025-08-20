@@ -2,6 +2,12 @@ import apiResource from "../data-resources/data-remote-resources/api-resources";
 
 const userService = {
 
+
+  async update(data:any, userId:number, isJson:boolean = true) {
+    const parsedResponse = await apiResource.send(data,`/users/${userId}`,"PUT","include", isJson)
+    console.log(parsedResponse)
+    return parsedResponse
+  },
   async me() {
     const parsedResponse = await apiResource.get("/users/me")
     console.log(parsedResponse)

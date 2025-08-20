@@ -19,14 +19,16 @@ const apiResource = {
         }
     },
 
-    async send(data:any, endpoint: string , method: 'POST'|'PATCH'|'PUT' = "POST", credentials?: RequestCredentials){
+    async send(data:any, endpoint: string , method: 'POST'|'PATCH'|'PUT' = "POST", credentials?: RequestCredentials, isJson: boolean = true){
         const requestInit = { method, headers: {} } as { method:'POST'|'PATCH'|'PUT', headers: any, body: string, credentials?: RequestCredentials }
         if(credentials) {
             requestInit.credentials = credentials;
         }
 
-        requestInit.headers["Content-Type"]="application/json";
-        requestInit.body = JSON.stringify(data); 
+
+        if(isJson == true) requestInit.headers["Content-Type"]="application/json";
+        console.log('isJson in apiResources', isJson, requestInit)
+        requestInit.body = isJson ? JSON.stringify(data) : data; 
         try {
             const serverResponse = await fetch(API_URL_PREFIX + endpoint, requestInit);
             const parsedResponse = await serverResponse.json();

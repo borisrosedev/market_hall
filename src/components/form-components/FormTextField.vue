@@ -4,6 +4,7 @@
     <input
       v-if="!obj.textarea"
       :data-testid="obj.id"
+      :name="obj.id"
       :type="obj.type ?? 'text'"
       class="form-control"
       :id="obj.id"
@@ -13,7 +14,8 @@
     <textarea 
       v-else
       :data-testid="obj.id"
-      :placeholder="obj.placeholder" 
+      :placeholder="obj.placeholder"
+      :name="obj.id"
       :id="obj.id"
       style="resize:none; height: 200px;"
       class="form-control"
@@ -30,7 +32,7 @@ import type { FormTextFieldInterface } from "../../interfaces/form-interfaces/Fo
 defineProps<{ obj: FormTextFieldInterface }>();
 const emit = defineEmits(["onInputUpdated"]);
 
-const onInput = (event, name) => {
+const onInput = (event, name: string) => {
   emit("onInputUpdated", { value: event.target.value, name: name });
 };
 </script>

@@ -39,11 +39,13 @@ const { id, buttons, fields } = {
     {
       content: "Submit",
       type: "submit",
+      id: 'submit-button',
       classNames: "btn-primary me-3",
     },
     {
       content: "Reset",
       type: "reset",
+      id: 'reset-button',
       classNames: "btn-outline-danger",
     },
   ] as CustomButtonInterface[],

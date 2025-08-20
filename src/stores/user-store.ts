@@ -1,7 +1,6 @@
 import { createStore } from "harlem"
 import userService from "../services/user-service"
-import type { UserInterface } from "../interfaces/session-interfaces/UserInterface";
-
+ 
 const STATE = {
     user: {} as any
 }
