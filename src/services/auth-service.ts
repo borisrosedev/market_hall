@@ -2,7 +2,7 @@ import apiResource from "../data-resources/data-remote-resources/api-resources";
 const authService = {
   async login(data: { email: string; password: string }) {
     try {
-      const parsedResponse = apiResource.send(
+      const parsedResponse = await apiResource.send(
         data,
         "/auth/login",
         "POST",

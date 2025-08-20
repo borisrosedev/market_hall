@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import { RouterLink } from "vue-router";
-</script>
+
 
 <template>
   <nav class="navbar bg-body-tertiary fixed-top">
@@ -49,10 +47,23 @@ import { RouterLink } from "vue-router";
                 >Products</RouterLink
               >
             </li>
-            <li class="nav-item">
+             <li class="nav-item" v-if="isConnected">
+              <RouterLink
+                class="nav-link active"
+                aria-current="page"
+                to="/dashboard"
+                >Dashboard</RouterLink
+              >
+            </li>
+            <li v-if="isConnected">
+              <button class="nav-link btn btn-outlined-danger" @click="confirmLogout">Log out</button>
+            </li>
+
+
+            <li class="nav-item" v-if="!isConnected">
               <RouterLink class="nav-link" to="/signin">Login</RouterLink>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" v-if="!isConnected">
               <RouterLink class="nav-link" to="/register">Signup</RouterLink>
             </li>
             <li class="nav-item">
@@ -89,3 +100,57 @@ import { RouterLink } from "vue-router";
     </div>
   </nav>
 </template>
+
+<script setup lang="ts">
+import { RouterLink } from "vue-router";
+import { isConnected } from "../stores/auth-store";
+import { onMounted } from "vue";
+import { useUserAuth } from "../composables/useUserAuth"
+import { useRouter } from "vue-router"
+import { useMessagesStore } from "../stores/messages-store";
+const userAuth = useUserAuth()
+const router = useRouter()
+const { showToast, hideToastNow } = useMessagesStore()
+
+/**
+ * when the component mounts it automatically calls the checkAuth function 
+ * from the composable which sends a http request -> /me 
+ * applying the "complete mediation" principle 
+ * @param callback 
+ */
+onMounted(async() => {
+  await userAuth.checkAuth()
+})
+
+
+const onLogout = async() => {
+ const isLoggedOut = await userAuth.logoutUser()
+ if(isLoggedOut){
+    router.push('login')
+    hideToastNow()
+ }
+}
+const onCancel = () => {
+  hideToastNow()
+}
+
+const confirmLogout = () => {
+  showToast({
+    summary: 'Confirmation',
+    detail: 'Are you sure you want to log out ?',
+    type: 'info',
+    actions: [
+      {
+        content: 'Yes',
+        handler: onLogout
+      },
+      {
+        content: 'No',
+        handler: onCancel
+      }
+    ]
+  })
+}
+
+
+</script>

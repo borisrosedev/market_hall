@@ -52,8 +52,38 @@ const router = createRouter({
   ],
 });
 
-createApp(App)
-  .use(createPinia())
+const app = createApp(App)
+  
+app.use(createPinia())
   .use(createVuePlugin())
   .use(router)
   .mount("#app");
+
+
+app.directive('mix', {
+  created(el, binding, vnode) {
+    console.log('🌍 [Global Directive / mix ] activated ✅')
+    console.log('--> dom-element', el)
+    console.log('--> arg', binding.arg)
+    console.log('--> value', binding.value)
+    console.log('--> modifiers', binding.modifiers)
+    
+    if(binding.modifiers){
+      if('success' in binding.modifiers) el.classList.add('text-success')
+      if('alert' in binding.modifiers) el.classList.add('text-danger')
+    }
+
+    if(!binding.arg && binding.value) {
+      if( 'color' in binding.value) el.style.color = binding.value.color;
+      if( 'fw' in binding.value) el.style.fontWeight = binding.value.fw;
+    }
+
+    if (binding.arg) {
+      console.log('here')
+      if( binding.arg == 'color' ) el.style.color = binding.value.color;
+      if( binding.arg == 'fw') el.style.fontWeight = binding.value.fw;
+    }
+
+
+  }
+})

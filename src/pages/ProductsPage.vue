@@ -36,16 +36,47 @@ import { onMounted, ref } from 'vue';
 import CustomCard from '../components/shared-components/CustomCard.vue';
 import PRODUCTS from '../data-resources/data-local-resources/products'
 import CustomButton from '../components/shared-components/CustomButton.vue';
+import { useUserAuth } from "../composables/useUserAuth"
+import { useMessagesStore } from "../stores/messages-store"
+import { useRouter } from "vue-router"
 
+const router = useRouter()
 const products = ref([])
+const isConnected = ref(false)
+const messagesStore = useMessagesStore()
+const { showToast, hideToastNow } = messagesStore
+const { checkAuth } = useUserAuth()
 
-onMounted(() => {
+
+onMounted(async() => {
     products.value = PRODUCTS as any
+    isConnected.value = await checkAuth()
 })
 
 
+function navigateHandler(to: 'login' | 'signup' ): void {
+    router.push(to)
+    hideToastNow()
+}
+
+
 const onAddToCart = (e, id: number) => {
-    alert(id)
+    if(!isConnected.value) {
+        showToast({
+            summary: 'Session required',
+            detail: 'You need to log in to add it',
+            type: 'info',
+            actions: [{
+                to: 'login',
+                content: 'Log in',
+                handler: navigateHandler
+            }, {
+                to: 'signup',
+                content: 'Sign up',
+                handler: navigateHandler
+            }]
+        })
+    }
 }
  
 </script>

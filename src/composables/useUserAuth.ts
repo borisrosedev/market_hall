@@ -1,4 +1,4 @@
-import { logout, login, isConnected } from "../stores/auth-store"
+import { logout, login, isConnected, setIsConnected } from "../stores/auth-store"
 import { setCurrentUser, getCurrentUser, currentUser } from "../stores/user-store"
 
 export const useUserAuth = () => {
@@ -16,6 +16,7 @@ export const useUserAuth = () => {
         if (!(currentUser.value && currentUser.value.id)) {
             return false       
         } 
+        setIsConnected(true) 
         return true
     }
 
