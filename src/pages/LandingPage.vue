@@ -1,21 +1,20 @@
 <template>
   <main class="app__main landing__main">
     <!-- Mileu Section -->
-    <section class="milieu-page-content">
-      <header class="milieu-header">
-        <h1 class="milieu-page-h1">{{ title }}</h1>
-        <p class="milieu-page-p">{{ description }}</p>
+    <section class="middle-page-content">
+      <header class="middle-header">
+        <h1 class="middle-page-h1">{{ title }}</h1>
+        <p class="middle-page-p">{{ description }}</p>
       </header>
-      <a href="#" class="cta-button">{{ collectionText }}</a>
-    
+      <a href="#" class="cta-button">
+        <RouterLink to="/products" class="cta-button">{{
+          collectionText
+        }}</RouterLink></a
+      >
     </section>
-
   </main>
-
-    <footer class="app__footer">
-      <p>{{ footerText }}</p>
-      <!-- p>{{ footerText }}</!-->
-    </footer>
+  <!-- Scroll to top button -->
+  <button class="scroll-top" id="scrollTop">↑</button>
 </template>
 
 <script setup lang="ts">
@@ -27,11 +26,35 @@ const collectionText = "Explorer la Collection";
 const exampleText =
   "En saisissant Table type Louis XVI dans la barre de recherche, vous trouverez des tables de ce type avec les Prix proposés par les particuliers (commission incluse).";
 
-const footerText =
-  "© 2025 Market Hall. Tous droits réservés. | Antiquités authentiques depuis 2025";
+// Scroll to top functionality
+const scrollTopBtn = document.getElementById("scrollTop");
+
+window.addEventListener("scroll", () => {
+  if (!scrollTopBtn) return;
+  if (window.pageYOffset > 300) {
+    scrollTopBtn.classList.add("visible");
+  } else {
+    scrollTopBtn.classList.remove("visible");
+  }
+});
+
+if (scrollTopBtn) {
+  scrollTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
+}
 </script>
 
 <style scoped>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .landing__main {
   background-color: rgba(139, 69, 19, 0.3);
   padding: 2rem;
@@ -78,12 +101,10 @@ const footerText =
   left: 100%;
 }
 
-
-.milieu-header {
+.middle-header {
   animation: fadeInUp 1s ease-out;
 }
-.milieu-page-content {
-
+.middle-page-content {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -103,9 +124,8 @@ const footerText =
 
   position: relative;
   /*z-index: 2;*/
-
 }
-.milieu-page::before {
+.middle-page::before {
   content: "";
   position: absolute;
   top: 0;
@@ -118,14 +138,14 @@ const footerText =
     rgba(0, 0, 0, 0.3) 100%
   );
 }
-.milieu-page-h1 {
+.middle-page-h1 {
   margin-bottom: 1rem;
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   animation: slideInFromLeft 1.2s ease-out;
   font-size: 2.5rem;
 }
-.milieu-page-p {
+.middle-page-p {
   font-size: 1.5rem;
   margin-bottom: 2rem;
   color: #f0f0f0;
@@ -133,7 +153,7 @@ const footerText =
   animation: slideInFromRight 1.2s ease-out;
 }
 
-.milieu-page {
+.middle-page {
   height: 100vh;
 
   display: flex;
@@ -144,7 +164,7 @@ const footerText =
   overflow: hidden;
 }
 
-.milieu-page::before {
+.middle-page::before {
   content: "";
   position: absolute;
   top: 0;
@@ -157,11 +177,14 @@ const footerText =
     rgba(0, 0, 0, 0.3) 100%
   );
 }
-.app__footer {
-  background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
-  color: white;
-  padding: 3rem 0 1rem;
-  position: relative;
-  overflow: hidden;
+
+.scroll-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.scroll-top:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(139, 69, 19, 0.4);
 }
 </style>
