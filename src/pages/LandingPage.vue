@@ -6,7 +6,7 @@
         <h1 class="middle-page-h1">{{ title }}</h1>
         <p class="middle-page-p">{{ description }}</p>
       </header>
-      <a href="#" class="cta-button">
+      <a href="#" >
         <RouterLink to="/products" class="cta-button">{{
           collectionText
         }}</RouterLink></a
@@ -109,7 +109,7 @@ if (scrollTopBtn) {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-image: url("../assets/images/landing-background.png");
+/*  background-image: url("../assets/images/landing-background.png"); */
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
