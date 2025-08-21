@@ -278,6 +278,7 @@ async function onSubmit() {
 
 <style lang="css">
 .signup__main {
+  background-color: rgba(139, 69, 19, 0.3);
   flex-direction: row;
   align-items: center;
   justify-content: center;

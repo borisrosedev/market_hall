@@ -27,6 +27,7 @@ const obj: CustomHeaderBodyCardInterface = {
 
 
 .not-found__main {
+    background-color: rgba(139, 69, 19, 0.3);
     align-items: center;
     justify-content: center;
     flex-direction: column;

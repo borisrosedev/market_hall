@@ -84,6 +84,7 @@ const onAddToCart = (e, id: number) => {
 
 
 .products__main {
+    background-color: rgba(139, 69, 19, 0.3);
     flex-direction: column;
 }
 
