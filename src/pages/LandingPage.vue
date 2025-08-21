@@ -4,7 +4,7 @@
     <section class="middle-page-content">
       <header class="middle-header">
         <h1 class="middle-page-h1">{{ title }}</h1>
-        <p class="middle-page-p">{{ description }}</p>
+        <p class="middle-page-p">Découvrez des antiquités authentiques et des pièces d'exception</p>
       </header>
       <a href="#" >
         <RouterLink to="/products" class="cta-button">{{
@@ -13,8 +13,7 @@
       >
     </section>
   </main>
-  <!-- Scroll to top button -->
-  <button class="scroll-top" id="scrollTop">↑</button>
+ 
 </template>
 
 <script setup lang="ts">
@@ -26,26 +25,6 @@ const collectionText = "Explorer la Collection";
 const exampleText =
   "En saisissant Table type Louis XVI dans la barre de recherche, vous trouverez des tables de ce type avec les Prix proposés par les particuliers (commission incluse).";
 
-// Scroll to top functionality
-const scrollTopBtn = document.getElementById("scrollTop");
-
-window.addEventListener("scroll", () => {
-  if (!scrollTopBtn) return;
-  if (window.pageYOffset > 300) {
-    scrollTopBtn.classList.add("visible");
-  } else {
-    scrollTopBtn.classList.remove("visible");
-  }
-});
-
-if (scrollTopBtn) {
-  scrollTopBtn.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  });
-}
 </script>
 
 <style scoped>
@@ -101,15 +80,11 @@ if (scrollTopBtn) {
   left: 100%;
 }
 
-.middle-header {
-  animation: fadeInUp 1s ease-out;
-}
 .middle-page-content {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-/*  background-image: url("../assets/images/landing-background.png"); */
+  flex-direction: column; 
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -117,13 +92,8 @@ if (scrollTopBtn) {
   text-align: center;
   font-size: 1.1rem;
   font-weight: bold;
-  height: 500px;
-
-  /*position: relative;*/
-  /*overflow: hidden;*/
-
-  position: relative;
-  /*z-index: 2;*/
+  height: 500px; 
+  position: relative; 
 }
 .middle-page::before {
   content: "";
@@ -139,18 +109,36 @@ if (scrollTopBtn) {
   );
 }
 .middle-page-h1 {
-  margin-bottom: 1rem;
+  font-size: 3rem; 
+  font-weight: bold;
   color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  animation: slideInFromLeft 1.2s ease-out;
-  font-size: 2.5rem;
+  text-shadow: 2px 2px 4px rgba(137, 104, 104, 0.5); 
+  animation: fadeInUp 2s ease-out;
 }
+
+
 .middle-page-p {
   font-size: 1.5rem;
   margin-bottom: 2rem;
-  color: #f0f0f0;
+  color: rgb(139, 69, 19 );
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-  animation: slideInFromRight 1.2s ease-out;
+  /* Animation plus fluide avec transform uniquement */
+  animation: slideToCenter 4s ease-out;
+}
+
+@keyframes slideToCenter {
+    0% {
+        opacity: 0;
+        transform: translateX(-400px) translateY(200px) scale(0.5) rotate(-10deg);
+    }
+    30% {
+        opacity: 0.3;
+    }
+   
+    100% {
+        opacity: 1;
+        transform: translateX(0) translateY(0) scale(1) rotate(0deg);
+    }
 }
 
 .middle-page {
@@ -178,13 +166,4 @@ if (scrollTopBtn) {
   );
 }
 
-.scroll-top.visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-.scroll-top:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(139, 69, 19, 0.4);
-}
 </style>
