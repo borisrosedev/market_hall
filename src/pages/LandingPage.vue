@@ -3,7 +3,7 @@
   <main class="app__main landing__main">
     
 
-    <!-- Mileu Section -->
+    <!-- middle Section -->
     <section class="middle-page-content">
       
       
@@ -63,7 +63,7 @@
 import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 import { gsap } from 'gsap'
 
-// Données du carrousel
+// Carousel data
 const slides = ref([
   {
     title: "Platine Vinyle Vintage",
@@ -92,47 +92,46 @@ const slides = ref([
   }
 ])
 
-// Références
+// References
 const carouselWrapper = ref<HTMLElement>()
 const carouselTrack = ref<HTMLElement>()
 const slideRefs = ref<HTMLElement[]>([])
 const prevButton = ref<HTMLElement>()
 const nextButton = ref<HTMLElement>()
 
-// État
+// State
 const currentSlide = ref(0)
 const isAutoPlaying = ref(true)
 const slideWidth = ref(0)
 
-// Variables GSAP
+// GSAP Variables 
 let autoPlayInterval: NodeJS.Timeout | null = null
 let tl: gsap.core.Timeline
 
-// Calculer la largeur des slides
+// Calculated 
 const calculateSlideWidth = () => {
   if (carouselWrapper.value) {
     slideWidth.value = carouselWrapper.value.offsetWidth
   }
 }
 
-// Animation de transition
+// Transition of Animation 
 const animateToSlide = (slideIndex: number, direction: 'next' | 'prev' = 'next') => {
   if (!carouselTrack.value) return
 
   const targetX = -slideIndex * slideWidth.value
   
-  // Animation principale
+  // Main Animation 
   gsap.to(carouselTrack.value, {
     x: targetX,
     duration: 0.8,
     ease: "power2.inOut"
   })
 
-  // Animation des slides individuels
+  // Individual animation 
   slideRefs.value.forEach((slide, index) => {
     if (slide) {
-      if (index === slideIndex) {
-        // Slide actif - animation d'entrée
+      if (index === slideIndex) { 
         gsap.fromTo(slide.querySelector('.slide-content'), 
           { 
             scale: 0.9, 
@@ -148,8 +147,7 @@ const animateToSlide = (slideIndex: number, direction: 'next' | 'prev' = 'next')
             ease: "power2.out"
           }
         )
-      } else {
-        // Slides inactifs
+      } else { 
         gsap.to(slide.querySelector('.slide-content'), {
           scale: 0.9,
           opacity: 0.7,
@@ -179,8 +177,7 @@ const goToSlide = (index: number) => {
   currentSlide.value = index
   animateToSlide(index, direction)
 }
-
-// Auto-play
+ 
 const startAutoPlay = () => {
   if (autoPlayInterval) clearInterval(autoPlayInterval)
   autoPlayInterval = setInterval(nextSlide, 4000)
@@ -193,7 +190,15 @@ const stopAutoPlay = () => {
   }
 }
 
-// Gestion du redimensionnement
+const toggleAutoPlay = () => {
+  isAutoPlaying.value = !isAutoPlaying.value
+  if (isAutoPlaying.value) {
+    startAutoPlay()
+  } else {
+    stopAutoPlay()
+  }
+}
+ 
 const handleResize = () => {
   calculateSlideWidth()
   animateToSlide(currentSlide.value)
@@ -203,27 +208,23 @@ onMounted(async () => {
   await nextTick()
   
   calculateSlideWidth()
-  
-  // Animation d'entrée initiale
+   
   tl = gsap.timeline()
-  
-  // Animation du titre
+   
   tl.from('.title', {
     duration: 1,
     y: -50,
     opacity: 0,
     ease: "power2.out"
   })
-  
-  // Animation du carrousel
+   
   .from(carouselWrapper.value, {
     duration: 0.8,
     scale: 0.8,
     opacity: 0,
     ease: "back.out(1.7)"
   }, "-=0.5")
-  
-  // Animation des contrôles
+   
   .from('.carousel-controls', {
     duration: 0.6,
     y: 30,
@@ -237,8 +238,7 @@ onMounted(async () => {
     opacity: 0,
     ease: "power2.out"
   }, "-=0.3")
-
-  // Animation des boutons au hover
+ 
   if (prevButton.value && nextButton.value) {
     [prevButton.value, nextButton.value].forEach(button => {
       button.addEventListener('mouseenter', () => {
@@ -250,14 +250,11 @@ onMounted(async () => {
       })
     })
   }
-
-  // Initialiser le premier slide
+ 
   animateToSlide(0)
-  
-  // Démarrer l'auto-play
+   
   startAutoPlay()
-  
-  // Écouter le redimensionnement
+   
   window.addEventListener('resize', handleResize)
 })
 
@@ -311,12 +308,12 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
 .carousel-track {
   display: flex;
   height: 100%;
-  width: 500%; /* 5 slides × 100% */
+  width: 500%;  
   will-change: transform;
 }
 
 .carousel-slide {
-  flex: 0 0 20%; /* 100% / 5 slides */
+  flex: 0 0 20%;  
   height: 100%;
   display: flex;
   align-items: center;
