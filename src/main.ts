@@ -11,6 +11,7 @@ import NotFoundPage from "./pages/NotFoundPage.vue";
 import ProductsPage from "./pages/ProductsPage.vue";
 import DashboardPage from "./pages/session-required-pages/DashboardPage.vue";
 import ContactUs from "./pages/ContactUs.vue";
+import CartPage from "./pages/session-required-pages/CartPage.vue";
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -38,11 +39,15 @@ const router = createRouter({
       path: "/contactus",
       component: ContactUs,
     },
-
     {
       path: "/dashboard",
       component: DashboardPage,
       name: "dashboard",
+    },
+    {
+      path: "/cart",
+      component: CartPage,
+      name: "cart"
     },
     {
       path: "/:pathMatch(.*)*",
@@ -79,7 +84,6 @@ app.directive('mix', {
     }
 
     if (binding.arg) {
-      console.log('here')
       if( binding.arg == 'color' ) el.style.color = binding.value.color;
       if( binding.arg == 'fw') el.style.fontWeight = binding.value.fw;
     }

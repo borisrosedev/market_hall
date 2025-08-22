@@ -104,7 +104,7 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
 import { isConnected } from "../stores/auth-store";
-import { onMounted } from "vue";
+import { onMounted, onUpdated } from "vue";
 import { useUserAuth } from "../composables/useUserAuth"
 import { useRouter } from "vue-router"
 import { useMessagesStore } from "../stores/messages-store";
@@ -121,6 +121,8 @@ const { showToast, hideToastNow } = useMessagesStore()
 onMounted(async() => {
   await userAuth.checkAuth()
 })
+
+
 
 
 const onLogout = async() => {

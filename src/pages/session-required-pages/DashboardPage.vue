@@ -63,7 +63,7 @@
                 v-if="currentUser.id"
                 
                 :obj="{
-                    url: `http://localhost:5000/static/files/${currentUser.photo_name}`,
+                    url: (currentUser.photo_name ? `http://localhost:5000/static/files/${currentUser.photo_name}`: 'src/assets/images/avatar-placeholder.jpg' ),
                     classNames: 'w-50',
                     role: `${currentUser.role}`,
                     listItems: [
@@ -74,7 +74,7 @@
                             content: `Lastame: ${currentUser.lastname}`
                         },
                         {
-                            content: `Email: ${currentUser.lastname}`
+                            content: `Email: ${currentUser.email}`
                         }
                     ],
                     name: currentUser.fullname
@@ -103,10 +103,14 @@
             
             </CustomCard>
         </section>
-        <section class="dashboard__cart-info d-flex">
-            <div v-if="!getCart.length" class="alert alert-primary d-flex flex-column" role="alert">
-                <span v-mix.alert>Your cart is empty</span>
+        <section class="dashboard__cart-info d-flex" v-if="getCart && getCart.items">
+            <div  v-if="!getCart.items.length" class="alert alert-primary d-flex flex-column" role="alert">
+                <span>Your cart is empty</span>
                 <RouterLink class="btn btn-primary my-2" to="products">Get Products</RouterLink>
+            </div>
+            <div v-else class="alert alert-info" role="alert">
+                <span>Do not forget to check out your cart, for {{ getCart.items.length  }} items are waiting ...</span>
+                <RouterLink class="btn btn-primary my-2" to="cart">Check out your cart</RouterLink>
             </div>
         </section>
 

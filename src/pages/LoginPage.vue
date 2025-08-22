@@ -142,7 +142,7 @@ async function onCompleteForm(fieldsValues:Reactive<{ email: string; password: s
     messages.value = [];
     const { loginUser } = useUserAuth()
     const isConnected = await loginUser({ email: fieldsValues.email, password: fieldsValues.password })
-    if(isConnected){
+    if(isConnected.value == true){
       onReset()
       messages.value.push({
           content: "Connection succeeded - Redirection to Dashboard in 3 secondes",
