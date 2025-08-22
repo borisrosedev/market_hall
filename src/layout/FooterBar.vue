@@ -6,16 +6,18 @@ import { RouterLink } from "vue-router";
   <footer class="app__footer">
     <section class="app__footer-content">
       <div class="app__footer-section">
+        
+        <ul class="app__footer-ul">
         <h3>About</h3>
-        <ul>
           <li><a href="#">Our story</a></li>
           <li><a href="#">Our team</a></li>
         </ul>
       </div>
 
       <div class="app__footer-section">
-        <h3>Link</h3>
-        <ul>
+        
+        <ul class="app__footer-ul">
+          <h3>Link</h3>
           <li class="nav-item">
             <RouterLink
               class="nav-link active"
@@ -36,8 +38,9 @@ import { RouterLink } from "vue-router";
       </div>
 
       <div class="app__footer-section">
-        <h3>Contact</h3>
-        <ul>
+        
+        <ul class="app__footer-ul">
+          <h3>Contact</h3>
           <li class="nav-item">
             <RouterLink class="nav-link" to="/contactus">Contact Us</RouterLink>
           </li>
@@ -47,8 +50,9 @@ import { RouterLink } from "vue-router";
       </div>
 
       <div class="app__footer-section">
-        <h3>Connexion</h3>
-        <ul>
+        
+        <ul class="app__footer-ul">
+          <h3>Connexion</h3>
           <li class="nav-item">
             <RouterLink class="nav-link" to="/signin">Login</RouterLink>
           </li>
@@ -58,6 +62,7 @@ import { RouterLink } from "vue-router";
         </ul>
 
         <div class="social-links">
+          <ul class="app__footer-ul">
           <a
             href="https://facebook.com"
             target="_blank"
@@ -74,6 +79,7 @@ import { RouterLink } from "vue-router";
           >
             𝕏
           </a>
+          </ul>
         </div>
       </div>
     </section>
@@ -92,6 +98,7 @@ import { RouterLink } from "vue-router";
   padding: 3rem 0 1rem;
   position: relative;
   overflow: hidden;
+
 }
 
 .app__footer::before {
@@ -107,7 +114,7 @@ import { RouterLink } from "vue-router";
 .app__footer-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 2rem; 
 }
 
 .app__footer-content {
@@ -117,18 +124,50 @@ import { RouterLink } from "vue-router";
   margin-bottom: 2rem;
 }
 
+
+
+.app__footer-section {
+  display: flex;
+  flex-direction: column;
+  align-items: left;  
+}
+
 .app__footer-section h3 {
   color: #8b4513;
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
+  margin-bottom: 0.5rem; 
+  font-size: 1.4rem;  
+  font-weight: 600;   
+  letter-spacing: 1px;  
+  border-bottom: 3px solid #8b4513;  
+  padding-bottom: 0.5rem;
+  align-self: left;
+  width: 100%;
+}
+ 
+
+.app__footer-section:first-child {
+  margin-left: 2rem;
 }
 
 .app__footer-section ul {
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;  
 }
 
 .app__footer-section li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;  
+  padding-left: 1rem;  
+  position: relative;
+}
+ 
+.app__footer-section li::before {
+  content: ">";
+  color: #8b4513;
+  position: absolute;
+  left: 0;
+  opacity: 0.7;
 }
 
 .app__footer-section a {
@@ -136,8 +175,10 @@ import { RouterLink } from "vue-router";
   text-decoration: none;
   transition: all 0.3s ease;
   position: relative;
+  font-size: 1rem;
+  font-weight: 400; 
 }
-
+ 
 .app__footer-section a:hover {
   color: #8b4513;
   transform: translateX(5px);
@@ -151,9 +192,9 @@ import { RouterLink } from "vue-router";
 }
 
 .social-links {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
+  display: flex; 
+  margin-left: 0;  
+  padding-left: 0;   
 }
 
 .social-link {
