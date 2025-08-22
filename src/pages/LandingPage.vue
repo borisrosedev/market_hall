@@ -1,37 +1,466 @@
 <template>
+ 
   <main class="app__main landing__main">
+    
+
     <!-- Mileu Section -->
     <section class="middle-page-content">
-      <header class="middle-header">
-        <h1 class="middle-page-h1">{{ title }}</h1>
+      
+      
+    <div class="carousel-container">
+    <header class="middle-header">
+        <h1 class="middle-page-h1 animate__animated animate__fadeInDown">{{ title }}</h1>
         <p class="middle-page-p">Découvrez des antiquités authentiques et des pièces d'exception</p>
       </header>
-      <a href="#" >
+    <div class="carousel-wrapper" ref="carouselWrapper">
+      <div class="carousel-track" ref="carouselTrack">
+        <div 
+          v-for="(slide, index) in slides" 
+          :key="index"
+          class="carousel-slide"
+          ref="slideRefs"
+        >
+          <div class="slide-content">
+            <img :src="slide.image" :alt="slide.title" class="slide-image">
+            <h3 class="slide-title">{{ slide.title }}</h3>
+            <p class="slide-description">{{ slide.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="carousel-controls">
+      <button @click="prevSlide" class="nav-button prev-button" ref="prevButton">
+        ➖ 
+      </button>
+      <div class="indicators">
+        <span 
+          v-for="(slide, index) in slides" 
+          :key="index"
+          :class="['indicator', { active: index === currentSlide }]"
+          @click="goToSlide(index)"
+        ></span>
+      </div>
+      <button @click="nextSlide" class="nav-button next-button" ref="nextButton">
+        ➕
+      </button>
+    </div>
+
+   <a href="#" >
         <RouterLink to="/products" class="cta-button">{{
           collectionText
         }}</RouterLink></a
       >
+  </div>
     </section>
+   
   </main>
- 
+
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted, onUnmounted, nextTick } from 'vue'
+import { gsap } from 'gsap'
+
+// Données du carrousel
+const slides = ref([
+  {
+    title: "Platine Vinyle Vintage",
+    description: "Platine Vinyle Vintage Avec Disque Vinyle Odeon",
+    image: "https://images.pexels.com/photos/33523058/pexels-photo-33523058.jpeg"
+  },
+  {
+    title: "Montre", 
+    description: "Montre De Poche Blanche",
+    image: "https://images.pexels.com/photos/3210711/pexels-photo-3210711.jpeg"
+  },
+  {
+    title: "Projecteur",
+    description: "Projecteur Noir Rolleiflex Reel To Reel",
+    image: "https://images.pexels.com/photos/821738/pexels-photo-821738.jpeg"
+  },
+  {
+    title: "Volkswagen",
+    description: "Volkswagen Beetle Orange",
+    image: "https://images.pexels.com/photos/1209774/pexels-photo-1209774.jpeg"
+  },
+  {
+    title: "Cruche",
+    description: "Gros Plan D'une Cruche Antique ",
+    image: "https://images.pexels.com/photos/16983102/pexels-photo-16983102.jpeg"
+  }
+])
+
+// Références
+const carouselWrapper = ref<HTMLElement>()
+const carouselTrack = ref<HTMLElement>()
+const slideRefs = ref<HTMLElement[]>([])
+const prevButton = ref<HTMLElement>()
+const nextButton = ref<HTMLElement>()
+
+// État
+const currentSlide = ref(0)
+const isAutoPlaying = ref(true)
+const slideWidth = ref(0)
+
+// Variables GSAP
+let autoPlayInterval: NodeJS.Timeout | null = null
+let tl: gsap.core.Timeline
+
+// Calculer la largeur des slides
+const calculateSlideWidth = () => {
+  if (carouselWrapper.value) {
+    slideWidth.value = carouselWrapper.value.offsetWidth
+  }
+}
+
+// Animation de transition
+const animateToSlide = (slideIndex: number, direction: 'next' | 'prev' = 'next') => {
+  if (!carouselTrack.value) return
+
+  const targetX = -slideIndex * slideWidth.value
+  
+  // Animation principale
+  gsap.to(carouselTrack.value, {
+    x: targetX,
+    duration: 0.8,
+    ease: "power2.inOut"
+  })
+
+  // Animation des slides individuels
+  slideRefs.value.forEach((slide, index) => {
+    if (slide) {
+      if (index === slideIndex) {
+        // Slide actif - animation d'entrée
+        gsap.fromTo(slide.querySelector('.slide-content'), 
+          { 
+            scale: 0.9, 
+            opacity: 0.7,
+            rotationY: direction === 'next' ? 20 : -20
+          },
+          { 
+            scale: 1, 
+            opacity: 1,
+            rotationY: 0,
+            duration: 0.6,
+            delay: 0.2,
+            ease: "power2.out"
+          }
+        )
+      } else {
+        // Slides inactifs
+        gsap.to(slide.querySelector('.slide-content'), {
+          scale: 0.9,
+          opacity: 0.7,
+          duration: 0.4,
+          ease: "power2.out"
+        })
+      }
+    }
+  })
+}
+
+// Navigation
+const nextSlide = () => {
+  const nextIndex = (currentSlide.value + 1) % slides.value.length
+  currentSlide.value = nextIndex
+  animateToSlide(nextIndex, 'next')
+}
+
+const prevSlide = () => {
+  const prevIndex = (currentSlide.value - 1 + slides.value.length) % slides.value.length
+  currentSlide.value = prevIndex
+  animateToSlide(prevIndex, 'prev')
+}
+
+const goToSlide = (index: number) => {
+  const direction = index > currentSlide.value ? 'next' : 'prev'
+  currentSlide.value = index
+  animateToSlide(index, direction)
+}
+
+// Auto-play
+const startAutoPlay = () => {
+  if (autoPlayInterval) clearInterval(autoPlayInterval)
+  autoPlayInterval = setInterval(nextSlide, 4000)
+}
+
+const stopAutoPlay = () => {
+  if (autoPlayInterval) {
+    clearInterval(autoPlayInterval)
+    autoPlayInterval = null
+  }
+}
+
+const toggleAutoPlay = () => {
+  isAutoPlaying.value = !isAutoPlaying.value
+  if (isAutoPlaying.value) {
+    startAutoPlay()
+  } else {
+    stopAutoPlay()
+  }
+}
+
+// Gestion du redimensionnement
+const handleResize = () => {
+  calculateSlideWidth()
+  animateToSlide(currentSlide.value)
+}
+
+onMounted(async () => {
+  await nextTick()
+  
+  calculateSlideWidth()
+  
+  // Animation d'entrée initiale
+  tl = gsap.timeline()
+  
+  // Animation du titre
+  tl.from('.title', {
+    duration: 1,
+    y: -50,
+    opacity: 0,
+    ease: "power2.out"
+  })
+  
+  // Animation du carrousel
+  .from(carouselWrapper.value, {
+    duration: 0.8,
+    scale: 0.8,
+    opacity: 0,
+    ease: "back.out(1.7)"
+  }, "-=0.5")
+  
+  // Animation des contrôles
+  .from('.carousel-controls', {
+    duration: 0.6,
+    y: 30,
+    opacity: 0,
+    ease: "power2.out"
+  }, "-=0.3")
+  
+  .from('.controls', {
+    duration: 0.6,
+    y: 20,
+    opacity: 0,
+    ease: "power2.out"
+  }, "-=0.3")
+
+  // Animation des boutons au hover
+  if (prevButton.value && nextButton.value) {
+    [prevButton.value, nextButton.value].forEach(button => {
+      button.addEventListener('mouseenter', () => {
+        gsap.to(button, { scale: 1.1, duration: 0.3, ease: "power2.out" })
+      })
+      
+      button.addEventListener('mouseleave', () => {
+        gsap.to(button, { scale: 1, duration: 0.3, ease: "power2.out" })
+      })
+    })
+  }
+
+  // Initialiser le premier slide
+  animateToSlide(0)
+  
+  // Démarrer l'auto-play
+  startAutoPlay()
+  
+  // Écouter le redimensionnement
+  window.addEventListener('resize', handleResize)
+})
+
+onUnmounted(() => {
+  stopAutoPlay()
+  window.removeEventListener('resize', handleResize)
+  if (tl) tl.kill()
+})
+
+ 
+
 const title = "Market Hall";
 const description =
   "Découvrez des antiquités authentiques et des pièces d'exception";
 const collectionText = "Explorer la Collection";
 // Static data
 const exampleText =
+ "Trouver un objet ancien exceptionnelle";
+const exampleText2 =
   "En saisissant Table type Louis XVI dans la barre de recherche, vous trouverez des tables de ce type avec les Prix proposés par les particuliers (commission incluse).";
+
+const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d’antiquités en tous genres, j’ai connu bon nombre de désillusions sur l’authenticité des pièces achetées. En rencontrant Mr Gérard Rigot, j’ai découvert un marchand aux qualités rarement associées : expertise, courtoisie, honnêteté, intérêt de la belle vente plutôt que de son montant, me faisant ainsi changer de regard sur le monde des marchands d’objets d’art ancien.";
 
 </script>
 
 <style scoped>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.carousel-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+.title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #333;
+  font-weight: bold;
+}
+
+.carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px; 
+  box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+  height: 400px;
+  background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+}
+
+.carousel-track {
+  display: flex;
+  height: 100%;
+  width: 500%; /* 5 slides × 100% */
+  will-change: transform;
+}
+
+.carousel-slide {
+  flex: 0 0 20%; /* 100% / 5 slides */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.slide-content {
+  text-align: center;
+  color: white;
+  max-width: 300px;
+  will-change: transform, opacity;
+}
+
+.slide-image {
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.slide-title {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.slide-description {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  padding: 0 1rem;
+}
+
+.nav-button { 
+  background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+  color: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3); 
+  transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.indicators {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator.active {
+  
+  background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+  transform: scale(1.3);
+}
+
+.controls {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.control-button { 
+  
+  background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  transition: all 0.3s ease;
+}
+
+.control-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .carousel-container {
+    padding: 1rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .carousel-wrapper {
+    height: 350px;
+  }
+  
+  .slide-content {
+    padding: 0.5rem;
+  }
+  
+  .slide-image {
+    width: 150px;
+    height: 100px;
+  }
+  
+  .nav-button {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
 }
 
 .landing__main {
@@ -80,6 +509,7 @@ const exampleText =
   left: 100%;
 }
 
+
 .middle-page-content {
   display: flex;
   align-items: center;
@@ -87,33 +517,19 @@ const exampleText =
   flex-direction: column; 
   background-size: contain;
   background-position: center;
-  background-repeat: no-repeat;
-
+  
   text-align: center;
   font-size: 1.1rem;
   font-weight: bold;
   height: 500px; 
   position: relative; 
 }
-.middle-page::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(
-    circle at center,
-    transparent 0%,
-    rgba(0, 0, 0, 0.3) 100%
-  );
-}
+
 .middle-page-h1 {
   font-size: 3rem; 
   font-weight: bold;
   color: white;
-  text-shadow: 2px 2px 4px rgba(137, 104, 104, 0.5); 
-  animation: fadeInUp 2s ease-out;
+  text-shadow: 2px 2px 4px rgba(137, 104, 104, 0.5);  
 }
 
 
@@ -122,28 +538,12 @@ const exampleText =
   margin-bottom: 2rem;
   color: rgb(139, 69, 19 );
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-  /* Animation plus fluide avec transform uniquement */
-  animation: slideToCenter 4s ease-out;
+  
 }
 
-@keyframes slideToCenter {
-    0% {
-        opacity: 0;
-        transform: translateX(-400px) translateY(200px) scale(0.5) rotate(-10deg);
-    }
-    30% {
-        opacity: 0.3;
-    }
-   
-    100% {
-        opacity: 1;
-        transform: translateX(0) translateY(0) scale(1) rotate(0deg);
-    }
-}
 
 .middle-page {
-  height: 100vh;
-
+  height: 100vh; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -152,18 +552,5 @@ const exampleText =
   overflow: hidden;
 }
 
-.middle-page::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(
-    circle at center,
-    transparent 0%,
-    rgba(0, 0, 0, 0.3) 100%
-  );
-}
-
+ 
 </style>

@@ -1,4 +1,8 @@
 <template>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  /> 
     <div class="custom-toast">
         <div v-if="getIsToastVisible && getMessage!.detail" class="custom-toast-item">
             <div :class="'custom-toast-message ' + (getMessage!.type == 'info' ? 'custom-toast-message--info' : 'custom-toast-message--success') ">
@@ -24,7 +28,6 @@
         </div>
     </div>
 
-
 </template>
 
 <script lang="ts" setup>
@@ -41,18 +44,12 @@ onMounted(() => {
    console.log("[Toast] mounted")
 })
 
-
-
-
-
-
-
+//gsap.registerPlugin(MotionPathPlugin, ScrollToPlugin, TextPlugin);
 </script>
 
 <style lang="css">
 
-.custom-toast {
-
+.custom-toast { 
   border-width: 1px;
   white-space: pre-line;
   word-break: break-word;
