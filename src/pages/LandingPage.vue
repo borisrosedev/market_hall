@@ -193,15 +193,6 @@ const stopAutoPlay = () => {
   }
 }
 
-const toggleAutoPlay = () => {
-  isAutoPlaying.value = !isAutoPlaying.value
-  if (isAutoPlaying.value) {
-    startAutoPlay()
-  } else {
-    stopAutoPlay()
-  }
-}
-
 // Gestion du redimensionnement
 const handleResize = () => {
   calculateSlideWidth()
