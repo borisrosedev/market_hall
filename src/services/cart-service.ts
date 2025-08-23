@@ -9,18 +9,18 @@ const cartService = {
        return parsedResponse
     },
 
-    async addItem(data: any) {
-       const parsedResponse = await apiResource.send(data,"/cart/items/" , "POST", "include") 
+    async addItem(cartId: number, itemId: number, quantity: number = 1) {
+       const parsedResponse = await apiResource.get("/carts/"+ cartId + "/items/" + itemId + "?quantity=" + quantity , "GET", "include") 
        return parsedResponse
     },
 
-    async updateItem(data:any, itemId: number) {
-        const parsedResponse = await apiResource.send(data, "/cart/items/" + itemId, "PUT", "include")
+    async updateItem(cartId: number,itemId: number, quantity: number = 1) {
+        const parsedResponse = await apiResource.get("/carts/"+ cartId + "/items/" + itemId + "?quantity=" + quantity, "GET", "include")
         return parsedResponse
     },
 
-    async removeItem(itemId: number) {
-        const parsedResponse = await apiResource.get("/cart/items/" + itemId, "DELETE", "include") 
+    async removeItem(cartId: number, itemId: number) {
+        const parsedResponse = await apiResource.get("/carts/"+ cartId + "/items/" + itemId, "DELETE", "include") 
         return parsedResponse
     }
 }
