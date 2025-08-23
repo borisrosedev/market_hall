@@ -1,4 +1,5 @@
 import { logout, login, isConnected, setIsConnected } from "../stores/auth-store"
+import { getUserCart } from "../stores/cart-store"
 import { setCurrentUser, getCurrentUser, currentUser } from "../stores/user-store"
 
 export const useUserAuth = () => {
@@ -17,6 +18,7 @@ export const useUserAuth = () => {
             return false       
         } 
         setIsConnected(true) 
+        await getUserCart()
         return true
     }
 

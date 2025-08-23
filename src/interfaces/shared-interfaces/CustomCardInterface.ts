@@ -10,6 +10,10 @@ export interface CustomCardInterface {
     title?: string 
     name?: string 
     url?: string
+    photo_name?: string
+    firstname?: string 
+    lastname?: string 
+    email?: string
     role?: string
     roleClassNames?: string
     classNames?: string

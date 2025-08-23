@@ -2,18 +2,43 @@
 
 <template>
   <nav class="navbar bg-body-tertiary fixed-top">
-    <div class="container-fluid">
+    <div class="container-fluid justify-content-between">
       <router-link class="navbar-brand" to="/">Market Hall</router-link>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasNavbar"
-        aria-controls="offcanvasNavbar"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      
+
+
+      <div class="d-flex align-items-center">
+        <button class="btn btn-outline-info mx-3 position-relative" @click="onCart">
+            <i style="font-size: 14px;" class="bi bi-bag-fill"></i>     
+          <span v-if="getCart && getCart.items && getCart.items.length > 0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+          {{ getCart.items.length }}
+            <span class="visually-hidden">cart items count</span>
+          </span>
+        </button>
+      
+          <form class="d-flex mx-5" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+       
+
+      
+     
+    
+
+
       <div
         class="offcanvas offcanvas-end"
         tabindex="-1"
@@ -53,6 +78,14 @@
                 aria-current="page"
                 to="/dashboard"
                 >Dashboard</RouterLink
+              >
+            </li>
+            <li class="nav-item" v-if="isConnected">
+              <RouterLink
+                class="nav-link active"
+                aria-current="page"
+                to="/cart"
+                >Cart</RouterLink
               >
             </li>
             <li v-if="isConnected">
@@ -108,6 +141,7 @@ import { onMounted, onUpdated } from "vue";
 import { useUserAuth } from "../composables/useUserAuth"
 import { useRouter } from "vue-router"
 import { useMessagesStore } from "../stores/messages-store";
+import { getCart } from "../stores/cart-store"
 const userAuth = useUserAuth()
 const router = useRouter()
 const { showToast, hideToastNow } = useMessagesStore()
@@ -131,6 +165,10 @@ const onLogout = async() => {
     router.push('login')
     hideToastNow()
  }
+}
+
+const onCart = () => {
+  router.push('cart')
 }
 const onCancel = () => {
   hideToastNow()

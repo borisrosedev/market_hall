@@ -1,5 +1,5 @@
 import {  defineStore } from "pinia"
-import { ref } from "vue"
+import { computed, ref } from "vue"
 import productsService from "../services/products-service";
 
 export const useProductsStore = defineStore('products', () => {
@@ -7,6 +7,8 @@ export const useProductsStore = defineStore('products', () => {
   const products = ref([])
   const selectedProduct = ref({})
   const selectedCategoryProducts = ref([]);
+
+  const productsGetter = computed(() => products.value)
 
   const getProductsByCategory = async(category: string) => {
     selectedCategoryProducts.value = await productsService.getByCategory(category)
@@ -21,5 +23,5 @@ export const useProductsStore = defineStore('products', () => {
   }
   
 
-  return { products, getAllProducts, getOneProductById, getProductsByCategory }
+  return { productsGetter , getAllProducts, getOneProductById, getProductsByCategory }
 })
