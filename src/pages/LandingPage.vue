@@ -46,13 +46,17 @@
         ‚ûï
       </button>
     </div>
-
+    </div>
+   <section class="button-section">
+    
    <a href="#" >
         <RouterLink to="/products" class="cta-button">{{
           collectionText
         }}</RouterLink></a
       >
-  </div>
+
+      </section>
+  
     </section>
    
   </main>
@@ -281,6 +285,10 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs ann√©es de chine d‚
 </script>
 
 <style scoped>
+
+.button-section { 
+   height: 100px; 
+}
 .carousel-container {
   max-width: 800px;
   margin: 0 auto;
@@ -301,7 +309,7 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs ann√©es de chine d‚
   overflow: hidden;
   border-radius: 15px; 
   box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
-  height: 400px;
+  height: 300px;
   background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
 }
 
@@ -310,6 +318,7 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs ann√©es de chine d‚
   height: 100%;
   width: 500%;  
   will-change: transform;
+ 
 }
 
 .carousel-slide {
@@ -318,14 +327,14 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs ann√©es de chine d‚
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 2rem; 
 }
 
 .slide-content {
   text-align: center;
   color: white;
   max-width: 300px;
-  will-change: transform, opacity;
+  will-change: transform, opacity; 
 }
 
 .slide-image {
@@ -354,7 +363,7 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs ann√©es de chine d‚
   align-items: center;
   justify-content: space-between;
   margin-top: 1.5rem;
-  padding: 0 1rem;
+  padding: 0 1rem; 
 }
 
 .nav-button { 
@@ -379,7 +388,7 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs ann√©es de chine d‚
 
 .indicators {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.5rem; 
 }
 
 .indicator {
@@ -518,6 +527,8 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs ann√©es de chine d‚
   font-weight: bold;
   color: white;
   text-shadow: 2px 2px 4px rgba(137, 104, 104, 0.5);  
+
+   height: 70px;
 }
 
 
@@ -526,7 +537,8 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs ann√©es de chine d‚
   margin-bottom: 2rem;
   color: rgb(139, 69, 19 );
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-  
+ 
+   height: 80px;
 }
 
 
