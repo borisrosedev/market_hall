@@ -6,51 +6,40 @@ import { RouterLink } from "vue-router";
   <footer class="app__footer">
     <section class="app__footer-content">
       <div class="app__footer-section">
-        
+
         <ul class="app__footer-ul">
-        <h3>About</h3>
-          <li><a href="#">Our story</a></li>
-          <li><a href="#">Our team</a></li>
+          <h3>About</h3>
+          <li class="nav-item"><a href="#">Our story</a></li>
+          <li class="nav-item"><a href="#">Our team</a></li>
         </ul>
       </div>
 
       <div class="app__footer-section">
-        
+
         <ul class="app__footer-ul">
           <h3>Link</h3>
           <li class="nav-item">
-            <RouterLink
-              class="nav-link active"
-              aria-current="page"
-              to="/landing"
-              >Home</RouterLink
-            >
+            <RouterLink class="nav-link active" aria-current="page" to="/landing">Home</RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink
-              class="nav-link active"
-              aria-current="page"
-              to="/products"
-              >Products</RouterLink
-            >
+            <RouterLink class="nav-link active" aria-current="page" to="/products">Products</RouterLink>
           </li>
         </ul>
       </div>
 
       <div class="app__footer-section">
-        
+
         <ul class="app__footer-ul">
           <h3>Contact</h3>
           <li class="nav-item">
             <RouterLink class="nav-link" to="/contactus">Contact Us</RouterLink>
           </li>
 
-          <li><a href="#">Service client</a></li>
+          <li class="nav-item"><a href="#">Service client</a></li>
         </ul>
       </div>
 
       <div class="app__footer-section">
-        
         <ul class="app__footer-ul">
           <h3>Connexion</h3>
           <li class="nav-item">
@@ -63,22 +52,12 @@ import { RouterLink } from "vue-router";
 
         <div class="social-links">
           <ul class="app__footer-ul">
-          <a
-            href="https://facebook.com"
-            target="_blank"
-            class="social-link"
-            title="Facebook"
-          >
-            f
-          </a>
-          <a
-            href="https://x.com"
-            target="_blank"
-            class="social-link"
-            title="X (Twitter)"
-          >
-            𝕏
-          </a>
+            <a href="https://facebook.com" target="_blank" class="social-link" title="Facebook">
+              f
+            </a>
+            <a href="https://x.com" target="_blank" class="social-link" title="X (Twitter)">
+              𝕏
+            </a>
           </ul>
         </div>
       </div>
@@ -95,7 +74,7 @@ import { RouterLink } from "vue-router";
 .app__footer {
   background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
   color: white;
-  padding: 3rem 0 1rem;
+  padding: 3rem 0 1rem; 
   position: relative;
   overflow: hidden;
 
@@ -114,54 +93,63 @@ import { RouterLink } from "vue-router";
 .app__footer-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem; 
+  padding: 0 2rem;
 }
 
 .app__footer-content {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
+  grid-template-columns: 1fr;
+  gap: clamp(1.5rem, 3vw, 2rem);
+
   margin-bottom: 2rem;
 }
-
 
 
 .app__footer-section {
   display: flex;
   flex-direction: column;
-  align-items: left;  
+  align-items: flex-start;
 }
 
 .app__footer-section h3 {
   color: #8b4513;
-  margin-bottom: 0.5rem; 
-  font-size: 1.4rem;  
-  font-weight: 600;   
-  letter-spacing: 1px;  
-  border-bottom: 3px solid #8b4513;  
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-bottom: 3px solid #8b4513;
   padding-bottom: 0.5rem;
   align-self: left;
   width: 100%;
 }
- 
+
+
 
 .app__footer-section:first-child {
-  margin-left: 2rem;
+  padding-left: 2rem;
 }
+
+
+.app__footer-section:last-child {
+  padding-right: 2rem;
+}
+
 
 .app__footer-section ul {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;  
+  gap: 0.5rem;
+
+  width: 100%;
 }
 
 .app__footer-section li {
-  margin-bottom: 0;  
-  padding-left: 1rem;  
+  margin-bottom: 0;
+  padding-left: 1rem;
   position: relative;
 }
- 
+
 .app__footer-section li::before {
   content: ">";
   color: #8b4513;
@@ -175,14 +163,15 @@ import { RouterLink } from "vue-router";
   text-decoration: none;
   transition: all 0.3s ease;
   position: relative;
+  font-weight: 400;
   font-size: 1rem;
-  font-weight: 400; 
 }
- 
+
 .app__footer-section a:hover {
   color: #8b4513;
   transform: translateX(5px);
 }
+
 
 .app__footer-bottom {
   text-align: center;
@@ -192,9 +181,9 @@ import { RouterLink } from "vue-router";
 }
 
 .social-links {
-  display: flex; 
-  margin-left: 0;  
-  padding-left: 0;   
+  display: flex;
+  margin-left: 0;
+  padding-left: 0;
 }
 
 .social-link {
@@ -234,5 +223,68 @@ import { RouterLink } from "vue-router";
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
+}
+
+/* Large mobile */
+@media (max-width: 480px) {
+  .app__footer-section h3 {
+    text-align: left;
+  }
+
+  .app__footer-section {
+    padding-right: 2rem;
+    text-align: left;
+  }
+
+  .app__footer-section li { 
+    padding-left: 0;
+  } 
+
+  .app__footer-section li::before { 
+    display: none;
+  }
+
+  .app__footer-section:first-child {
+    padding-left: 0rem;
+  }
+
+  .app__footer-section:last-child {
+    padding-right: 2rem;
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+
+  .app__footer-section:first-child {
+    padding-left: 0rem;
+  }
+
+  .app__footer-section:last-child {
+    padding-right: 0rem;
+  }
+
+  .app__footer-section a:hover {
+    transform: translateX(5px);
+  }
+
+  .app__footer-content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .app__footer-section:first-child {
+    padding-left: 1rem;
+  }
+
+  .app__footer-section:last-child {
+    padding-right: 1rem;
+  }
+
+  .app__footer-content {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
 }
 </style>

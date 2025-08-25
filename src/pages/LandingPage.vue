@@ -1,64 +1,55 @@
 <template>
- 
+
   <main class="app__main landing__main">
-    
+
 
     <!-- middle Section -->
     <section class="middle-page-content">
-      
-      
-    <div class="carousel-container">
-    <header class="middle-header">
-        <h1 class="middle-page-h1 animate__animated animate__fadeInDown">{{ title }}</h1>
-        <p class="middle-page-p">D√©couvrez des antiquit√©s authentiques et des pi√®ces d'exception</p>
-      </header>
-    <div class="carousel-wrapper" ref="carouselWrapper">
-      <div class="carousel-track" ref="carouselTrack">
-        <div 
-          v-for="(slide, index) in slides" 
-          :key="index"
-          class="carousel-slide"
-          ref="slideRefs"
-        >
-          <div class="slide-content">
-            <img :src="slide.image" :alt="slide.title" class="slide-image">
-            <h3 class="slide-title">{{ slide.title }}</h3>
-            <p class="slide-description">{{ slide.description }}</p>
+
+
+      <section class="carousel-container">
+        <header class="middle-header">
+          <h1 class="middle-page-h1 animate__animated animate__fadeInDown">{{ title }}</h1>
+          <p class="middle-page-p">D√©couvrez des antiquit√©s authentiques et des pi√®ces d'exception</p>
+        </header>
+        <div class="carousel-wrapper" ref="carouselWrapper">
+          <div class="carousel-track" ref="carouselTrack">
+            <div v-for="(slide, index) in slides" :key="index" class="carousel-slide" ref="slideRefs">
+              <div class="slide-content">
+                <img :src="slide.image" :alt="slide.title" class="slide-image">
+                <h3 class="slide-title">{{ slide.title }}</h3>
+                <p class="slide-description">{{ slide.description }}</p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Navigation -->
-    <div class="carousel-controls">
-      <button @click="prevSlide" class="nav-button prev-button" ref="prevButton">
-        ‚ûñ 
-      </button>
-      <div class="indicators">
-        <span 
-          v-for="(slide, index) in slides" 
-          :key="index"
-          :class="['indicator', { active: index === currentSlide }]"
-          @click="goToSlide(index)"
-        ></span>
-      </div>
-      <button @click="nextSlide" class="nav-button next-button" ref="nextButton">
-        ‚ûï
-      </button>
-    </div>
-    </div>
-   <section class="button-section">
-    
-   <a href="#" >
-        <RouterLink to="/products" class="cta-button">{{
-          collectionText
-        }}</RouterLink></a
-      >
+        <!-- Navigation -->
+        <div class="carousel-controls">
+          <button @click="prevSlide" class="nav-button prev-button" ref="prevButton">
+            ‚ûñ
+          </button>
+          <div class="indicators">
+            <span v-for="(slide, index) in slides" :key="index"
+              :class="['indicator', { active: index === currentSlide }]" @click="goToSlide(index)"></span>
+          </div>
+          <button @click="nextSlide" class="nav-button next-button" ref="nextButton">
+            ‚ûï
+          </button>
+        </div>
+      </section>
+      <section class="button-section">
+
+        <a href="#">
+          <RouterLink to="/products" class="cta-button">{{
+            collectionText
+          }}</RouterLink>
+        </a>
 
       </section>
-  
+
     </section>
-   
+
   </main>
 
 </template>
@@ -75,7 +66,7 @@ const slides = ref([
     image: "https://images.pexels.com/photos/33523058/pexels-photo-33523058.jpeg"
   },
   {
-    title: "Montre", 
+    title: "Montre",
     description: "Montre De Poche Blanche",
     image: "https://images.pexels.com/photos/3210711/pexels-photo-3210711.jpeg"
   },
@@ -124,7 +115,7 @@ const animateToSlide = (slideIndex: number, direction: 'next' | 'prev' = 'next')
   if (!carouselTrack.value) return
 
   const targetX = -slideIndex * slideWidth.value
-  
+
   // Main Animation 
   gsap.to(carouselTrack.value, {
     x: targetX,
@@ -135,15 +126,15 @@ const animateToSlide = (slideIndex: number, direction: 'next' | 'prev' = 'next')
   // Individual animation 
   slideRefs.value.forEach((slide, index) => {
     if (slide) {
-      if (index === slideIndex) { 
-        gsap.fromTo(slide.querySelector('.slide-content'), 
-          { 
-            scale: 0.9, 
+      if (index === slideIndex) {
+        gsap.fromTo(slide.querySelector('.slide-content'),
+          {
+            scale: 0.9,
             opacity: 0.7,
             rotationY: direction === 'next' ? 20 : -20
           },
-          { 
-            scale: 1, 
+          {
+            scale: 1,
             opacity: 1,
             rotationY: 0,
             duration: 0.6,
@@ -151,7 +142,7 @@ const animateToSlide = (slideIndex: number, direction: 'next' | 'prev' = 'next')
             ease: "power2.out"
           }
         )
-      } else { 
+      } else {
         gsap.to(slide.querySelector('.slide-content'), {
           scale: 0.9,
           opacity: 0.7,
@@ -181,7 +172,7 @@ const goToSlide = (index: number) => {
   currentSlide.value = index
   animateToSlide(index, direction)
 }
- 
+
 const startAutoPlay = () => {
   if (autoPlayInterval) clearInterval(autoPlayInterval)
   autoPlayInterval = setInterval(nextSlide, 4000)
@@ -195,14 +186,15 @@ const stopAutoPlay = () => {
 }
 
 const toggleAutoPlay = () => {
+  /*
   isAutoPlaying.value = !isAutoPlaying.value
   if (isAutoPlaying.value) {
     startAutoPlay()
   } else {
     stopAutoPlay()
-  }
+  }*/
 }
- 
+
 const handleResize = () => {
   calculateSlideWidth()
   animateToSlide(currentSlide.value)
@@ -210,55 +202,55 @@ const handleResize = () => {
 
 onMounted(async () => {
   await nextTick()
-  
+
   calculateSlideWidth()
-   
+
   tl = gsap.timeline()
-   
+
   tl.from('.title', {
     duration: 1,
     y: -50,
     opacity: 0,
     ease: "power2.out"
   })
-   
-  .from(carouselWrapper.value, {
-    duration: 0.8,
-    scale: 0.8,
-    opacity: 0,
-    ease: "back.out(1.7)"
-  }, "-=0.5")
-   
-  .from('.carousel-controls', {
-    duration: 0.6,
-    y: 30,
-    opacity: 0,
-    ease: "power2.out"
-  }, "-=0.3")
-  
-  .from('.controls', {
-    duration: 0.6,
-    y: 20,
-    opacity: 0,
-    ease: "power2.out"
-  }, "-=0.3")
- 
+
+    .from(carouselWrapper.value, {
+      duration: 0.8,
+      scale: 0.8,
+      opacity: 0,
+      ease: "back.out(1.7)"
+    }, "-=0.5")
+
+    .from('.carousel-controls', {
+      duration: 0.6,
+      y: 30,
+      opacity: 0,
+      ease: "power2.out"
+    }, "-=0.3")
+
+    .from('.controls', {
+      duration: 0.6,
+      y: 20,
+      opacity: 0,
+      ease: "power2.out"
+    }, "-=0.3")
+
   if (prevButton.value && nextButton.value) {
     [prevButton.value, nextButton.value].forEach(button => {
       button.addEventListener('mouseenter', () => {
         gsap.to(button, { scale: 1.1, duration: 0.3, ease: "power2.out" })
       })
-      
+
       button.addEventListener('mouseleave', () => {
         gsap.to(button, { scale: 1, duration: 0.3, ease: "power2.out" })
       })
     })
   }
- 
+
   animateToSlide(0)
-   
+
   startAutoPlay()
-   
+
   window.addEventListener('resize', handleResize)
 })
 
@@ -268,7 +260,7 @@ onUnmounted(() => {
   if (tl) tl.kill()
 })
 
- 
+
 
 const title = "Market Hall";
 const description =
@@ -276,7 +268,7 @@ const description =
 const collectionText = "Explorer la Collection";
 // Static data
 const exampleText =
- "Trouver un objet ancien exceptionnelle";
+  "Trouver un objet ancien exceptionnelle";
 const exampleText2 =
   "En saisissant Table type Louis XVI dans la barre de recherche, vous trouverez des tables de ce type avec les Prix propos√©s par les particuliers (commission incluse).";
 
@@ -285,10 +277,10 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs ann√©es de chine d‚
 </script>
 
 <style scoped>
-
-.button-section { 
-   height: 100px; 
+.button-section {
+  height: 100px;
 }
+
 .carousel-container {
   max-width: 800px;
   margin: 0 auto;
@@ -307,7 +299,7 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs ann√©es de chine d‚
 .carousel-wrapper {
   position: relative;
   overflow: hidden;
-  border-radius: 15px; 
+  border-radius: 15px;
   box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
   height: 300px;
   background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
@@ -316,25 +308,25 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs ann√©es de chine d‚
 .carousel-track {
   display: flex;
   height: 100%;
-  width: 500%;  
+  width: 500%;
   will-change: transform;
- 
+
 }
 
 .carousel-slide {
-  flex: 0 0 20%;  
+  flex: 0 0 20%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem; 
+  padding: 2rem;
 }
 
 .slide-content {
   text-align: center;
   color: white;
   max-width: 300px;
-  will-change: transform, opacity; 
+  will-change: transform, opacity;
 }
 
 .slide-image {
@@ -363,10 +355,11 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs ann√©es de chine d‚
   align-items: center;
   justify-content: space-between;
   margin-top: 1.5rem;
-  padding: 0 1rem; 
+  padding: 0 1rem;
+  gap: 1rem;
 }
 
-.nav-button { 
+.nav-button {
   background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
   color: white;
   border: none;
@@ -378,7 +371,7 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs ann√©es de chine d‚
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3); 
+  box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
   transition: all 0.3s ease;
 }
 
@@ -388,7 +381,7 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs ann√©es de chine d‚
 
 .indicators {
   display: flex;
-  gap: 0.5rem; 
+  gap: 0.5rem;
 }
 
 .indicator {
@@ -401,7 +394,7 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs ann√©es de chine d‚
 }
 
 .indicator.active {
-  
+
   background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
   transform: scale(1.3);
 }
@@ -411,8 +404,8 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs ann√©es de chine d‚
   margin-top: 1.5rem;
 }
 
-.control-button { 
-  
+.control-button {
+
   background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
   color: white;
   border: none;
@@ -430,42 +423,15 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs ann√©es de chine d‚
   box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .carousel-container {
-    padding: 1rem;
-  }
-  
-  .title {
-    font-size: 2rem;
-  }
-  
-  .carousel-wrapper {
-    height: 350px;
-  }
-  
-  .slide-content {
-    padding: 0.5rem;
-  }
-  
-  .slide-image {
-    width: 150px;
-    height: 100px;
-  }
-  
-  .nav-button {
-    width: 40px;
-    height: 40px;
-    font-size: 1.2rem;
-  }
-}
 
 .landing__main {
+  min-height: 1000px;
   background-color: rgba(139, 69, 19, 0.3);
   padding: 2rem;
   align-items: center;
   justify-content: center;
 }
+
 .cta-button {
   display: inline-block;
   padding: 1rem 2.5rem;
@@ -481,6 +447,7 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs ann√©es de chine d‚
   overflow: hidden;
   animation: bounceIn 1.5s ease-out;
 }
+
 .cta-button:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 25px rgba(139, 69, 19, 0.4);
@@ -493,12 +460,10 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs ann√©es de chine d‚
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent);
   transition: left 0.5s ease;
 }
 
@@ -511,39 +476,39 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs ann√©es de chine d‚
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column; 
+  flex-direction: column;
   background-size: contain;
   background-position: center;
-  
+
   text-align: center;
   font-size: 1.1rem;
   font-weight: bold;
-  height: 500px; 
-  position: relative; 
+  height: 500px;
+  position: relative;
 }
 
 .middle-page-h1 {
-  font-size: 3rem; 
+  font-size: 3rem;
   font-weight: bold;
   color: white;
-  text-shadow: 2px 2px 4px rgba(137, 104, 104, 0.5);  
+  text-shadow: 2px 2px 4px rgba(137, 104, 104, 0.5);
 
-   height: 70px;
+  height: 70px;
 }
 
 
 .middle-page-p {
   font-size: 1.5rem;
   margin-bottom: 2rem;
-  color: rgb(139, 69, 19 );
+  color: rgb(139, 69, 19);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
- 
-   height: 80px;
+
+  height: 80px;
 }
 
 
 .middle-page {
-  height: 100vh; 
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -552,5 +517,85 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs ann√©es de chine d‚
   overflow: hidden;
 }
 
- 
+
+/* Large mobile */
+@media (max-width: 480px) {
+
+  .carousel-container {
+    max-width: 350px;
+  }
+
+  .carousel-controls {
+    flex-direction: column-reverse;
+    gap: 1rem;
+  }
+
+  .nav-button {
+    min-width: 40px;
+    min-height: 40px; 
+  }
+
+  .middle-page {
+    min-height: 400px;
+  }
+
+  .slide-content {
+    padding: 0.5rem;
+  }
+
+
+
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+
+  .next-button,
+  .prev-button { 
+
+    box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+  }
+
+  .carousel-controls {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .carousel-container {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .carousel-wrapper {
+    height: 350px;
+  }
+
+  .slide-content {
+    padding: 0.5rem;
+  }
+
+  .slide-image {
+    width: 150px;
+    height: 100px;
+  }
+
+  .nav-button {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .nav-button {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+}
 </style>
