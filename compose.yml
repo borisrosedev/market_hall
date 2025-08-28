@@ -1,0 +1,33 @@
+
+services:
+  market_hall:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5173:5173"
+    networks:
+      - market_network  
+    volumes:
+      - ./src:/src/src  
+      - ./public:/src/public  
+      - ./index.html:/src/index.html  
+      - ./vite.config.ts:/src/vite.config.ts   
+    environment:
+      - NODE_ENV=development
+    stdin_open: true
+    tty: true
+    
+  market_hall_prod:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    ports:
+      - "8080:80"
+    networks:
+      - market_network 
+    profiles:
+      - production   
+
+networks:
+  market_network:       
