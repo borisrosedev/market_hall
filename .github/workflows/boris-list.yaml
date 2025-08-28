@@ -1,0 +1,13 @@
+name: boris-list 
+run-name: ${{ github.actor }} is running boris-list
+on:
+    push:
+        branches:
+            - boris-rose-dev
+jobs:
+    list-the-repo:
+        runs-on: ubuntu-latest
+        steps:
+        - run: |
+            ls ${{ github.workspace }}
+        - run: echo "➡️[job-status]${{ job.status }}."
