@@ -5,3 +5,4 @@ node_modules
 .git 
 Dockerfile*
 compose*
+__tests__
