@@ -22,7 +22,7 @@
 
               <div v-for="(slide, index) in productsGetterLimited" :key="index" class="carousel-slide" ref="slideRefs">
                 <div class="slide-content">
-                  <img :src="slide.photo_name" :alt="slide.name" class="slide-image">
+                  <img :src="'http://localhost:5000/static/files/' + slide.photo_name" :alt="slide.name" class="slide-image">
                   <h3 class="slide-title">{{ slide.name }}</h3>
                   <p class="slide-description">{{ slide.description }}</p>
                 </div>
