@@ -21,33 +21,37 @@
             <div class="carousel-track" ref="carouselTrack">
 
               <div v-for="(slide, index) in productsGetterLimited" :key="index" class="carousel-slide" ref="slideRefs">
-                <div class="slide-content">
-                  <img :src="'http://localhost:5000/static/files/' + slide.photo_name" :alt="slide.name" class="slide-image">
-                  <h3 class="slide-title">{{ slide.name }}</h3>
-                  <p class="slide-description">{{ slide.description }}</p>
-                </div>
+                <RouterLink :to="`/products/${slide.id}`" class="link-carousel-link">
+                  <div class="slide-content">
+                    <img :src="'http://localhost:5000/static/files/' + slide.photo_name" :alt="slide.name"
+                      class="slide-image">
+                    <h3 class="slide-title">{{ slide.name }}</h3>
+                    <p class="slide-description">{{ slide.description }}</p>
+                  </div>
+                </RouterLink>
               </div>
             </div>
-          </div>
-
+          </div> 
+        </div> 
+        <div v-else class="carousel-empty">
+          We are no product. Do come back later
         </div>
-        <div v-else>
-          Nothing product currently 
-        </div>
-
+       
 
         <!-- Navigation -->
-        <div class="carousel-controls">
-          <button @click="prevSlide" class="nav-button prev-button" ref="prevButton">
-            ➖
-          </button>
-          <div class="indicators">
-            <span v-for="(slide, index) in productsGetterLimited" :key="index"
-              :class="['indicator', { active: index === currentSlide }]" @click="goToSlide(index)"></span>
+        <div v-if="productsGetterLimited?.length > 0">
+          <div class="carousel-controls">
+            <button @click="prevSlide" class="nav-button prev-button" ref="prevButton">
+              ➖
+            </button>
+            <div class="indicators">
+              <span v-for="(slide, index) in productsGetterLimited" :key="index"
+                :class="['indicator', { active: index === currentSlide }]" @click="goToSlide(index)"></span>
+            </div>
+            <button @click="nextSlide" class="nav-button next-button" ref="nextButton">
+              ➕
+            </button>
           </div>
-          <button @click="nextSlide" class="nav-button next-button" ref="nextButton">
-            ➕
-          </button>
         </div>
       </section>
       <section class="button-section">
@@ -74,8 +78,8 @@ import { storeToRefs } from "pinia"
 
 
 const productsStore = useProductsStore()
-const {  getProductByNb } = productsStore
-const {  productsGetterLimited } = storeToRefs(productsStore)
+const { getProductByNb } = productsStore
+const { productsGetterLimited } = storeToRefs(productsStore)
 
 
 
@@ -88,7 +92,7 @@ const prevButton = ref<HTMLElement>()
 const nextButton = ref<HTMLElement>()
 
 // State
-const currentSlide = ref(0) 
+const currentSlide = ref(0)
 const slideWidth = ref(0)
 
 // GSAP Variables 
@@ -184,9 +188,9 @@ const handleResize = () => {
 }
 
 onMounted(async () => {
-  
-  await nextTick() 
-  await getProductByNb(5)  
+
+  await nextTick()
+  await getProductByNb(5)
 
   calculateSlideWidth()
 
@@ -297,6 +301,20 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
   will-change: transform;
 
 }
+
+.carousel-empty {
+  box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+  align-items: center;
+  justify-content: center;
+  padding: 5rem;
+  color: white;
+  overflow: auto;
+  color: #73878b;
+  background-color: #9eeaf9; 
+  border-radius: 15px; 
+  max-width: 800px;
+}
+
 
 .carousel-slide {
   flex: 0 0 20%;
@@ -415,6 +433,13 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
   padding: 2rem;
   align-items: center;
   justify-content: center;
+}
+
+
+.link-carousel-link {
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: bold;
 }
 
 .cta-button {
