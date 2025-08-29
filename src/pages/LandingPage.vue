@@ -32,7 +32,7 @@
 
         </div>
         <div v-else>
-          Aucun produit à afficher
+          Nothing product currently 
         </div>
 
 
@@ -42,7 +42,7 @@
             ➖
           </button>
           <div class="indicators">
-            <span v-for="(slide, index) in slides" :key="index"
+            <span v-for="(slide, index) in productsGetterLimited" :key="index"
               :class="['indicator', { active: index === currentSlide }]" @click="goToSlide(index)"></span>
           </div>
           <button @click="nextSlide" class="nav-button next-button" ref="nextButton">
@@ -74,44 +74,11 @@ import { storeToRefs } from "pinia"
 
 
 const productsStore = useProductsStore()
-const { getAllProducts, getProductByNb } = productsStore
-const { productsGetter, productsGetterLimited } = storeToRefs(productsStore)
+const {  getProductByNb } = productsStore
+const {  productsGetterLimited } = storeToRefs(productsStore)
 
-watch(productsGetterLimited, (newValue, oldValue) => {
-  console.log('🟢 productsGetterLimited a changé:')
-  console.log('Ancienne valeur:', oldValue)
-  console.log('Nouvelle valeur:', newValue)
-  console.log('Nombre d\'éléments:', newValue?.length)
-}, { deep: true })
 
-// Carousel data
-const slides = ref([
-  {
-    title: "Platine Vinyle Vintage",
-    description: "Platine Vinyle Vintage Avec Disque Vinyle Odeon",
-    image: "https://images.pexels.com/photos/33523058/pexels-photo-33523058.jpeg"
-  },
-  {
-    title: "Montre",
-    description: "Montre De Poche Blanche",
-    image: "https://images.pexels.com/photos/3210711/pexels-photo-3210711.jpeg"
-  },
-  {
-    title: "Projecteur",
-    description: "Projecteur Noir Rolleiflex Reel To Reel",
-    image: "https://images.pexels.com/photos/821738/pexels-photo-821738.jpeg"
-  },
-  {
-    title: "Volkswagen",
-    description: "Volkswagen Beetle Orange",
-    image: "https://images.pexels.com/photos/1209774/pexels-photo-1209774.jpeg"
-  },
-  {
-    title: "Cruche",
-    description: "Gros Plan D'une Cruche Antique ",
-    image: "https://images.pexels.com/photos/16983102/pexels-photo-16983102.jpeg"
-  }
-])
+
 
 // References
 const carouselWrapper = ref<HTMLElement>()
@@ -121,8 +88,7 @@ const prevButton = ref<HTMLElement>()
 const nextButton = ref<HTMLElement>()
 
 // State
-const currentSlide = ref(0)
-const isAutoPlaying = ref(true)
+const currentSlide = ref(0) 
 const slideWidth = ref(0)
 
 // GSAP Variables 
@@ -182,13 +148,13 @@ const animateToSlide = (slideIndex: number, direction: 'next' | 'prev' = 'next')
 
 // Navigation
 const nextSlide = () => {
-  const nextIndex = (currentSlide.value + 1) % slides.value.length
+  const nextIndex = (currentSlide.value + 1) % productsGetterLimited.value.length
   currentSlide.value = nextIndex
   animateToSlide(nextIndex, 'next')
 }
 
 const prevSlide = () => {
-  const prevIndex = (currentSlide.value - 1 + slides.value.length) % slides.value.length
+  const prevIndex = (currentSlide.value - 1 + productsGetterLimited.value.length) % productsGetterLimited.value.length
   currentSlide.value = prevIndex
   animateToSlide(prevIndex, 'prev')
 }
@@ -211,15 +177,6 @@ const stopAutoPlay = () => {
   }
 }
 
-const toggleAutoPlay = () => {
-  /*
-  isAutoPlaying.value = !isAutoPlaying.value
-  if (isAutoPlaying.value) {
-    startAutoPlay()
-  } else {
-    stopAutoPlay()
-  }*/
-}
 
 const handleResize = () => {
   calculateSlideWidth()
@@ -227,24 +184,10 @@ const handleResize = () => {
 }
 
 onMounted(async () => {
-  console.log('🔵 onMounted - Début')
-
-  await nextTick()
-  console.log('🟡 Après nextTick')
-
-  try {
-    //await getAllProducts()
-    await getProductByNb(2)
-    console.log('🟢 getProductByNb terminé')
-    console.log('🟢 Contenu final de productsGetterLimited:', productsGetterLimited.value)
-  } catch (error) {
-    console.error('🔴 Erreur dans onMounted:', error)
-  }
-
-
-
-
-
+  
+  await nextTick() 
+  await getProductByNb(3)  
+  
   calculateSlideWidth()
 
   tl = gsap.timeline()

@@ -2,10 +2,7 @@ import apiResource from "../data-resources/data-remote-resources/api-resources";
 
 const productsService = {
   async getAll() {
-    //console.log("🔵 Service getAll appelé  ");
     const { products } = await apiResource.get("/products", "GET", "include");
-    //console.log("🟢 Produits récupérés de l'API:", products);
-    //console.log("🟢 Nombre total de produits:", products?.length);
     return products;
   },
 
@@ -30,23 +27,10 @@ const productsService = {
   async getByNb(nbmax: number) {
     //const { products } = await apiResource.get(`/products?limit=${nbmax}`, "GET", "include");
     //return products.slice(0, nbmax);
-    console.log("🔵 Service getByNb appelé avec nbmax:", nbmax);
+    const { products } = await apiResource.get("/products", "GET", "include");
+    const limitedProducts = products.slice(0, nbmax);
 
-    try {
-      const { products } = await apiResource.get("/products", "GET", "include");
-
-      console.log("🟢 Produits récupérés de l'API:", products);
-      console.log("🟢 Nombre total de produits:", products?.length);
-
-      const limitedProducts = products.slice(0, nbmax);
-      console.log("🟡 Produits limités retournés:", limitedProducts);
-      console.log("🟡 Nombre de produits retournés:", limitedProducts?.length);
-
-      return limitedProducts;
-    } catch (error) {
-      console.error("🔴 Erreur dans le service:", error);
-      throw error;
-    }
+    return limitedProducts;
 
     //const { products } = await apiResource.get(`/products`, "GET", "include") ;
     //return products;
