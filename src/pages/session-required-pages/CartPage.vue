@@ -32,13 +32,14 @@
                               <button class="btn btn-warning mx-2" @click="() => onUpdateCart('remove',item)">
                                  <i  style="font-size: 18px;" class="bi bi-dash-square-fill"></i>
                             </button>
-                       
-                           
-                     
                     </td>
                 </tr>
             </tbody>
         </table>
+        <section class="d-flex flex-row-reverse" v-if="getCart?.items?.length">
+            <button class="btn btn-success mx-4" @click="">Order</button>
+            <button class="btn btn-danger" @click="">Empty the cart</button>
+        </section>
         <div  v-if="!getCart.items || !getCart.items.length" class="d-flex mx-2 flex-column alert alert-info align-self-center" role="alert">
             <span class="my-2">Your cart is empty</span>
             <RouterLink class="btn  btn-info" to="products">Check out our products</RouterLink>

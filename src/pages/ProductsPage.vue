@@ -36,12 +36,13 @@ import CustomButton from '../components/shared-components/CustomButton.vue';
 import { useUserAuth } from "../composables/useUserAuth"
 import { useMessagesStore } from "../stores/messages-store"
 import { useProductsStore } from "../stores/products-store"
-import { useRouter } from "vue-router"
+import { useRouter, useRoute } from "vue-router"
 import { storeToRefs } from "pinia"
 import { addItem, getLastAction, setLastAction } from '../stores/cart-store';
 import { currentUser } from '../stores/user-store';
 
 const router = useRouter()
+const route = useRoute()
 const isConnected = ref(false)
 const messagesStore = useMessagesStore()
 const productsStore = useProductsStore()
@@ -54,10 +55,12 @@ const { getAllProducts } = productsStore
 const { productsGetter } = storeToRefs(productsStore)
 
 onMounted(async () => {
+    console.log("route", route)
     await getAllProducts()
     isConnected.value = await checkAuth()
    
 })
+
 
 
 function navigateHandler(to: string): void {
