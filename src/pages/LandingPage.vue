@@ -21,7 +21,7 @@
             <div class="carousel-track" ref="carouselTrack">
 
               <div v-for="(slide, index) in productsGetterLimited" :key="index" class="carousel-slide" ref="slideRefs">
-                <RouterLink :to="`/products/${slide.id}`" class="link-carousel-link">
+                <RouterLink :to="`/product-detail/${slide.id}`" class="link-carousel-link">
                   <div class="slide-content">
                     <img :src="'http://localhost:5000/static/files/' + slide.photo_name" :alt="slide.name"
                       class="slide-image">
