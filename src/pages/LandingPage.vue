@@ -3,8 +3,12 @@
   <main class="app__main landing__main">
 
 
+
+
     <!-- middle Section -->
     <section class="middle-page-content">
+
+
 
 
       <section class="carousel-container">
@@ -12,17 +16,25 @@
           <h1 class="middle-page-h1 animate__animated animate__fadeInDown">{{ title }}</h1>
           <p class="middle-page-p">Découvrez des antiquités authentiques et des pièces d'exception</p>
         </header>
-        <div class="carousel-wrapper" ref="carouselWrapper">
-          <div class="carousel-track" ref="carouselTrack">
-            <div v-for="(slide, index) in slides" :key="index" class="carousel-slide" ref="slideRefs">
-              <div class="slide-content">
-                <img :src="slide.image" :alt="slide.title" class="slide-image">
-                <h3 class="slide-title">{{ slide.title }}</h3>
-                <p class="slide-description">{{ slide.description }}</p>
+        <div v-if="productsGetterLimited?.length > 0">
+          <div class="carousel-wrapper" ref="carouselWrapper">
+            <div class="carousel-track" ref="carouselTrack">
+
+              <div v-for="(slide, index) in productsGetterLimited" :key="index" class="carousel-slide" ref="slideRefs">
+                <div class="slide-content">
+                  <img :src="slide.photo_name" :alt="slide.name" class="slide-image">
+                  <h3 class="slide-title">{{ slide.name }}</h3>
+                  <p class="slide-description">{{ slide.description }}</p>
+                </div>
               </div>
             </div>
           </div>
+
         </div>
+        <div v-else>
+          Aucun produit à afficher
+        </div>
+
 
         <!-- Navigation -->
         <div class="carousel-controls">
@@ -55,8 +67,22 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, nextTick } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import { gsap } from 'gsap'
+import { useProductsStore } from "../stores/products-store"
+import { storeToRefs } from "pinia"
+
+
+const productsStore = useProductsStore()
+const { getAllProducts, getProductByNb } = productsStore
+const { productsGetter, productsGetterLimited } = storeToRefs(productsStore)
+
+watch(productsGetterLimited, (newValue, oldValue) => {
+  console.log('🟢 productsGetterLimited a changé:')
+  console.log('Ancienne valeur:', oldValue)
+  console.log('Nouvelle valeur:', newValue)
+  console.log('Nombre d\'éléments:', newValue?.length)
+}, { deep: true })
 
 // Carousel data
 const slides = ref([
@@ -201,7 +227,23 @@ const handleResize = () => {
 }
 
 onMounted(async () => {
+  console.log('🔵 onMounted - Début')
+
   await nextTick()
+  console.log('🟡 Après nextTick')
+
+  try {
+    //await getAllProducts()
+    await getProductByNb(2)
+    console.log('🟢 getProductByNb terminé')
+    console.log('🟢 Contenu final de productsGetterLimited:', productsGetterLimited.value)
+  } catch (error) {
+    console.error('🔴 Erreur dans onMounted:', error)
+  }
+
+
+
+
 
   calculateSlideWidth()
 
@@ -532,7 +574,7 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
 
   .nav-button {
     min-width: 40px;
-    min-height: 40px; 
+    min-height: 40px;
   }
 
   .middle-page {
@@ -551,7 +593,7 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
 @media (max-width: 768px) {
 
   .next-button,
-  .prev-button { 
+  .prev-button {
 
     box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
   }
