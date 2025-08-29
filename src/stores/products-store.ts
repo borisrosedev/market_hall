@@ -20,16 +20,12 @@ export const useProductsStore = defineStore("products", () => {
     selectedProduct.value = await productsService.getOneById(id);
   };
 
-  const getAllProducts = async () => {
-     console.log("🔵 Début getAllProducts ");
+  const getAllProducts = async () => { 
     products.value = await productsService.getAll();
   };
 
   const getProductByNb = async (nbmax: number) => {
-   
-      const result = await productsService.getByNb(nbmax); 
-      productsGetterLimited.value = result; 
-    //productsGetterLimited.value = await productsService.getByNb(nbmax)
+      productsGetterLimited.value = await productsService.getByNb(nbmax)
   };
 
   return {

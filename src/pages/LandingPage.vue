@@ -186,8 +186,8 @@ const handleResize = () => {
 onMounted(async () => {
   
   await nextTick() 
-  await getProductByNb(3)  
-  
+  await getProductByNb(5)  
+
   calculateSlideWidth()
 
   tl = gsap.timeline()
