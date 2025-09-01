@@ -3,8 +3,12 @@
   <main class="app__main landing__main">
 
 
+
+
     <!-- middle Section -->
     <section class="middle-page-content">
+
+
 
 
       <section class="carousel-container">
@@ -12,30 +16,42 @@
           <h1 class="middle-page-h1 animate__animated animate__fadeInDown">{{ title }}</h1>
           <p class="middle-page-p">Découvrez des antiquités authentiques et des pièces d'exception</p>
         </header>
-        <div class="carousel-wrapper" ref="carouselWrapper">
-          <div class="carousel-track" ref="carouselTrack">
-            <div v-for="(slide, index) in slides" :key="index" class="carousel-slide" ref="slideRefs">
-              <div class="slide-content">
-                <img :src="slide.image" :alt="slide.title" class="slide-image">
-                <h3 class="slide-title">{{ slide.title }}</h3>
-                <p class="slide-description">{{ slide.description }}</p>
+        <div v-if="productsGetterLimited?.length > 0">
+          <div class="carousel-wrapper" ref="carouselWrapper">
+            <div class="carousel-track" ref="carouselTrack">
+
+              <div v-for="(slide, index) in productsGetterLimited" :key="index" class="carousel-slide" ref="slideRefs">
+                <RouterLink :to="`/product-detail/${slide.id}`" class="link-carousel-link">
+                  <div class="slide-content">
+                    <img :src="'http://localhost:5000/static/files/' + slide.photo_name" :alt="slide.name"
+                      class="slide-image">
+                    <h3 class="slide-title">{{ slide.name }}</h3>
+                    <p class="slide-description">{{ slide.description }}</p>
+                  </div>
+                </RouterLink>
               </div>
             </div>
-          </div>
+          </div> 
+        </div> 
+        <div v-else class="carousel-empty">
+          We are no product. Do come back later
         </div>
+       
 
         <!-- Navigation -->
-        <div class="carousel-controls">
-          <button @click="prevSlide" class="nav-button prev-button" ref="prevButton">
-            ➖
-          </button>
-          <div class="indicators">
-            <span v-for="(slide, index) in slides" :key="index"
-              :class="['indicator', { active: index === currentSlide }]" @click="goToSlide(index)"></span>
+        <div v-if="productsGetterLimited?.length > 0">
+          <div class="carousel-controls">
+            <button @click="prevSlide" class="nav-button prev-button" ref="prevButton">
+              ➖
+            </button>
+            <div class="indicators">
+              <span v-for="(slide, index) in productsGetterLimited" :key="index"
+                :class="['indicator', { active: index === currentSlide }]" @click="goToSlide(index)"></span>
+            </div>
+            <button @click="nextSlide" class="nav-button next-button" ref="nextButton">
+              ➕
+            </button>
           </div>
-          <button @click="nextSlide" class="nav-button next-button" ref="nextButton">
-            ➕
-          </button>
         </div>
       </section>
       <section class="button-section">
@@ -55,37 +71,18 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, nextTick } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import { gsap } from 'gsap'
+import { useProductsStore } from "../stores/products-store"
+import { storeToRefs } from "pinia"
 
-// Carousel data
-const slides = ref([
-  {
-    title: "Platine Vinyle Vintage",
-    description: "Platine Vinyle Vintage Avec Disque Vinyle Odeon",
-    image: "https://images.pexels.com/photos/33523058/pexels-photo-33523058.jpeg"
-  },
-  {
-    title: "Montre",
-    description: "Montre De Poche Blanche",
-    image: "https://images.pexels.com/photos/3210711/pexels-photo-3210711.jpeg"
-  },
-  {
-    title: "Projecteur",
-    description: "Projecteur Noir Rolleiflex Reel To Reel",
-    image: "https://images.pexels.com/photos/821738/pexels-photo-821738.jpeg"
-  },
-  {
-    title: "Volkswagen",
-    description: "Volkswagen Beetle Orange",
-    image: "https://images.pexels.com/photos/1209774/pexels-photo-1209774.jpeg"
-  },
-  {
-    title: "Cruche",
-    description: "Gros Plan D'une Cruche Antique ",
-    image: "https://images.pexels.com/photos/16983102/pexels-photo-16983102.jpeg"
-  }
-])
+
+const productsStore = useProductsStore()
+const { getProductByNb } = productsStore
+const { productsGetterLimited } = storeToRefs(productsStore)
+
+
+
 
 // References
 const carouselWrapper = ref<HTMLElement>()
@@ -96,7 +93,6 @@ const nextButton = ref<HTMLElement>()
 
 // State
 const currentSlide = ref(0)
-const isAutoPlaying = ref(true)
 const slideWidth = ref(0)
 
 // GSAP Variables 
@@ -156,13 +152,13 @@ const animateToSlide = (slideIndex: number, direction: 'next' | 'prev' = 'next')
 
 // Navigation
 const nextSlide = () => {
-  const nextIndex = (currentSlide.value + 1) % slides.value.length
+  const nextIndex = (currentSlide.value + 1) % productsGetterLimited.value.length
   currentSlide.value = nextIndex
   animateToSlide(nextIndex, 'next')
 }
 
 const prevSlide = () => {
-  const prevIndex = (currentSlide.value - 1 + slides.value.length) % slides.value.length
+  const prevIndex = (currentSlide.value - 1 + productsGetterLimited.value.length) % productsGetterLimited.value.length
   currentSlide.value = prevIndex
   animateToSlide(prevIndex, 'prev')
 }
@@ -185,15 +181,6 @@ const stopAutoPlay = () => {
   }
 }
 
-const toggleAutoPlay = () => {
-  /*
-  isAutoPlaying.value = !isAutoPlaying.value
-  if (isAutoPlaying.value) {
-    startAutoPlay()
-  } else {
-    stopAutoPlay()
-  }*/
-}
 
 const handleResize = () => {
   calculateSlideWidth()
@@ -201,7 +188,9 @@ const handleResize = () => {
 }
 
 onMounted(async () => {
+
   await nextTick()
+  await getProductByNb(5)
 
   calculateSlideWidth()
 
@@ -312,6 +301,20 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
   will-change: transform;
 
 }
+
+.carousel-empty {
+  box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+  align-items: center;
+  justify-content: center;
+  padding: 5rem;
+  color: white;
+  overflow: auto;
+  color: #73878b;
+  background-color: #9eeaf9; 
+  border-radius: 15px; 
+  max-width: 800px;
+}
+
 
 .carousel-slide {
   flex: 0 0 20%;
@@ -432,6 +435,13 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
   justify-content: center;
 }
 
+
+.link-carousel-link {
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
 .cta-button {
   display: inline-block;
   padding: 1rem 2.5rem;
@@ -532,7 +542,7 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
 
   .nav-button {
     min-width: 40px;
-    min-height: 40px; 
+    min-height: 40px;
   }
 
   .middle-page {
@@ -551,7 +561,7 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
 @media (max-width: 768px) {
 
   .next-button,
-  .prev-button { 
+  .prev-button {
 
     box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
   }

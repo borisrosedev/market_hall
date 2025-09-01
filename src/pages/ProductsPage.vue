@@ -52,7 +52,7 @@ const { checkAuth } = useUserAuth()
 
 const { getAllProducts } = productsStore
 
-const { productsGetter } = storeToRefs(productsStore)
+const { productsGetter , productsGetterLimited } = storeToRefs(productsStore)
 
 onMounted(async () => {
     console.log("route", route)
