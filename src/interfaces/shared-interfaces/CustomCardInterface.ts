@@ -7,9 +7,18 @@ export interface CustomCardInterface {
     listItems?: { content: string }[]
     listLinks?: CardBodyLinksListInterface
     listButtons?: CardBodyButtonsListInterface
-    title?: string 
+    title?: string
+    price?: number
+    price_cents?: number
+    fullname?: string
+    alt?: string 
     name?: string 
     url?: string
+    src?: string
+    bodyClassNames?: string
+    bodyTitleClassNames?: string
+    bodyPriceCentsClassNames?: string
+    bodyDescriptionClassNames?: string
     photo_name?: string
     firstname?: string 
     lastname?: string 

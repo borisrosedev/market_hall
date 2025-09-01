@@ -7,16 +7,14 @@
                 :obj="{
                     ...prod,
                     classNames: 'product-card my-3',
-                    listItems: [
-                        {
-                            content: `${prod.price} €`
-                        },
-                    ]
+                    bodyClassNames: 'd-flex flex-column',
+                    bodyTitleClassNames: 'align-self-center',
+                    bodyPriceCentsClassNames: 'align-self-center text-secondary'
                 }" :key="i">
                 <section class="product-card__buttons-section">
                     <CustomButton @click="(e) => onAddToCart(e, prod)" :obj="{
                         content: 'Add to Cart',
-                        classNames: 'btn-info'
+                        classNames: 'btn-warning'
                     }" />
                 </section>
             </CustomCard>
@@ -151,6 +149,8 @@ const onAddToCart = async (e, prod: any) => {
 .product-card {
     height: 500px;
     width: 300px;
+
+
 
     img {
         height: 200px;

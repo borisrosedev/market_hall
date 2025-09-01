@@ -15,7 +15,7 @@
                     <td class="d-flex align-items-center justify-center">
                         <figure class="cart__figure">
                             <img 
-                            :src="'http://localhost:5000/static/files/'+item.photo_name" :alt="'image of' + item.name" />
+                            :src="'http://localhost:5000/static/files/'+item.photo_name" :alt="'image of ' + item.name" />
                         </figure>
 
                     </td>
@@ -37,7 +37,7 @@
             </tbody>
         </table>
         <section class="d-flex flex-row-reverse" v-if="getCart?.items?.length">
-            <button class="btn btn-success mx-4" @click="">Order</button>
+            <button class="btn btn-success mx-4" @click="onOrderClick">Order</button>
             <button class="btn btn-danger" @click="">Empty the cart</button>
         </section>
         <div  v-if="!getCart.items || !getCart.items.length" class="d-flex mx-2 flex-column alert alert-info align-self-center" role="alert">
@@ -54,11 +54,15 @@
 import { onMounted, ref } from "vue";
 import { getCart, getUserCart, updateItem } from "../../stores/cart-store"
 import { RouterLink } from "vue-router";
-const editCart = ref<boolean>(false)
+import { useRouter } from "vue-router"
+
+
+const router = useRouter()
 
 onMounted(async() => {
     await getUserCart()
 })
+
 
 
 function onUpdateCart (action: 'add'| 'remove', item: any) {
@@ -69,6 +73,14 @@ function onUpdateCart (action: 'add'| 'remove', item: any) {
     }
 
 }
+
+
+function onOrderClick(){
+    if (getCart.value.items?.length){
+        router.push('order')
+    }
+}
+
 
 </script>
 <style lang="css">

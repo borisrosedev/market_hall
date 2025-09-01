@@ -58,11 +58,11 @@ const router = createRouter({
       name: "order",
       children: [
         {
-          path: "/address",
+          path: "",
           component: OrderAddress
         },
         {
-          path: "/summary",
+          path: "summary",
           component: OrderSummary
         }
       ]

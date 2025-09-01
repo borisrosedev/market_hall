@@ -60,25 +60,10 @@
     <section class="d-flex align-items-start w-75">
          <section class="dashboard__user-info d-flex align-items-start w-50">
             <CustomCard 
-                v-if="currentUser.id"
-                
+                v-if="currentUser.id" 
                 :obj="{
                     url: (currentUser.photo_name ? `http://localhost:5000/static/files/${currentUser.photo_name}`: 'src/assets/images/avatar-placeholder.jpg' ),
                     classNames: 'w-50',
-                    role: `${currentUser.role}`,
-                    listItems: [
-                        {
-                            content: `Firstame: ${currentUser.firstname}`
-                        },
-                        {
-                            content: `Lastame: ${currentUser.lastname}`
-                        },
-                        {
-                            content: `Email: ${currentUser.email}`
-                        }
-                    ],
-                    name: currentUser.fullname
-                    
                 }"
             >
                 

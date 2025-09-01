@@ -13,7 +13,7 @@ const checkFormat = {
 
   isValidName(name: string): boolean {
     // Name must be at least 8 characters long and can contain letters, spaces, and hyphens
-    const nameRegex = /^[A-Za-z\s-]{8,}$/;
+    const nameRegex = /^[A-Za-z\s-]{2,}$/;
     return nameRegex.test(name);
   },
 };
