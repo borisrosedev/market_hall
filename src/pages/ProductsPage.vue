@@ -7,16 +7,14 @@
                 :obj="{
                     ...prod,
                     classNames: 'product-card my-3',
-                    listItems: [
-                        {
-                            content: `${prod.price} €`
-                        },
-                    ]
+                    bodyClassNames: 'd-flex flex-column',
+                    bodyTitleClassNames: 'align-self-center',
+                    bodyPriceCentsClassNames: 'align-self-center text-secondary'
                 }" :key="i">
                 <section class="product-card__buttons-section">
                     <CustomButton @click="(e) => onAddToCart(e, prod)" :obj="{
                         content: 'Add to Cart',
-                        classNames: 'btn-info'
+                        classNames: 'btn-warning'
                     }" />
                 </section>
             </CustomCard>
@@ -36,12 +34,13 @@ import CustomButton from '../components/shared-components/CustomButton.vue';
 import { useUserAuth } from "../composables/useUserAuth"
 import { useMessagesStore } from "../stores/messages-store"
 import { useProductsStore } from "../stores/products-store"
-import { useRouter } from "vue-router"
+import { useRouter, useRoute } from "vue-router"
 import { storeToRefs } from "pinia"
 import { addItem, getLastAction, setLastAction } from '../stores/cart-store';
 import { currentUser } from '../stores/user-store';
 
 const router = useRouter()
+const route = useRoute()
 const isConnected = ref(false)
 const messagesStore = useMessagesStore()
 const productsStore = useProductsStore()
@@ -54,10 +53,12 @@ const { getAllProducts } = productsStore
 const { productsGetter , productsGetterLimited } = storeToRefs(productsStore)
 
 onMounted(async () => {
+    console.log("route", route)
     await getAllProducts()
     isConnected.value = await checkAuth()
    
 })
+
 
 
 function navigateHandler(to: string): void {
@@ -148,6 +149,8 @@ const onAddToCart = async (e, prod: any) => {
 .product-card {
     height: 500px;
     width: 300px;
+
+
 
     img {
         height: 200px;

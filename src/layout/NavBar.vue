@@ -7,16 +7,16 @@
       
 
 
-      <div class="d-flex align-items-center">
-        <button class="btn btn-outline-info mx-3 position-relative" @click="onCart">
+      <div class="d-flex align-items-center" v-fi>
+        <button v-if="isConnected" class="btn btn-outline-info mx-3 position-relative" @click="onCart">
             <i style="font-size: 14px;" class="bi bi-bag-fill"></i>     
-          <span v-if="getCart && getCart.items && getCart.items.length > 0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+          <span v-if="getCart?.items?.length > 0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
           {{ getCart.items.length }}
             <span class="visually-hidden">cart items count</span>
           </span>
         </button>
       
-          <form class="d-flex mx-5" role="search">
+          <form class="d-flex mx-5" role="search" v-if="$route.fullPath == '/products'">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
@@ -139,12 +139,14 @@ import { RouterLink } from "vue-router";
 import { isConnected } from "../stores/auth-store";
 import { onMounted, onUpdated } from "vue";
 import { useUserAuth } from "../composables/useUserAuth"
-import { useRouter } from "vue-router"
+import { useRouter, useRoute } from "vue-router"
 import { useMessagesStore } from "../stores/messages-store";
 import { getCart } from "../stores/cart-store"
 const userAuth = useUserAuth()
 const router = useRouter()
+const route = useRoute()
 const { showToast, hideToastNow } = useMessagesStore()
+
 
 /**
  * when the component mounts it automatically calls the checkAuth function 
@@ -153,8 +155,11 @@ const { showToast, hideToastNow } = useMessagesStore()
  * @param callback 
  */
 onMounted(async() => {
+  console.log(route)
   await userAuth.checkAuth()
 })
+
+
 
 
 
