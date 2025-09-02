@@ -3,7 +3,6 @@ node_modules
 .vscode
 .gitignore
 .git 
-.volumes
 Dockerfile*
 compose*
 __tests__
