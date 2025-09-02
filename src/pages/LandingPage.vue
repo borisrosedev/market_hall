@@ -428,7 +428,7 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs ann√©es de chine d‚
 
 
 .landing__main {
-  min-height: 120vh;
+  min-height: 120vh; 
   background-color: rgba(139, 69, 19, 0.3);
   padding: 2rem;
   align-items: center;
