@@ -23,11 +23,11 @@ export const useProductsStore = defineStore("products", () => {
   const getAllProducts = async () => { 
     products.value = await productsService.getAll();
   };
-
+  
   const getProductByNb = async (nbmax: number) => {
-      productsGetterLimited.value = await productsService.getByNb(nbmax)
+      productsGetterLimited.value = await productsService.getWithinLimit(nbmax)
   };
-
+  
   return {
     productsGetter,
     productsGetterLimited,

@@ -23,10 +23,14 @@ const productsService = {
     );
     return product;
   },
-
-  async getByNb(nbmax: number) { 
-    const { products } = await apiResource.get("/products", "GET", "include");
-    return products.slice(0, nbmax);
+  
+  async getWithinLimit(limit: number) {
+    const { products } = await apiResource.get(
+      `/products?limit=${limit}`,
+      "GET",
+      "include"
+    ); 
+    return products;
   },
 };
 
