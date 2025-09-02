@@ -28,7 +28,21 @@ services:
     networks:
       - market_hall_network 
     stdin_open: true
+    tty: true
+    volumes:
+      - ./.volumes/instance:/instance
+      - ./.volumes/uploads:/uploads
+
+  market_hall_admin:
+    build: ./../market_hall_admin/
+    container_name: market_hall_admin
+    ports:
+      - "4200:4200"
+    networks:
+      - market_hall_network  
+    stdin_open: true
     tty: true    
+
 
 networks:
   market_hall_network:  
