@@ -30,8 +30,8 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - ./../market_hall_backend/.volumes/instance:/instance
-      - ./../market_hall_backend/.volumes/uploads:/uploads
+      - ./.volumes/instance/:/app/instance:rw
+      - ./.volumes/uploads/:/app/uploads:rw
 
   market_hall_admin:
     build: ./../market_hall_admin/
