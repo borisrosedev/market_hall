@@ -16,5 +16,14 @@ const checkFormat = {
     const nameRegex = /^[A-Za-z\s-]{2,}$/;
     return nameRegex.test(name);
   },
+
+  isValidAdresses(adresses:string){
+    const adressesRegex = /^([1-9][0-9]*(?:-[1-9][0-9]*)*)[\s,-]+(?:(bis|ter|qua)[\s,-]+)?([\w]+[\-\w]*)[\s,]+([-\w].+)$/; 
+    return adressesRegex.test(adresses);
+  },
+  isValidZipCode(zipcode:string){
+    const zipcodeRegex =   /^\d{5}$/;        //  /^([0-9]{5})$/ ; 
+    return zipcodeRegex.test(zipcode);
+  },
 };
 export default checkFormat;
