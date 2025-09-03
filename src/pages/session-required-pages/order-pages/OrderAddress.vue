@@ -88,12 +88,10 @@ const onFieldChange = ({ name, value }) => {
         case 'password':
             isValid = checkFormat.isValidPassword(value);
             break;
-        case 'zip':
-            // mettre la bonne méthode checkFormat....
-            isValid = true;
+        case 'zip':  
+            isValid = checkFormat.isValidZipCode(value);
         case 'address':
-            // mettre la bonne méthode checkFormat....
-            isValid = true;
+            isValid = checkFormat.isValidAdresses(value);
             break;
         case 'country':
         case 'city':
