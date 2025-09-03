@@ -90,6 +90,7 @@ const onFieldChange = ({ name, value }) => {
             break;
         case 'zip':  
             isValid = checkFormat.isValidZipCode(value);
+            break;
         case 'address':
             isValid = checkFormat.isValidAdresses(value);
             break;
