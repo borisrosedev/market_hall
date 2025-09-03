@@ -21,8 +21,9 @@ services:
     tty: true
 
   market_hall_backend:
-    build: ./../market_hall_backend/
-    container_name: market_hall_backend
+    build:
+      context: ./../market_hall_backend/ 
+    container_name: market_hall_backend 
     ports:
       - "5000:5000"
     networks:
@@ -34,7 +35,8 @@ services:
       - ./.volumes/uploads/:/app/uploads:rw
 
   market_hall_admin:
-    build: ./../market_hall_admin/
+    build: 
+      context: ./../market_hall_admin/
     container_name: market_hall_admin
     ports:
       - "4200:4200"
@@ -43,6 +45,17 @@ services:
     stdin_open: true
     tty: true    
 
-
+  markethall_mail_api:
+    build: 
+      context: ./../markethall_mail_api/
+      target: development 
+    container_name: markethall_mail_api
+    ports:
+      - "8000:8000"
+    networks:
+      - market_hall_network  
+    stdin_open: true
+    tty: true    
+  
 networks:
   market_hall_network:  
