@@ -1,8 +1,8 @@
 <template>
   <div class="main">
     <div class="hero">
-      <div class="container">
-        <div class="heading-1">
+      <div class="hero__container">
+        <div class="hero__container-heading">
           <div class="title"><span class="title_span_01">Votre marketplace <br />d'</span><span
               class="title_span_02">antiquités</span><span class="title_span_03"> de confiance</span></div>
           <div class="subtitle"><span class="subtitle_span">Connectons passionnés, collectionneurs et professionnels
@@ -48,44 +48,43 @@
             </div>
           </div>
         </div>
+
         <div class="carousel">
+
           <div class="carousel__view">
             <div class="carousel__image">
               <div v-if="productsGetterLimited?.length > 0">
+              
+                <RouterLink :to="`/product-detail/${productsGetterLimited[selectedId].id}`" class="no-underline">
+
+                  <img :src="'http://localhost:5000/static/files/' + productsGetterLimited[selectedId].photo_name"
+                    :alt="productsGetterLimited[selectedId].name">
+                   <div class="favbutton">
+                        <div data-variant="7" class="component-1_01">
+                          <img src="../assets/icons/heart.svg" alt="heart" class="vector__heart" />
+                        </div>
+                      </div>  
+                </RouterLink>
                 <div class="carousel-wrapper" ref="carouselWrapper">
                   <div class="carousel-track" ref="carouselTrack">
 
-                    <div v-for="(slide, index) in productsGetterLimited" :key="index" class="carousel-slide"
-                      ref="slideRefs">
-                      <div v-if="slide.id === randomSelectedId">
-                        <RouterLink :to="`/product-detail/${slide.id}`" class="no-underline">
-                          <div class="slide-content">
-                            <img :src="'http://localhost:5000/static/files/' + slide.photo_name" :alt="slide.name"
-                              class="slide-image">
-                          </div>
-                          <div class="favbutton">
-                            <div data-variant="7" class="component-1_01">
-                              <img src="../assets/icons/heart.svg" alt="heart" class="vector__heart" />
-
-                            </div>
-                          </div>
-                        </RouterLink>
-                      </div>
-                    </div>
+                    
                   </div>
                 </div>
               </div>
               <div v-else class="carousel-empty">
-                We are no product. Do come back later
+                <img src="../assets/icons/camera-off-line.svg" alt="camera-off-line" class="marketplace-picture" />
               </div>
-
             </div>
-            <div class="carousel__description">
-              <div v-for="(slide, index) in productsGetterLimited" :key="index" class="carousel-slide" ref="slideRefs">
-                <div v-if="slide.id === randomSelectedId">
+
+
+            <div v-if="productsGetterLimited?.length > 0">
+              <div class="carousel__description">
+                <div class="carousel-slide">
                   <div class="carousel__description-name">
-                    <h3 class="carousel__description-name_span">{{ slide.name }}</h3>
-                    <span class="carousel__description-name_span">{{ slide.description }}</span>
+                    <h3 class="carousel__description-name_span">{{ productsGetterLimited[selectedId].name }}</h3>
+                    <span class="carousel__description-name_span">{{ productsGetterLimited[selectedId].description
+                    }}</span>
                   </div>
                   <div class="proudct_periodoverlay">
                     <div class="product_periodstring"><span class="product_periodstring_span">18ème siècle</span>
@@ -94,21 +93,17 @@
                   <div class="product__seller"><span class="product__seller_span">Vendu par Maison Dubois
                       Antiquités</span>
                   </div>
-                  <div class="product__price"><span class="product__price_span">{{ divideBy100(slide.price_cents) }}
+                  <div class="product__price"><span class="product__price_span">{{
+                    divideBy100(productsGetterLimited[selectedId].price_cents) }}
                       €</span></div>
                   <div class="product__data">
                     <div class="product__stats">
-
                       <img src="../assets/icons/eye.svg" alt="vues" class="vector__eye" />
-
-
-
                       <div class="product__statsstring"><span class="product__statsstring_span">127 vues</span></div>
                     </div>
                     <div class="product__stats_01">
                       <div data-variant="9" class="product__statsicon_01">
                         <img src="../assets/icons/heart_fav.svg" alt="vues" class="vector__heart_fav" />
-
                       </div>
                       <div class="product__statsstring_01"><span class="product__statsstring_01_span">23
                           favoris</span>
@@ -116,13 +111,12 @@
                     </div>
                   </div>
                   <div class="product__action">
-                    <RouterLink :to="`/product-detail/${slide.id}`" class="no-underline">
+                    <RouterLink :to="`/product-detail/${productsGetterLimited[selectedId].id}`" class="no-underline">
                       <div class="product__actiondetails">
                         <div class="buttontext"><span class="buttontext_span">Voir les détails</span></div>
                       </div>
                     </RouterLink>
-                    <RouterLink :to="`/product-seller/${slide.id}`" class="no-underline">
-
+                    <RouterLink :to="`/product-seller/${productsGetterLimited[selectedId].id}`" class="no-underline">
                       <div class="product__actionseller">
                         <div class="buttontext_01"><span class="buttontext_01_span">Contacter le vendeur</span></div>
                       </div>
@@ -130,13 +124,51 @@
                   </div>
 
                 </div>
-                <div v-else class="carousel-empty">
+              </div>
+            </div>
+            <div v-else class="carousel-empty">
+              <div class="carousel__description">
+                <div class="carousel-slide">
+                  <div class="carousel__description-name">
+                    <h3 class="carousel__description-name_span">Name</h3>
+                    <span class="carousel__description-name_span">Description</span>
+                  </div>
+                  <div class="proudct_periodoverlay">
+                    <div class="product_periodstring"><span class="product_periodstring_span">X siècle</span>
+                    </div>
+                  </div>
+                  <div class="product__seller"><span class="product__seller_span">Vendu par X</span>
+                  </div>
+                  <div class="product__price"><span class="product__price_span">
+                      X €</span></div>
+                  <div class="product__data">
+                    <div class="product__stats">
+                      <img src="../assets/icons/eye.svg" alt="vues" class="vector__eye" />
+                      <div class="product__statsstring"><span class="product__statsstring_span">X vues</span></div>
+                    </div>
+                    <div class="product__stats_01">
+                      <div data-variant="9" class="product__statsicon_01">
+                        <img src="../assets/icons/heart_fav.svg" alt="vues" class="vector__heart_fav" />
+                      </div>
+                      <div class="product__statsstring_01"><span class="product__statsstring_01_span">X
+                          favoris</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product__action">
+                    <div class="product__actiondetails" enable="false">
+                      <div class="buttontext"><span class="buttontext_span">Voir les détails</span></div>
+                    </div>
+
+                    <div class="product__actionseller">
+                      <div class="buttontext_01"><span class="buttontext_01_span">Contacter le vendeur</span></div>
+                    </div>
+
+                  </div>
 
                 </div>
               </div>
-
             </div>
-
           </div>
           <div class="carousel__header">
             <div class="carousel__marquee">
@@ -146,7 +178,7 @@
                   leur authenticité et leur beauté</span></div>
             </div>
             <div class="carousel_nav">
-              <div class="carousel__navbutton">
+              <div class="carousel__navbutton-forward">
                 <div data-variant="5" class="forward" @click="prevSlide" ref="prevButton">
 
 
@@ -156,7 +188,7 @@
 
                 </div>
               </div>
-              <div class="carousel__navbutton_01">
+              <div class="carousel__navbutton_backward">
                 <div data-variant="6" class="backward" @click="nextSlide" ref="nextButton">
 
 
@@ -166,11 +198,14 @@
 
                 </div>
               </div>
+
             </div>
           </div>
         </div>
       </div>
     </div>
+
+
     <div class="gridmarket">
       <div class="container_01">
         <div class="container_02">
@@ -740,17 +775,20 @@
               <div class="buttonmargin_01">
                 <div class="button_22">
                   <div data-variant="42" class="component-1_22">
-                    <img src="../assets/icons/socials/instagram.svg" alt="instagram" class="vector__instagram" />
+                    <a href="https://instagram.com" target="_blank" class="social-link" title="Facebook">
 
-                    <div class="vector_55"></div>
-                    <div class="vector_56"></div>
+                      <img src="../assets/icons/socials/instagram.svg" alt="instagram" class="vector__instagram" />
+                    </a>
+
                   </div>
                 </div>
               </div>
               <div class="button_23">
                 <div data-variant="43" class="component-1_23">
-                  <img src="../assets/icons/socials/twitter.svg" alt="twitter" class="vector__twitter" />
+                  <a href="https://twitter.com" target="_blank" class="social-link" title="Facebook">
 
+                    <img src="../assets/icons/socials/twitter.svg" alt="twitter" class="vector__twitter" />
+                  </a>
                 </div>
               </div>
             </div>
@@ -818,7 +856,7 @@
                     <span class="votreemail_span">
                       <input type="email" v-model="userEmail" class="input-email" placeholder="Votre email" />
                     </span>
-
+                    <p>Email saisi : {{ userEmail }}</p>
                   </div>
                 </div>
                 <div class="container_88"></div>
@@ -826,7 +864,7 @@
               <div class="button_24">
                 <div data-variant="44" class="component-1_24">
                   <RouterLink to="/contactus'" class="no-underline">
-                    <img src="../assets/icons/mailbox.svg" alt="boite au lettre" class="vector_mailbox" />
+                    <img src="../assets/icons/mailbox.svg" alt="boite au lettre" class="vector__mailbox" />
 
                   </RouterLink>
                 </div>
@@ -905,7 +943,7 @@
 
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, nextTick, watch } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick, watch, computed } from 'vue'
 import { gsap } from 'gsap'
 import { useProductsStore } from "../stores/products-store"
 import { storeToRefs } from "pinia"
@@ -924,7 +962,9 @@ const carouselTrack = ref<HTMLElement>()
 const slideRefs = ref<HTMLElement[]>([])
 const prevButton = ref<HTMLElement>()
 const nextButton = ref<HTMLElement>()
-
+const userEmail = ref<string>('')
+//const selectedId = ref<number>(0);
+const selectedId = computed(() => currentSlide.value);
 // State
 const currentSlide = ref(0)
 const slideWidth = ref(0)
@@ -937,9 +977,22 @@ const gridLine2Col1 = 3;
 const gridLine2Col2 = 4;
 const gridLine2Col3 = 5;
 
+
+
 // GSAP Variables 
 let autoPlayInterval: NodeJS.Timeout | null = null
 let tl: gsap.core.Timeline
+
+
+
+//const randomSelectedId = 0;  //Math.floor(Math.random() * productsGetterLimited.value.length) + 1;
+//currentSlide.value = randomSelectedId;
+
+
+//console.log("* randomSelectedId " + currentSlide.value);
+
+
+
 
 // Calculated 
 const calculateSlideWidth = () => {
@@ -950,6 +1003,7 @@ const calculateSlideWidth = () => {
 
 // Transition of Animation 
 const animateToSlide = (slideIndex: number, direction: 'next' | 'prev' = 'next') => {
+
   if (!carouselTrack.value) return
 
   const targetX = -slideIndex * slideWidth.value
@@ -961,53 +1015,30 @@ const animateToSlide = (slideIndex: number, direction: 'next' | 'prev' = 'next')
     ease: "power2.inOut"
   })
 
-  // Individual animation 
-  slideRefs.value.forEach((slide, index) => {
-    if (slide) {
-      if (index === slideIndex) {
-        gsap.fromTo(slide.querySelector('.slide-content'),
-          {
-            scale: 0.9,
-            opacity: 0.7,
-            rotationY: direction === 'next' ? 20 : -20
-          },
-          {
-            scale: 1,
-            opacity: 1,
-            rotationY: 0,
-            duration: 0.6,
-            delay: 0.2,
-            ease: "power2.out"
-          }
-        )
-      } else {
-        gsap.to(slide.querySelector('.slide-content'), {
-          scale: 0.9,
-          opacity: 0.7,
-          duration: 0.4,
-          ease: "power2.out"
-        })
-      }
-    }
-  })
+
 }
 
 // Navigation
 const nextSlide = () => {
   const nextIndex = (currentSlide.value + 1) % productsGetterLimited.value.length
   currentSlide.value = nextIndex
+  console.log("> currentSlide.value " + currentSlide.value);
+  //selectedId = currentSlide.value;
   animateToSlide(nextIndex, 'next')
 }
 
 const prevSlide = () => {
   const prevIndex = (currentSlide.value - 1 + productsGetterLimited.value.length) % productsGetterLimited.value.length
   currentSlide.value = prevIndex
+  console.log("< currentSlide.value " + currentSlide.value);
+  //selectedId = currentSlide.value;
   animateToSlide(prevIndex, 'prev')
 }
 
 const goToSlide = (index: number) => {
   const direction = index > currentSlide.value ? 'next' : 'prev'
   currentSlide.value = index
+  //selectedId = currentSlide.value;
   animateToSlide(index, direction)
 }
 
@@ -1019,14 +1050,11 @@ const startAutoPlay = () => {
 const stopAutoPlay = () => {
   if (autoPlayInterval) {
     //  clearInterval(autoPlayInterval)
-    //  autoPlayInterval = null
+    autoPlayInterval = null
   }
 }
 
-const randomSelectedId = Math.floor(Math.random() * productsGetterLimited.value.length) + 1;
-currentSlide.value = randomSelectedId;//
 
-console.log(currentSlide.value);
 const handleResize = () => {
   calculateSlideWidth()
   animateToSlide(currentSlide.value)
@@ -1083,7 +1111,7 @@ onMounted(async () => {
 
   animateToSlide(0)
 
-  startAutoPlay()
+  //startAutoPlay()
 
   window.addEventListener('resize', handleResize)
 })
@@ -1556,15 +1584,6 @@ function divideBy100(montantString) {
   flex-direction: column;
 }
 
-.vector__right_carousel,
-.vector__left_carousel {
-  width: 4px;
-  height: 8px;
-  left: 6px;
-  top: 4px;
-  position: absolute;
-
-}
 
 
 .marketplace_span {
@@ -3212,7 +3231,7 @@ function divideBy100(montantString) {
   outline-offset: -1px;
 }
 
-.heading-1 {
+.hero__container-heading {
   align-self: stretch;
   flex-direction: column;
   justify-content: flex-start;
@@ -4043,6 +4062,20 @@ function divideBy100(montantString) {
   position: relative;
 }
 
+.vector__right_carousel,
+.vector__left_carousel {
+  width: 38;
+  height: 32;
+  /*
+  width: 4px;
+  height: 8px;
+  */
+  left: 6px;
+  top: 4px;
+
+  position: absolute;
+
+}
 
 .backward,
 .forward {
@@ -4058,7 +4091,8 @@ function divideBy100(montantString) {
   width: 16px;
   height: 16px;
   position: relative;
-  border-top: 1px solid var(--color-yellow-5230, #D4AF374D)
+  cursor: pointer;
+  /*  border-top: 1px solid var(--color-yellow-5230, #D4AF374D)*/
 }
 
 
@@ -4497,7 +4531,8 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.carousel__navbutton {
+.carousel__navbutton-forward,
+.carousel__navbutton_backward {
   height: 32px;
   padding-left: 11px;
   padding-right: 11px;
@@ -4512,20 +4547,6 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.carousel__navbutton_01 {
-  height: 32px;
-  padding-left: 11px;
-  padding-right: 11px;
-  padding-top: 1px;
-  padding-bottom: 1px;
-  background: var(--color-orange-9, #1A1612);
-  border-radius: 10px;
-  outline: 1px var(--color-yellow-52-30p, rgba(212, 175, 55, 0.30)) solid;
-  outline-offset: -1px;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-}
 
 .svg_01 {
   width: 16px;
@@ -5482,7 +5503,7 @@ function divideBy100(montantString) {
   outline-offset: -1px;
 }
 
-.container {
+.hero__container {
   width: 896px;
   height: 1031px;
   padding-top: 40px;
@@ -5614,12 +5635,16 @@ function divideBy100(montantString) {
 
 
 
-.vector_mailbox {
+.vector__mailbox {
 
-  width: 13.33px;
-  height: 10.67px;
-  left: 1.33px;
-  top: 2.67px;
+  width: 16px;
+  /*13.33px;*/
+  height: 16px;
+  /*10.67px;*/
+  left: 0px;
+  /*  1.33px;*/
+  top: 0px;
+  /* 2.67px;*/
   position: absolute;
 
 }
@@ -5628,5 +5653,20 @@ function divideBy100(montantString) {
   background: inherit;
   color: white;
   border: none;
+}
+
+
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  padding: 0 1rem;
+  gap: 1rem;
+}
+
+.controls {
+  text-align: center;
+  margin-top: 1.5rem;
 }
 </style>
