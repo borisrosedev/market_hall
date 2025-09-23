@@ -3,7 +3,8 @@
     <div class="hero">
       <div class="container">
         <div class="heading-1">
-          <div class="title"><span class="title_span_01">Votre marketplace <br />d'</span><span class="title_span_02">antiquités</span><span class="title_span_03"> de confiance</span></div>
+          <div class="title"><span class="title_span_01">Votre marketplace <br />d'</span><span
+              class="title_span_02">antiquités</span><span class="title_span_03"> de confiance</span></div>
           <div class="subtitle"><span class="subtitle_span">Connectons passionnés, collectionneurs et professionnels
               dans un<br />écosystème sécurisé. Vendez facilement ou découvrez des pièces<br />authentiques.</span>
           </div>
@@ -12,15 +13,12 @@
           <div class="single__value">
             <div data-variant="1" class="svgprop">
               <img src="../assets/icons/auth.svg" alt="authentification garantie" class="vector__auth" />
-
             </div>
             <div class="value__string"><span class="value__string_span">Authentification garantie</span></div>
           </div>
           <div class="single__value_01">
             <div data-variant="2" class="svgprop_01">
               <img src="../assets/icons/seller.svg" alt="nb antiquaires" class="vector__seller" />
-
-
             </div>
             <div class="value__string_01"><span class="value__string_01_span">+10 000 antiquaires</span></div>
           </div>
@@ -36,7 +34,6 @@
             <div class="commencer-vendre"><span class="commencervendre_span">Commencer à vendre</span></div>
             <div class="svgmargin">
               <div class="svg">
-
                 <div data-variant="4" class="component-1">
                   <img src="../assets/icons/arrow.svg" alt="fleche" class="vector__arrow" />
                 </div>
@@ -44,7 +41,6 @@
             </div>
           </div>
           <div class="call__browse">
-
             <div class="explorer-les-antiquits">
               <span class="explorerlesantiquits_span">
                 <RouterLink to="/products" class="no-underline">Explorer les antiquités </RouterLink>
@@ -98,7 +94,8 @@
                   <div class="product__seller"><span class="product__seller_span">Vendu par Maison Dubois
                       Antiquités</span>
                   </div>
-                  <div class="product__price"><span class="product__price_span">{{ slide.price_cents }} €</span></div>
+                  <div class="product__price"><span class="product__price_span">{{ divideBy100(slide.price_cents) }}
+                      €</span></div>
                   <div class="product__data">
                     <div class="product__stats">
 
@@ -248,10 +245,10 @@
                   <div v-if="productsGetterLimited?.length > 0">
                     <img :src="'http://localhost:5000/static/files/' + productsGetterLimited[gridLine1Col1].photo_name"
                       :alt="productsGetterLimited[gridLine1Col1].name" class="marketplace-picture">
-                    <img src="../assets/icons/eye.svg" alt="qqch" class="vector_27" />
+
                   </div>
                   <div v-else class="marketplace-empty">
-                    <img src="../assets/icons/camera-off-line.svg" alt="camera-off-line" class="vector_27" />
+                    <img src="../assets/icons/camera-off-line.svg" alt="camera-off-line" class="marketplace-picture" />
                   </div>
 
                   <div class="button_14">
@@ -267,7 +264,9 @@
                 </div>
                 <div class="container_10">
                   <div class="heading-3">
-                    <div class="commode-transition-louis-xv_01"><span class="commodetransitionlouisxv_01_span">{{ productsGetterLimited[gridLine1Col1].name }} : {{ productsGetterLimited[gridLine1Col1].description }}</span></div>
+                    <div class="commode-transition-louis-xv_01"><span class="commodetransitionlouisxv_01_span">{{
+                      productsGetterLimited[gridLine1Col1].name }} : {{
+                          productsGetterLimited[gridLine1Col1].description }}</span></div>
                   </div>
                   <div class="container_11">
                     <div class="antiquits-martin-paris"><span class="antiquitsmartinparis_span">Antiquités Martin •
@@ -275,7 +274,8 @@
                   </div>
                   <div class="container_12">
                     <div class="container_13">
-                      <div class="text-1-890-"><span class="f890_span">{{ productsGetterLimited[gridLine1Col1].price_cents }} €</span></div>
+                      <div class="text-1-890-"><span class="f890_span">{{
+                        divideBy100(productsGetterLimited[gridLine1Col1].price_cents) }} €</span></div>
                     </div>
                     <div class="container_14">
                       <div data-variant="26" class="component-1_06">
@@ -293,17 +293,15 @@
             <div class="background-border-shadow background-border-shadow-line1-col2">
               <div class="gradient_01"></div>
               <div class="container_15">
-                <div class="background_02"> 
+                <div class="background_02">
 
                   <div v-if="productsGetterLimited?.length > 0">
                     <img :src="'http://localhost:5000/static/files/' + productsGetterLimited[gridLine1Col2].photo_name"
                       :alt="productsGetterLimited[gridLine1Col2].name" class="marketplace-picture">
-
                   </div>
                   <div v-else class="marketplace-empty">
-                    <img src="../assets/icons/camera-off-line.svg" alt="camera-off-line" class="vector_27" />
+                    <img src="../assets/icons/camera-off-line.svg" alt="camera-off-line" class="marketplace-picture" />
                   </div>
-
                   <div class="button_15">
                     <div data-variant="27" class="component-1_07">
                       <div class="vector_30"></div>
@@ -317,15 +315,18 @@
                 </div>
                 <div class="container_17">
                   <div class="heading-3_01">
-                    <div class="vase-gall-art-nouveau_01"><span
-                        class="vasegallartnouveau_01_span">{{ productsGetterLimited[gridLine1Col2].name }} : {{ productsGetterLimited[gridLine1Col2].description }}</span></div>
+                    <div class="vase-gall-art-nouveau_01"><span class="vasegallartnouveau_01_span">{{
+                      productsGetterLimited[gridLine1Col2].name }} : {{
+                          productsGetterLimited[gridLine1Col2].description }}</span></div>
                   </div>
                   <div class="container_18">
-                    <div class="collection-prive-lyon"><span class="collectionprivelyon_span">Collection Privée • Lyon</span></div>
+                    <div class="collection-prive-lyon"><span class="collectionprivelyon_span">Collection Privée •
+                        Lyon</span></div>
                   </div>
                   <div class="container_19">
                     <div class="container_20">
-                      <div class="text-650-"><span class="f50_span">{{ productsGetterLimited[gridLine1Col2].price_cents }} €</span></div>
+                      <div class="text-650-"><span class="f50_span">{{
+                        divideBy100(productsGetterLimited[gridLine1Col2].price_cents) }} €</span></div>
                     </div>
                     <div class="container_21">
                       <div data-variant="28" class="component-1_08">
@@ -351,7 +352,7 @@
 
                   </div>
                   <div v-else class="marketplace-empty">
-                    <img src="../assets/icons/camera-off-line.svg" alt="camera-off-line" class="vector_27" />
+                    <img src="../assets/icons/camera-off-line.svg" alt="camera-off-line" class="marketplace-picture" />
                   </div>
 
                   <div class="button_16">
@@ -368,16 +369,18 @@
                 </div>
                 <div class="container_24">
                   <div class="heading-3_02">
-                    <div class="pendule-empire-bronze-dor_01"><span class="penduleempirebronzedor_01_span">{{ productsGetterLimited[gridLine1Col3].name }} : {{ productsGetterLimited[gridLine1Col3].description }}</span></div>
+                    <div class="pendule-empire-bronze-dor_01"><span class="penduleempirebronzedor_01_span">{{
+                      productsGetterLimited[gridLine1Col3].name }} : {{
+                          productsGetterLimited[gridLine1Col3].description }}</span></div>
                   </div>
                   <div class="container_25">
                     <div class="maison-horlogre-versailles"><span class="maisonhorlogreversailles_span">Maison Horlogère
-                        •
-                        Versailles</span></div>
+                        • Versailles</span></div>
                   </div>
                   <div class="container_26">
                     <div class="container_27">
-                      <div class="text-2-100-"><span class="f100_span">{{ productsGetterLimited[gridLine1Col3].price_cents }} €</span></div>
+                      <div class="text-2-100-"><span class="f100_span">{{
+                        divideBy100(productsGetterLimited[gridLine1Col3].price_cents) }} €</span></div>
                     </div>
                     <div class="container_28">
                       <div data-variant="30" class="component-1_10">
@@ -404,8 +407,7 @@
 
                   </div>
                   <div v-else class="marketplace-empty">
-                    <img src="../assets/icons/camera-off-line.svg" alt="camera-off-line"
-                      class="marketplace-picture vector_27" />
+                    <img src="../assets/icons/camera-off-line.svg" alt="camera-off-line" class="marketplace-picture" />
                   </div>
 
                   <div class="button_17">
@@ -421,7 +423,9 @@
                 </div>
                 <div class="container_31">
                   <div class="heading-3_03">
-                    <div class="broche-art-dco-diamants_01"><span class="brocheartdcodiamants_01_span">{{ productsGetterLimited[gridLine2Col1].name }} : {{ productsGetterLimited[gridLine2Col1].description }}</span></div>
+                    <div class="broche-art-dco-diamants_01"><span class="brocheartdcodiamants_01_span">{{
+                      productsGetterLimited[gridLine2Col1].name }} : {{
+                          productsGetterLimited[gridLine2Col1].description }}</span></div>
                   </div>
                   <div class="container_32">
                     <div class="bijoux-prcieux-cannes"><span class="bijouxprcieuxcannes_span">Bijoux Précieux •
@@ -429,7 +433,8 @@
                   </div>
                   <div class="container_33">
                     <div class="container_34">
-                      <div class="text-1-200-"><span class="f200_span">{{ productsGetterLimited[gridLine2Col1].price_cents }} €</span></div>
+                      <div class="text-1-200-"><span class="f200_span">{{ divideBy100(
+                        productsGetterLimited[gridLine2Col1].price_cents) }} €</span></div>
                     </div>
                     <div class="container_35">
                       <div data-variant="32" class="component-1_12">
@@ -455,8 +460,7 @@
 
                   </div>
                   <div v-else class="marketplace-empty">
-                    <img src="../assets/icons/camera-off-line.svg" alt="camera-off-line"
-                      class="marketplace-picture vector_27" />
+                    <img src="../assets/icons/camera-off-line.svg" alt="camera-off-line" class="marketplace-picture" />
                   </div>
 
                   <div class="button_18">
@@ -472,7 +476,9 @@
                 </div>
                 <div class="container_38">
                   <div class="heading-3_04">
-                    <div class="collection-livres-anciens_01"><span class="collectionlivresanciens_01_span">{{ productsGetterLimited[gridLine2Col2].name }} : {{ productsGetterLimited[gridLine2Col2].description }}</span></div>
+                    <div class="collection-livres-anciens_01"><span class="collectionlivresanciens_01_span">{{
+                      productsGetterLimited[gridLine2Col2].name }} : {{
+                          productsGetterLimited[gridLine2Col2].description }}</span></div>
                   </div>
                   <div class="container_39">
                     <div class="librairie-du-faubourg-bordeaux"><span class="librairiedufaubourgbordeaux_span">Librairie
@@ -480,7 +486,8 @@
                   </div>
                   <div class="container_40">
                     <div class="container_41">
-                      <div class="text-890-"><span class="f90_span">{{ productsGetterLimited[gridLine2Col2].price_cents }} €</span></div>
+                      <div class="text-890-"><span class="f90_span">{{ divideBy100(
+                        productsGetterLimited[gridLine2Col2].price_cents) }} €</span></div>
                     </div>
                     <div class="container_42">
                       <div data-variant="34" class="component-1_14">
@@ -506,8 +513,7 @@
 
                   </div>
                   <div v-else class="marketplace-empty">
-                    <img src="../assets/icons/camera-off-line.svg" alt="camera-off-line"
-                      class="marketplace-picture vector_27" />
+                    <img src="../assets/icons/camera-off-line.svg" alt="camera-off-line" class="marketplace-picture" />
                   </div>
 
                   <div class="button_19">
@@ -523,14 +529,18 @@
                 </div>
                 <div class="container_45">
                   <div class="heading-3_05">
-                    <div class="chandelier-argent-massif_01"><span class="chandelierargentmassif_01_span">{{ productsGetterLimited[gridLine2Col3].name }} : {{ productsGetterLimited[gridLine2Col3].description }}</span></div>
+                    <div class="chandelier-argent-massif_01"><span class="chandelierargentmassif_01_span">{{
+                      productsGetterLimited[gridLine2Col3].name }} : {{
+                          productsGetterLimited[gridLine2Col3].description }}</span></div>
                   </div>
                   <div class="container_46">
-                    <div class="orfvrerie-ancienne-nancy"><span class="orfvrerieanciennenancy_span">Orfèvrerie Ancienne • Nancy</span></div>
+                    <div class="orfvrerie-ancienne-nancy"><span class="orfvrerieanciennenancy_span">Orfèvrerie Ancienne
+                        • Nancy</span></div>
                   </div>
                   <div class="container_47">
                     <div class="container_48">
-                      <div class="text-750-"><span class="f50_span_01">{{ productsGetterLimited[gridLine2Col3].price_cents }} €</span></div>
+                      <div class="text-750-"><span class="f50_span_01">{{
+                        divideBy100(productsGetterLimited[gridLine2Col3].price_cents) }} €</span></div>
                     </div>
                     <div class="container_49">
                       <div data-variant="36" class="component-1_16">
@@ -721,8 +731,9 @@
               <div class="buttonmargin">
                 <div class="button_21">
                   <div data-variant="41" class="component-1_21">
-                    <img src="../assets/icons/socials/facebook.svg" alt="facebook" class="vector__facebook" />
-
+                    <a href="https://facebook.com" target="_blank" class="social-link" title="Facebook">
+                      <img src="../assets/icons/socials/facebook.svg" alt="facebook" class="vector__facebook" />
+                    </a>
                   </div>
                 </div>
               </div>
@@ -803,16 +814,21 @@
             <div class="container_86">
               <div class="input">
                 <div class="container_87">
-                  <div class="votre-email"><span class="votreemail_span">Votre email</span></div>
-                </div>
+                  <div class="votre-email">
+                    <span class="votreemail_span">
+                      <input type="email" v-model="userEmail" class="input-email" placeholder="Votre email" />
+                    </span>
 
+                  </div>
+                </div>
                 <div class="container_88"></div>
               </div>
               <div class="button_24">
                 <div data-variant="44" class="component-1_24">
-                  <img src="../assets/icons/mailbox.svg" alt="boite au lettre" class="vector_mailbox" />
+                  <RouterLink to="/contactus'" class="no-underline">
+                    <img src="../assets/icons/mailbox.svg" alt="boite au lettre" class="vector_mailbox" />
 
-
+                  </RouterLink>
                 </div>
               </div>
             </div>
@@ -1092,6 +1108,16 @@ const exampleText2 =
 
 const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d’antiquités en tous genres, j’ai connu bon nombre de désillusions sur l’authenticité des pièces achetées. En rencontrant Mr Gérard Rigot, j’ai découvert un marchand aux qualités rarement associées : expertise, courtoisie, honnêteté, intérêt de la belle vente plutôt que de son montant, me faisant ainsi changer de regard sur le monde des marchands d’objets d’art ancien.";
 
+
+function divideBy100(montantString) {
+  const montant = parseFloat(montantString);
+  if (isNaN(montant)) {
+    return '<span style="color: red;">Erreur : Montant invalide</span>';
+  }
+  const resultat = montant / 100;
+  return `${resultat}`;
+}
+
 </script>
 
 <style scoped>
@@ -1112,18 +1138,18 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
 .title_span_01,
 .title_span_03 {
   color: var(--color-grey-95, #F6F3EE);
- 
+
 }
 
 .title_span_02 {
   color: var(--color-yellow-52, #D4AF37);
-  
+
 }
- 
+
 .title {
   align-self: stretch;
   text-align: center;
-  justify-content: center; 
+  justify-content: center;
   font-size: 66.80px;
   font-family: Inter;
   font-weight: 400;
@@ -1735,20 +1761,11 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
 .marketplace-picture {
   width: 100%;
   height: 483px;
-  /*max-width: 483px;*/
-  /*position: relative;*/
+  max-width: 483px;
+  position: relative;
   background-color: white;
 }
 
-.vector_27 {
-  width: 13.33px;
-  height: 11.34px;
-  left: 1.33px;
-  top: 2.66px;
-  position: absolute;
-  outline: 1.33px var(--color-grey-95, #F6F3EE) solid;
-  outline-offset: -0.67px;
-}
 
 .mobilier_01_span {
   color: var(--color-orange-9, #1A1612);
@@ -1827,7 +1844,12 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
   flex-direction: column;
 }
 
-.gradient_01 {
+.gradient_01,
+.gradient_02,
+.gradient_03,
+.gradient_04,
+.gradient_05,
+.gradient_06 {
   width: 483.33px;
   height: 627.34px;
   left: 1px;
@@ -1835,7 +1857,6 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
   position: absolute;
   background: linear-gradient(128deg, var(--color-yellow-52-2p, rgba(212, 175, 55, 0.02)) 0%, var(--color-yellow-52-0p, rgba(212, 175, 55, 0)) 50%, var(--color-orange-44-2p, rgba(139, 115, 85, 0.02)) 100%);
 }
-
 
 .vector_30 {
   width: 13.33px;
@@ -1925,14 +1946,6 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
   flex-direction: column;
 }
 
-.gradient_02 {
-  width: 483.34px;
-  height: 627.34px;
-  left: 1px;
-  top: 1px;
-  position: absolute;
-  background: linear-gradient(128deg, var(--color-yellow-52-2p, rgba(212, 175, 55, 0.02)) 0%, var(--color-yellow-52-0p, rgba(212, 175, 55, 0)) 50%, var(--color-orange-44-2p, rgba(139, 115, 85, 0.02)) 100%);
-}
 
 
 .vector_33 {
@@ -2022,14 +2035,6 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
   flex-direction: column;
 }
 
-.gradient_03 {
-  width: 483.33px;
-  height: 627.34px;
-  left: 1px;
-  top: 1px;
-  position: absolute;
-  background: linear-gradient(128deg, var(--color-yellow-52-2p, rgba(212, 175, 55, 0.02)) 0%, var(--color-yellow-52-0p, rgba(212, 175, 55, 0)) 50%, var(--color-orange-44-2p, rgba(139, 115, 85, 0.02)) 100%);
-}
 
 .vector_36 {
   width: 13.33px;
@@ -2119,14 +2124,6 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
   flex-direction: column;
 }
 
-.gradient_04 {
-  width: 483.33px;
-  height: 627.34px;
-  left: 1px;
-  top: 1px;
-  position: absolute;
-  background: linear-gradient(128deg, var(--color-yellow-52-2p, rgba(212, 175, 55, 0.02)) 0%, var(--color-yellow-52-0p, rgba(212, 175, 55, 0)) 50%, var(--color-orange-44-2p, rgba(139, 115, 85, 0.02)) 100%);
-}
 
 
 .vector_39 {
@@ -2217,14 +2214,6 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
   flex-direction: column;
 }
 
-.gradient_05 {
-  width: 483.34px;
-  height: 627.35px;
-  left: 1px;
-  top: 1px;
-  position: absolute;
-  background: linear-gradient(128deg, var(--color-yellow-52-2p, rgba(212, 175, 55, 0.02)) 0%, var(--color-yellow-52-0p, rgba(212, 175, 55, 0)) 50%, var(--color-orange-44-2p, rgba(139, 115, 85, 0.02)) 100%);
-}
 
 .vector_42 {
   width: 13.33px;
@@ -2408,14 +2397,6 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
   flex-direction: column;
 }
 
-.gradient_06 {
-  width: 204px;
-  height: 248px;
-  left: 1px;
-  top: 1px;
-  position: absolute;
-  background: linear-gradient(129deg, var(--color-yellow-52-2p, rgba(212, 175, 55, 0.02)) 0%, var(--color-yellow-52-0p, rgba(212, 175, 55, 0)) 50%, var(--color-orange-44-2p, rgba(139, 115, 85, 0.02)) 100%);
-}
 
 .vector__quality_end {
   width: 16px;
@@ -2781,8 +2762,10 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
 }
 
 .vector__facebook {
-  width: 7.33px;
-  height: 13.33px;
+  width: 32px;
+  /*7.33px;*/
+  height: 32px;
+  /*13.33px;*/
   left: 4.67px;
   top: 1.33px;
   position: absolute;
@@ -2791,8 +2774,10 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
 }
 
 .vector__instagram {
-  width: 13.33px;
-  height: 13.33px;
+  width: 32px;
+  /*width: 13.33px;*/
+  height: 32px;
+  /*height: 13.33px;*/
   left: 1.33px;
   top: 1.33px;
   position: absolute;
@@ -2800,8 +2785,10 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
 }
 
 .vector__twitter {
-  width: 13.33px;
-  height: 11.34px;
+  width: 32px;
+  /*width: 13.33px;*/
+  height: 32px;
+  /*  height: 11.34px;*/
   left: 1.33px;
   top: 2.66px;
   position: absolute;
@@ -3036,7 +3023,7 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
 }
 
 .votreemail_span {
-  color: var(--color-grey-95-60p, rgba(246.01, 242.96, 237.96, 0.60));
+  color: inherit;
   font-size: 13.23px;
   font-family: Inter;
   font-weight: 400;
@@ -3952,7 +3939,7 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
 
 .container_87 {
   height: 19px;
-  padding-right: 207.94px;
+  padding-right: 200px;
   left: 13px;
   top: 8.50px;
   position: absolute;
@@ -4953,18 +4940,6 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
   display: flex;
 }
 
-.background {
-  align-self: stretch;
-  position: relative;
-  background: var(--color-orange-20, #3A342E);
-  overflow: hidden;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
 
 .container_12 {
   align-self: stretch;
@@ -4973,7 +4948,12 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
   display: inline-flex;
 }
 
-.background_02 {
+.background,
+.background_02,
+.background_04,
+.background_06,
+.background_08,
+.background_10 {
   align-self: stretch;
   position: relative;
   background: var(--color-orange-20, #3A342E);
@@ -4994,18 +4974,6 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
   display: inline-flex;
 }
 
-.background_04 {
-  align-self: stretch;
-  position: relative;
-  background: var(--color-orange-20, #3A342E);
-  overflow: hidden;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
 
 .container_26 {
   align-self: stretch;
@@ -5014,18 +4982,6 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
   display: inline-flex;
 }
 
-.background_06 {
-  align-self: stretch;
-  position: relative;
-  background: var(--color-orange-20, #3A342E);
-  overflow: hidden;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
 
 .container_33 {
   align-self: stretch;
@@ -5034,18 +4990,6 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
   display: inline-flex;
 }
 
-.background_08 {
-  align-self: stretch;
-  position: relative;
-  background: var(--color-orange-20, #3A342E);
-  overflow: hidden;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
 
 .container_40 {
   align-self: stretch;
@@ -5054,18 +4998,7 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
   display: inline-flex;
 }
 
-.background_10 {
-  align-self: stretch;
-  position: relative;
-  background: var(--color-orange-20, #3A342E);
-  overflow: hidden;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
+
 
 .container_47 {
   align-self: stretch;
@@ -5385,15 +5318,10 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
   display: flex;
 }
 
-.container_08 {
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.container_15 {
+.container_08,
+.container_15,
+.container_29,
+.container_36 {
   align-self: stretch;
   flex-direction: column;
   justify-content: flex-start;
@@ -5407,22 +5335,6 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
   justify-content: flex-start;
   align-items: flex-start;
   gap: 0px;
-  display: flex;
-}
-
-.container_29 {
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.container_36 {
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
   display: flex;
 }
 
@@ -5502,41 +5414,41 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
 
 
 .background-border-shadow-line1-col1 {
- 
+
   left: 0px;
-  top: 0px; 
+  top: 0px;
 }
- 
+
 
 .background-border-shadow-line1-col2 {
- 
+
   left: 509.33px;
-  top: 0px; 
-  
+  top: 0px;
+
 }
- 
+
 .background-border-shadow-line1-col3 {
- 
+
   left: 1018.66px;
-  top: 0px; 
-  
+  top: 0px;
+
 }
 
-.background-border-shadow-line2-col1{
+.background-border-shadow-line2-col1 {
   left: 0px;
-  top: 653.34px; 
-}
-
-.background-border-shadow-line2-col2{
-  left: 509.33px;
-  top: 653.34px; 
-}
-.background-border-shadow-line2-col3
- {
-   left: 1018.66px;
   top: 653.34px;
 }
- 
+
+.background-border-shadow-line2-col2 {
+  left: 509.33px;
+  top: 653.34px;
+}
+
+.background-border-shadow-line2-col3 {
+  left: 1018.66px;
+  top: 653.34px;
+}
+
 
 .container_51 {
   width: 896px;
@@ -5710,5 +5622,11 @@ const socialComment1 = "Franck D. 75 : Au cours de plusieurs années de chine d�
   top: 2.67px;
   position: absolute;
 
+}
+
+.input-email {
+  background: inherit;
+  color: white;
+  border: none;
 }
 </style>
