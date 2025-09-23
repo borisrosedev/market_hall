@@ -1,5 +1,5 @@
 <template>
-
+ 
   <main class="app__main landing__main">
 
 
@@ -62,6 +62,11 @@
           }}</RouterLink>
         </a>
 
+        <a href="#">
+          <RouterLink to="/test" class="cta-button">
+            test Landing
+          </RouterLink>
+        </a>
       </section>
 
     </section>
