@@ -1,89 +1,90 @@
 <template>
+
   <div class="main">
     <div class="hero">
       <div class="hero__container">
-        <div class="hero__container-heading">
-          <div class="title"><span class="title_span_01">Votre marketplace <br />d'</span><span
-              class="title_span_02">antiquités</span><span class="title_span_03"> de confiance</span></div>
-          <div class="subtitle"><span class="subtitle_span">Connectons passionnés, collectionneurs et professionnels
+        <div class="hero__heading">
+          <div class="hero__title"><span class="hero__title_span_white">Votre marketplace <br />d'</span><span
+              class="hero__title_span_yellow">antiquités</span><span class="hero__title_span_white"> de confiance</span>
+          </div>
+          <div class="hero__subtitle"><span class="hero__subtitle__span">Connectons passionnés, collectionneurs et professionnels
               dans un<br />écosystème sécurisé. Vendez facilement ou découvrez des pièces<br />authentiques.</span>
           </div>
         </div>
-        <div class="value__props">
-          <div class="single__value">
-            <div data-variant="1" class="svgprop">
+        <div class="hero__value__props">
+          <div class="hero__props__single__value">
+            <div data-variant="1" class="hero__props__single__svgprop">
               <img src="../assets/icons/auth.svg" alt="authentification garantie" class="vector__auth" />
             </div>
-            <div class="value__string"><span class="value__string_span">Authentification garantie</span></div>
+            <div class="hero__props__single__value__str"><span class="hero__props__single__value__span">Authentification
+                garantie</span></div>
           </div>
-          <div class="single__value_01">
-            <div data-variant="2" class="svgprop_01">
+          <div class="hero__props__single__value">
+            <div data-variant="2" class="hero__props__single__svgprop">
               <img src="../assets/icons/seller.svg" alt="nb antiquaires" class="vector__seller" />
             </div>
-            <div class="value__string_01"><span class="value__string_01_span">+10 000 antiquaires</span></div>
+            <div class="hero__props__single__value__str"><span class="hero__props__single__value__span">+10 000
+                antiquaires</span></div>
           </div>
-          <div class="single__value_02">
-            <div data-variant="3" class="svgprop_02">
+          <div class="hero__props__single__value">
+            <div data-variant="3" class="hero__props__single__svgprop">
               <img src="../assets/icons/payment.svg" alt="paiement" class="vector__payment" />
             </div>
-            <div class="value__string_02"><span class="value__string_02_span">Paiement sécurisé</span></div>
+            <div class="hero__props__single__value__str"><span class="hero__props__single__value__span">Paiement
+                sécurisé</span></div>
           </div>
         </div>
-        <div class="call__toaction">
-          <div class="call__sell">
-            <div class="commencer-vendre"><span class="commencervendre_span">Commencer à vendre</span></div>
-            <div class="svgmargin">
-              <div class="svg">
-                <div data-variant="4" class="component-1">
-                  <img src="../assets/icons/arrow.svg" alt="fleche" class="vector__arrow" />
-                </div>
+        <div class="hero__call__toaction">
+          <div class="hero__call__sell">
+            <RouterLink to="/seller" class="no-underline">
+              <div class="hero__cta__seller"><span class="hero__cta__seller__span">Commencer à vendre</span>
+              <div class="hero__cta__seller__svg">
+                <img src="../assets/icons/arrow.svg" alt="fleche" class="vector__arrow" /> 
+              </div></div>
+            </RouterLink>
+          </div>
+          <div class="hero__call__browse">
+            <RouterLink to="/products" class="no-underline">
+              <div class="hero__cta__browse">
+                <span class="hero__cta__browse__span">
+                  Explorer les antiquités
+                </span>
               </div>
-            </div>
-          </div>
-          <div class="call__browse">
-            <div class="explorer-les-antiquits">
-              <span class="explorerlesantiquits_span">
-                <RouterLink to="/products" class="no-underline">Explorer les antiquités </RouterLink>
-              </span>
-            </div>
+            </RouterLink>
           </div>
         </div>
 
-        <div class="carousel">
+        <div class="hero__carousel">
 
-          <div class="carousel__view">
-            <div class="carousel__image">
-              <div v-if="productsGetterLimited?.length > 0">
-              
+          <div class="hero__carousel__view">
+            <div class="hero__carousel__image">
+              <div v-if="productsGetterLimited?.length > 0"> 
                 <RouterLink :to="`/product-detail/${productsGetterLimited[selectedId].id}`" class="no-underline">
-
                   <img :src="'http://localhost:5000/static/files/' + productsGetterLimited[selectedId].photo_name"
                     :alt="productsGetterLimited[selectedId].name">
-                   <div class="favbutton">
-                        <div data-variant="7" class="component-1_01">
-                          <img src="../assets/icons/heart.svg" alt="heart" class="vector__heart" />
-                        </div>
-                      </div>  
+                  <div class="hero__carousel__favbutton">
+                    <div data-variant="7" class="component-1_01">
+                      <img src="../assets/icons/heart.svg" alt="heart" class="vector__heart" />
+                    </div>
+                  </div>
                 </RouterLink>
                 <div class="carousel-wrapper" ref="carouselWrapper">
-                  <div class="carousel-track" ref="carouselTrack">
-
-                    
+                  <div class="carousel-track" ref="carouselTrack"> 
                   </div>
                 </div>
               </div>
-              <div v-else class="carousel-empty">
+              <div v-else class="hero__carousel-empty">
                 <img src="../assets/icons/camera-off-line.svg" alt="camera-off-line" class="marketplace-picture" />
               </div>
             </div>
 
 
             <div v-if="productsGetterLimited?.length > 0">
-              <div class="carousel__description">
+              <div class="hero__carousel__description">
                 <div class="carousel-slide">
-                  <div class="carousel__description-name">
-                    <h3 class="carousel__description-name_span">{{ productsGetterLimited[selectedId].name }}</h3>
-                    <span class="carousel__description-name_span">{{ productsGetterLimited[selectedId].description
+                  <div class="hero__carousel__description-name">
+                    <h3 class="hero__carousel__description-name_span">{{ productsGetterLimited[selectedId].name }}</h3>
+                    <span class="hero__carousel__description-name_span">{{ productsGetterLimited[selectedId].description
                     }}</span>
                   </div>
                   <div class="proudct_periodoverlay">
@@ -126,8 +127,8 @@
                 </div>
               </div>
             </div>
-            <div v-else class="carousel-empty">
-              <div class="carousel__description">
+            <div v-else class="hero__carousel-empty">
+              <div class="hero__carousel__description">
                 <div class="carousel-slide">
                   <div class="carousel__description-name">
                     <h3 class="carousel__description-name_span">Name</h3>
@@ -173,8 +174,8 @@
           <div class="carousel__header">
             <div class="carousel__marquee">
               <div class="notre-slection"><span class="notreslection_span">Notre Sélection</span></div>
-              <div class="slectionnes-par-nos-experts-pour-leur-authenticit-et-leur-beaut"><span
-                  class="slectionnesparnosexpertspourleurauthenticitetleurbeaut_span">Sélectionnées par nos experts pour
+              <div class="hero__carousel__select--span"><span
+                  class="hero__carousel__select--text">Sélectionnées par nos experts pour
                   leur authenticité et leur beauté</span></div>
             </div>
             <div class="carousel_nav">
@@ -207,9 +208,9 @@
 
 
     <div class="gridmarket">
-      <div class="container_01">
-        <div class="container_02">
-          <div class="container_03">
+      <div class="gridmarket__container">
+        <div class="gridmarket__container__card">
+          <div class="gridmarket__container__card__header">
             <div class="heading-2">
               <div class="marketplace"><span class="marketplace_span">Marketplace</span></div>
             </div>
@@ -219,7 +220,7 @@
                   authentifiées</span></div>
             </div>
           </div>
-          <div class="container_05">
+          <div class="gridmarket__container__card__icons">
             <div class="button_04">
               <div class="svgmargin_01">
                 <div class="svg_01">
@@ -247,7 +248,7 @@
             </div>
           </div>
         </div>
-        <div class="container_06">
+        <div class="gridmarket__container__label">
           <div class="button_07">
             <div class="tous"><span class="tous_span">Tous</span></div>
           </div>
@@ -270,7 +271,7 @@
             <div class="luminaires"><span class="luminaires_span">Luminaires</span></div>
           </div>
         </div>
-        <div class="container_07">
+        <div class="gridmarket__list__cards">
           <RouterLink :to="`/product-detail/${gridLine1Col1}`" class="no-underline">
             <div class="background-border-shadow background-border-shadow-line1-col1">
               <div class="gradient"></div>
@@ -601,7 +602,7 @@
       </div>
     </div>
     <div class="value-statements">
-      <div class="container_50">
+      <div class="value-statements__container">
         <div class="container_51">
           <div class="heading-2_01">
             <div class="pourquoi-nous-faire-confiance-"><span class="pourquoinousfaireconfiance_span">Pourquoi nous
@@ -736,7 +737,7 @@
       </div>
     </div>
     <div class="footer">
-      <div class="container_75">
+      <div class="footer__container">
         <div class="container_76">
           <div class="container_77">
             <div class="container_78">
@@ -963,7 +964,6 @@ const slideRefs = ref<HTMLElement[]>([])
 const prevButton = ref<HTMLElement>()
 const nextButton = ref<HTMLElement>()
 const userEmail = ref<string>('')
-//const selectedId = ref<number>(0);
 const selectedId = computed(() => currentSlide.value);
 // State
 const currentSlide = ref(0)
@@ -986,12 +986,6 @@ let tl: gsap.core.Timeline
 
 
 //const randomSelectedId = 0;  //Math.floor(Math.random() * productsGetterLimited.value.length) + 1;
-//currentSlide.value = randomSelectedId;
-
-
-//console.log("* randomSelectedId " + currentSlide.value);
-
-
 
 
 // Calculated 
@@ -1022,23 +1016,18 @@ const animateToSlide = (slideIndex: number, direction: 'next' | 'prev' = 'next')
 const nextSlide = () => {
   const nextIndex = (currentSlide.value + 1) % productsGetterLimited.value.length
   currentSlide.value = nextIndex
-  console.log("> currentSlide.value " + currentSlide.value);
-  //selectedId = currentSlide.value;
   animateToSlide(nextIndex, 'next')
 }
 
 const prevSlide = () => {
   const prevIndex = (currentSlide.value - 1 + productsGetterLimited.value.length) % productsGetterLimited.value.length
   currentSlide.value = prevIndex
-  console.log("< currentSlide.value " + currentSlide.value);
-  //selectedId = currentSlide.value;
   animateToSlide(prevIndex, 'prev')
 }
 
 const goToSlide = (index: number) => {
   const direction = index > currentSlide.value ? 'next' : 'prev'
   currentSlide.value = index
-  //selectedId = currentSlide.value;
   animateToSlide(index, direction)
 }
 
@@ -1163,18 +1152,17 @@ function divideBy100(montantString) {
 }
 
 
-.title_span_01,
-.title_span_03 {
+.hero__title_span_white {
   color: var(--color-grey-95, #F6F3EE);
 
 }
 
-.title_span_02 {
+.hero__title_span_yellow {
   color: var(--color-yellow-52, #D4AF37);
 
 }
 
-.title {
+.hero__title {
   align-self: stretch;
   text-align: center;
   justify-content: center;
@@ -1186,7 +1174,7 @@ function divideBy100(montantString) {
   text-shadow: 0px 1px 2px rgba(44, 37, 31, 0.10);
 }
 
-.subtitle_span {
+.hero__subtitle__span {
   color: var(--color-orange-68, #C4B895);
   font-size: 22.12px;
   font-family: Inter;
@@ -1195,7 +1183,7 @@ function divideBy100(montantString) {
   word-wrap: break-word;
 }
 
-.subtitle {
+.hero__subtitle {
   text-align: center;
   justify-content: center;
   display: flex;
@@ -1203,16 +1191,15 @@ function divideBy100(montantString) {
 }
 
 .vector__auth {
-  width: 10.67px;
-  height: 13.34px;
-  left: 2.67px;
-  top: 1.33px;
+  width: 18px;
+  height: 18px;
+  left: 2px;
   position: absolute;
   /*  outline: 1.33px var(--color-yellow-52, #D4AF37) solid;*/
   /*  outline-offset: -0.67px;*/
 }
 
-.value__string_span {
+.hero__props__single__value__span {
   color: var(--color-orange-68, #C4B895);
   font-size: 13.12px;
   font-family: Inter;
@@ -1221,7 +1208,7 @@ function divideBy100(montantString) {
   word-wrap: break-word;
 }
 
-.value__string {
+.hero__props__single__value__str {
   text-align: center;
   justify-content: center;
   display: flex;
@@ -1229,82 +1216,23 @@ function divideBy100(montantString) {
 }
 
 .vector__seller {
-  width: 20px;
-  /* 9.33px;*/
-  height: 10px;
-  /* 4px*/
-  left: 2.67px;
-  top: 2.33px;
+  width: 18px;
+  height: 18px;
+  left: 3px;
   position: absolute;
-  /* outline: 1.33px var(--color-yellow-52, #D4AF37) solid;*/
-  /*   outline-offset: -0.67px;*/
+
 }
 
-.value__string_01_span {
-  color: var(--color-orange-68, #C4B895);
-  font-size: 13.02px;
-  font-family: Inter;
-  font-weight: 400;
-  line-height: 20px;
-  word-wrap: break-word;
-}
-
-.value__string_01 {
-  text-align: center;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-}
 
 .vector__payment {
-  width: 20px;
-  /* 2.67px;*/
-  height: 10px;
-  /* 5.33px;*/
-  left: 8px;
-  top: 1.33px;
+  width: 18px;
+  height: 18px;
   position: absolute;
-  /*  outline: 1.33px var(--color-yellow-52, #D4AF37) solid;
-  outline-offset: -0.67px;*/
 }
 
-.vector_05 {
-  width: 2.67px;
-  height: 5.33px;
-  left: 8px;
-  top: 4px;
-  position: absolute;
-  outline: 1.33px var(--color-yellow-52, #D4AF37) solid;
-  outline-offset: -0.67px;
-}
 
-.vector_06 {
-  width: 13.33px;
-  height: 13.33px;
-  left: 1.33px;
-  top: 1.33px;
-  position: absolute;
-  outline: 1.33px var(--color-yellow-52, #D4AF37) solid;
-  outline-offset: -0.67px;
-}
 
-.value__string_02_span {
-  color: var(--color-orange-68, #C4B895);
-  font-size: 12.69px;
-  font-family: Inter;
-  font-weight: 400;
-  line-height: 20px;
-  word-wrap: break-word;
-}
-
-.value__string_02 {
-  text-align: center;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-}
-
-.commencervendre_span {
+.hero__cta__seller__span {
   color: var(--color-orange-9, #1A1612);
   font-size: 16.88px;
   font-family: Inter;
@@ -1313,11 +1241,12 @@ function divideBy100(montantString) {
   word-wrap: break-word;
 }
 
-.commencer-vendre {
+.hero__cta__seller {
   text-align: center;
   justify-content: center;
+   align-items: center;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .vector__arrow {
@@ -1328,7 +1257,7 @@ function divideBy100(montantString) {
   position: absolute;
 }
 
-.explorerlesantiquits_span {
+.hero__cta__browse__span {
   color: var(--color-yellow-52, #D4AF37);
   font-size: 17.02px;
   font-family: Inter;
@@ -1337,7 +1266,7 @@ function divideBy100(montantString) {
   word-wrap: break-word;
 }
 
-.explorer-les-antiquits {
+.hero__cta__browse {
   text-align: center;
   justify-content: center;
   display: flex;
@@ -1388,8 +1317,7 @@ function divideBy100(montantString) {
   position: absolute;
 }
 
-.carousel__description-name_span {
-  /*  color: var(--color-grey-95, #F6F3EE);*/
+.hero__carousel__description-name_span { 
   color: var(--color-grey-95, #F6F3EE);
   font-size: 22.12px;
   font-family: Inter;
@@ -1398,7 +1326,7 @@ function divideBy100(montantString) {
   word-wrap: break-word;
 }
 
-.carousel__description-name {
+.hero__carousel__description-name {
   align-self: stretch;
   text-align: center;
   justify-content: center;
@@ -1498,10 +1426,7 @@ function divideBy100(montantString) {
   left: 1.33px;
   top: 2.66px;
   position: absolute;
-  /*
-  outline: 1.33px var(--color-orange-68, #C4B895) solid;
-  outline-offset: -0.67px;
-  */
+  
 }
 
 .product__statsstring_01_span {
@@ -1529,7 +1454,9 @@ function divideBy100(montantString) {
   word-wrap: break-word;
 }
 
-.buttontext {
+.buttontext,
+.buttontext_01
+ {
   text-align: center;
   justify-content: center;
   display: flex;
@@ -1543,14 +1470,7 @@ function divideBy100(montantString) {
   font-weight: 500;
   line-height: 20px;
   word-wrap: break-word;
-}
-
-.buttontext_01 {
-  text-align: center;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-}
+} 
 
 .notreslection_span {
   color: var(--color-grey-95, #F6F3EE);
@@ -1568,7 +1488,7 @@ function divideBy100(montantString) {
   flex-direction: column;
 }
 
-.slectionnesparnosexpertspourleurauthenticitetleurbeaut_span {
+.hero__carousel__select--text {
   color: var(--color-orange-68, #C4B895);
   font-size: 14.75px;
   font-family: Inter;
@@ -1577,7 +1497,7 @@ function divideBy100(montantString) {
   word-wrap: break-word;
 }
 
-.slectionnes-par-nos-experts-pour-leur-authenticit-et-leur-beaut {
+.hero__carousel__select--span {
   text-align: center;
   justify-content: center;
   display: flex;
@@ -3231,7 +3151,7 @@ function divideBy100(montantString) {
   outline-offset: -1px;
 }
 
-.hero__container-heading {
+.hero__heading {
   align-self: stretch;
   flex-direction: column;
   justify-content: flex-start;
@@ -3240,7 +3160,7 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.call__browse {
+.hero__call__browse {
   height: 40px;
   padding-left: 33px;
   padding-right: 33px;
@@ -4015,29 +3935,13 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.svgprop {
+.hero__props__single__svgprop {
   width: 16px;
   height: 16px;
   position: relative;
 }
 
-.svgprop_01 {
-  width: 16px;
-  height: 16px;
-  position: relative;
-}
-
-.svgprop_02 {
-  width: 16px;
-  height: 16px;
-  position: relative;
-}
-
-.component-1 {
-  width: 16px;
-  flex: 1 1 0;
-  position: relative;
-}
+ 
 
 .carousel-progression-buttons {
   width: 896px;
@@ -4269,7 +4173,7 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.container_03 {
+.gridmarket__container__card__header {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
@@ -4277,7 +4181,7 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.container_06 {
+.gridmarket__container__label {
   align-self: stretch;
   justify-content: flex-start;
   align-items: flex-start;
@@ -4469,7 +4373,7 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.single__value {
+.hero__props__single__value {
   height: 20px;
   justify-content: flex-start;
   align-items: center;
@@ -4477,33 +4381,11 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.single__value_01 {
-  height: 20px;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 8px;
-  display: flex;
-}
 
-.single__value_02 {
-  height: 20px;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 8px;
-  display: flex;
-}
 
-.svg {
-  width: 16px;
-  height: 16px;
-  overflow: hidden;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-}
+ 
 
-.favbutton {
+.hero__carousel__favbutton {
   height: 32px;
   padding-left: 10px;
   padding-right: 10px;
@@ -4883,7 +4765,7 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.value__props {
+.hero__value__props {
   align-self: stretch;
   padding-top: 8px;
   justify-content: center;
@@ -4894,14 +4776,20 @@ function divideBy100(montantString) {
   align-content: flex-start;
 }
 
-.svgmargin {
-  width: 24px;
+.hero__cta__seller__svg  {
+  width: 16px;
   height: 16px;
-  padding-left: 8px;
+  
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+ 
+  
+ 
+  flex: 1 1 0;
+  position: relative;
+
 }
 
 .link-carousel-link {
@@ -4909,7 +4797,7 @@ function divideBy100(montantString) {
   background: transparent;
 }
 
-.carousel__image {
+.hero__carousel__image {
   width: 424px;
   padding: 1px;
   position: relative;
@@ -5106,7 +4994,7 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.call__sell {
+.hero__call__sell {
   height: 40px;
   padding: 16px;
   background: linear-gradient(170deg, var(--color-yellow-52, #D4AF37) 0%, var(--color-orange-47, #C19B2E) 100%);
@@ -5119,7 +5007,7 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.carousel__description {
+.hero__carousel__description {
   width: 424px;
   flex-direction: column;
   justify-content: flex-start;
@@ -5312,7 +5200,7 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.call__toaction {
+.hero__call__toaction {
   align-self: stretch;
   padding-bottom: 24px;
   justify-content: center;
@@ -5321,7 +5209,7 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.carousel__view {
+.hero__carousel__view {
   width: 880px;
   left: 8px;
   top: 88px;
@@ -5332,7 +5220,7 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.container_05 {
+.gridmarket__container__card__icons {
   justify-content: flex-start;
   align-items: center;
   gap: 16px;
@@ -5399,13 +5287,13 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.carousel {
+.hero__carousel {
   align-self: stretch;
   height: 620px;
   position: relative;
 }
 
-.container_02 {
+.gridmarket__container__card {
   align-self: stretch;
   justify-content: space-between;
   align-items: center;
@@ -5517,13 +5405,13 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.container_07 {
+.gridmarket__list__cards {
   align-self: stretch;
   height: 1282.69px;
   position: relative;
 }
 
-.container_50 {
+.statements__container {
   width: 100%;
   max-width: 1536px;
   padding-left: 16px;
@@ -5535,7 +5423,7 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.container_75 {
+.footer__container {
   width: 100%;
   max-width: 1536px;
   padding-left: 16px;
@@ -5551,14 +5439,12 @@ function divideBy100(montantString) {
 
 .hero {
   align-self: stretch;
-  height: 1050px;
-
-
+  height: 1050px; 
   position: relative;
   background: var(--color-orange-9, #1A1612);
 }
 
-.container_01 {
+.gridmarket__container {
   width: 100%;
   max-width: 1536px;
   padding-left: 16px;
@@ -5615,9 +5501,7 @@ function divideBy100(montantString) {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  display: inline-flex;
-
-
+  display: inline-flex; 
 }
 
 .no-underline {
@@ -5635,16 +5519,11 @@ function divideBy100(montantString) {
 
 
 
-.vector__mailbox {
-
-  width: 16px;
-  /*13.33px;*/
-  height: 16px;
-  /*10.67px;*/
-  left: 0px;
-  /*  1.33px;*/
-  top: 0px;
-  /* 2.67px;*/
+.vector__mailbox { 
+  width: 16px; 
+  height: 16px; 
+  left: 0px; 
+  top: 0px; 
   position: absolute;
 
 }
