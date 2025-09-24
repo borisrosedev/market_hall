@@ -2302,6 +2302,7 @@ function divideBy100(montantString) {
 }
 
 .value__statements__cards_background_txt_specialite {
+  margin-top: 20px;
   text-align: center;
   justify-content: center;
   display: flex;
@@ -2366,8 +2367,8 @@ function divideBy100(montantString) {
 .vector__seller_end {
   width: 16px;
   height: 20px;
-  left: 2px;
-  top: 15px;
+  left: 3px;
+  top: 1px;
   position: absolute;
   /*
   outline: 2px var(--color-yellow-52, #D4AF37) solid;
@@ -2411,8 +2412,8 @@ function divideBy100(montantString) {
 .vector__payment_end {
   width: 20px;
   height: 20px;
-  left: 12px;
-  top: 6px;
+  left: 4px;
+  top: 1px;
   position: absolute;
   /*
   outline: 2px var(--color-yellow-52, #D4AF37) solid;
