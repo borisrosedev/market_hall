@@ -1,89 +1,92 @@
 <template>
+
   <div class="main">
     <div class="hero">
       <div class="hero__container">
-        <div class="hero__container-heading">
-          <div class="title"><span class="title_span_01">Votre marketplace <br />d'</span><span
-              class="title_span_02">antiquités</span><span class="title_span_03"> de confiance</span></div>
-          <div class="subtitle"><span class="subtitle_span">Connectons passionnés, collectionneurs et professionnels
+        <div class="hero__heading">
+          <div class="hero__title"><span class="hero__title_span_white">Votre marketplace <br />d'</span><span
+              class="hero__title_span_yellow">antiquités</span><span class="hero__title_span_white"> de confiance</span>
+          </div>
+          <div class="hero__subtitle"><span class="hero__subtitle__span">Connectons passionnés, collectionneurs et
+              professionnels
               dans un<br />écosystème sécurisé. Vendez facilement ou découvrez des pièces<br />authentiques.</span>
           </div>
         </div>
-        <div class="value__props">
-          <div class="single__value">
-            <div data-variant="1" class="svgprop">
+        <div class="hero__value__props">
+          <div class="hero__props__single__value">
+            <div data-variant="1" class="hero__props__single__svgprop">
               <img src="../assets/icons/auth.svg" alt="authentification garantie" class="vector__auth" />
             </div>
-            <div class="value__string"><span class="value__string_span">Authentification garantie</span></div>
+            <div class="hero__props__single__value__str"><span class="hero__props__single__value__span">Authentification
+                garantie</span></div>
           </div>
-          <div class="single__value_01">
-            <div data-variant="2" class="svgprop_01">
+          <div class="hero__props__single__value">
+            <div data-variant="2" class="hero__props__single__svgprop">
               <img src="../assets/icons/seller.svg" alt="nb antiquaires" class="vector__seller" />
             </div>
-            <div class="value__string_01"><span class="value__string_01_span">+10 000 antiquaires</span></div>
+            <div class="hero__props__single__value__str"><span class="hero__props__single__value__span">+10 000
+                antiquaires</span></div>
           </div>
-          <div class="single__value_02">
-            <div data-variant="3" class="svgprop_02">
+          <div class="hero__props__single__value">
+            <div data-variant="3" class="hero__props__single__svgprop">
               <img src="../assets/icons/payment.svg" alt="paiement" class="vector__payment" />
             </div>
-            <div class="value__string_02"><span class="value__string_02_span">Paiement sécurisé</span></div>
+            <div class="hero__props__single__value__str"><span class="hero__props__single__value__span">Paiement
+                sécurisé</span></div>
           </div>
         </div>
-        <div class="call__toaction">
-          <div class="call__sell">
-            <div class="commencer-vendre"><span class="commencervendre_span">Commencer à vendre</span></div>
-            <div class="svgmargin">
-              <div class="svg">
-                <div data-variant="4" class="component-1">
+        <div class="hero__call__toaction">
+          <div class="hero__call__sell">
+            <RouterLink to="/seller" class="no-underline">
+              <div class="hero__cta__seller"><span class="hero__cta__seller__span">Commencer à vendre</span>
+                <div class="hero__cta__seller__svg">
                   <img src="../assets/icons/arrow.svg" alt="fleche" class="vector__arrow" />
                 </div>
               </div>
-            </div>
+            </RouterLink>
           </div>
-          <div class="call__browse">
-            <div class="explorer-les-antiquits">
-              <span class="explorerlesantiquits_span">
-                <RouterLink to="/products" class="no-underline">Explorer les antiquités </RouterLink>
-              </span>
-            </div>
+          <div class="hero__call__browse">
+            <RouterLink to="/products" class="no-underline">
+              <div class="hero__cta__browse">
+                <span class="hero__cta__browse__span">
+                  Explorer les antiquités
+                </span>
+              </div>
+            </RouterLink>
           </div>
         </div>
 
-        <div class="carousel">
+        <div class="hero__carousel">
 
-          <div class="carousel__view">
-            <div class="carousel__image">
+          <div class="hero__carousel__view">
+            <div class="hero__carousel__image">
               <div v-if="productsGetterLimited?.length > 0">
-              
                 <RouterLink :to="`/product-detail/${productsGetterLimited[selectedId].id}`" class="no-underline">
-
                   <img :src="'http://localhost:5000/static/files/' + productsGetterLimited[selectedId].photo_name"
                     :alt="productsGetterLimited[selectedId].name">
-                   <div class="favbutton">
-                        <div data-variant="7" class="component-1_01">
-                          <img src="../assets/icons/heart.svg" alt="heart" class="vector__heart" />
-                        </div>
-                      </div>  
+                  <div class="hero__carousel__favbutton">
+                    <div data-variant="7" class="hero__container__component_16">
+                      <img src="../assets/icons/heart.svg" alt="heart" class="vector__heart" />
+                    </div>
+                  </div>
                 </RouterLink>
                 <div class="carousel-wrapper" ref="carouselWrapper">
                   <div class="carousel-track" ref="carouselTrack">
-
-                    
                   </div>
                 </div>
               </div>
-              <div v-else class="carousel-empty">
+              <div v-else class="hero__carousel-empty">
                 <img src="../assets/icons/camera-off-line.svg" alt="camera-off-line" class="marketplace-picture" />
               </div>
             </div>
 
 
             <div v-if="productsGetterLimited?.length > 0">
-              <div class="carousel__description">
+              <div class="hero__carousel__description">
                 <div class="carousel-slide">
-                  <div class="carousel__description-name">
-                    <h3 class="carousel__description-name_span">{{ productsGetterLimited[selectedId].name }}</h3>
-                    <span class="carousel__description-name_span">{{ productsGetterLimited[selectedId].description
+                  <div class="hero__carousel__description-name">
+                    <h3 class="hero__carousel__description-name_span">{{ productsGetterLimited[selectedId].name }}</h3>
+                    <span class="hero__carousel__description-name_span">{{ productsGetterLimited[selectedId].description
                     }}</span>
                   </div>
                   <div class="proudct_periodoverlay">
@@ -113,12 +116,12 @@
                   <div class="product__action">
                     <RouterLink :to="`/product-detail/${productsGetterLimited[selectedId].id}`" class="no-underline">
                       <div class="product__actiondetails">
-                        <div class="buttontext"><span class="buttontext_span">Voir les détails</span></div>
+                        <div class="product__actionseller_buttontext"><span class="buttontext_span">Voir les détails</span></div>
                       </div>
                     </RouterLink>
                     <RouterLink :to="`/product-seller/${productsGetterLimited[selectedId].id}`" class="no-underline">
                       <div class="product__actionseller">
-                        <div class="buttontext_01"><span class="buttontext_01_span">Contacter le vendeur</span></div>
+                        <div class="product__actionseller_buttontext"><span class="buttontext_01_span">Contacter le vendeur</span></div>
                       </div>
                     </RouterLink>
                   </div>
@@ -126,8 +129,8 @@
                 </div>
               </div>
             </div>
-            <div v-else class="carousel-empty">
-              <div class="carousel__description">
+            <div v-else class="hero__carousel-empty">
+              <div class="hero__carousel__description">
                 <div class="carousel-slide">
                   <div class="carousel__description-name">
                     <h3 class="carousel__description-name_span">Name</h3>
@@ -173,8 +176,8 @@
           <div class="carousel__header">
             <div class="carousel__marquee">
               <div class="notre-slection"><span class="notreslection_span">Notre Sélection</span></div>
-              <div class="slectionnes-par-nos-experts-pour-leur-authenticit-et-leur-beaut"><span
-                  class="slectionnesparnosexpertspourleurauthenticitetleurbeaut_span">Sélectionnées par nos experts pour
+              <div class="hero__carousel__select--span"><span class="hero__carousel__select--text">Sélectionnées par nos
+                  experts pour
                   leur authenticité et leur beauté</span></div>
             </div>
             <div class="carousel_nav">
@@ -205,25 +208,26 @@
       </div>
     </div>
 
-
     <div class="gridmarket">
-      <div class="container_01">
-        <div class="container_02">
-          <div class="container_03">
-            <div class="heading-2">
-              <div class="marketplace"><span class="marketplace_span">Marketplace</span></div>
+
+      <div class="gridmarket__container">
+        <div class="gridmarket__container__card">
+          <div class="gridmarket__container__card__header">
+            <div class="gridmarket__container__card__heading">
+              <div class="gridmarket__marketplace"><span class="gridmarket__marketplace_span">Marketplace</span></div>
             </div>
-            <div class="container_04">
-              <div class="dcouvrez-notre-slection-dantiquits-authentifies"><span
-                  class="dcouvreznotreslectiondantiquitsauthentifies_span">Découvrez notre sélection d'antiquités
+            <div class="gridmarket__container__card__heading__container">
+              <div class="gridmarket__container__card__heading__container-authentifies"><span
+                  class="gridmarket__container__card__heading__container-authentifies-span">Découvrez notre sélection
+                  d'antiquités
                   authentifiées</span></div>
             </div>
           </div>
-          <div class="container_05">
-            <div class="button_04">
-              <div class="svgmargin_01">
-                <div class="svg_01">
-                  <div data-variant="22" class="component-1_02">
+          <div class="gridmarket__container__card__icons">
+            <div class="gridmarket__container__card__button-filter">
+              <div class="gridmarket__container__card__button-filter-svgmargin">
+                <div class="gridmarket__container__card__button-filter-svg">
+                  <div data-variant="22" class="gridmarket__container__card_component-filter ">
                     <img src="../assets/icons/filter.svg" alt="Filtre" class="vector_filter" />
 
                   </div>
@@ -232,50 +236,50 @@
               <div class="filtres"><span class="filtres_span">Filtres</span></div>
             </div>
             <div class="border">
-              <div class="button_05">
-                <div data-variant="23" class="component-1_03">
+              <div class="gridmarket__container__card__button-grid">
+                <div data-variant="23" class="gridmarket__container__card_component-grid">
                   <img src="../assets/icons/grid.svg" alt="grid" class="vector_grid" />
 
 
                 </div>
               </div>
-              <div class="button_06">
-                <div data-variant="24" class="component-1_04"></div>
+              <div class="gridmarket__container__card__button-list">
+                <div data-variant="24" class="gridmarket__container__card_component-list"></div>
 
                 <img src="../assets/icons/list.svg" alt="list" class="vector_list" />
               </div>
             </div>
           </div>
         </div>
-        <div class="container_06">
-          <div class="button_07">
+        <div class="gridmarket__container__label">
+          <div class="gridmarket__button_yellow">
             <div class="tous"><span class="tous_span">Tous</span></div>
           </div>
-          <div class="button_08">
+          <div class="gridmarket__button_black">
             <div class="mobilier"><span class="mobilier_span">Mobilier</span></div>
           </div>
-          <div class="button_09">
+          <div class="gridmarket__button_black">
             <div class="bijoux"><span class="bijoux_span">Bijoux</span></div>
           </div>
-          <div class="button_10">
+          <div class="gridmarket__button_black">
             <div class="art-dcoratif"><span class="artdcoratif_span">Art Décoratif</span></div>
           </div>
-          <div class="button_11">
+          <div class="gridmarket__button_black">
             <div class="horlogerie"><span class="horlogerie_span">Horlogerie</span></div>
           </div>
-          <div class="button_12">
+          <div class="gridmarket__button_black">
             <div class="peinture"><span class="peinture_span">Peinture</span></div>
           </div>
-          <div class="button_13">
+          <div class="gridmarket__button_black">
             <div class="luminaires"><span class="luminaires_span">Luminaires</span></div>
           </div>
         </div>
-        <div class="container_07">
+        <div class="gridmarket__list__cards">
           <RouterLink :to="`/product-detail/${gridLine1Col1}`" class="no-underline">
             <div class="background-border-shadow background-border-shadow-line1-col1">
-              <div class="gradient"></div>
-              <div class="container_08">
-                <div class="background">
+              <div class="gridmarket__container_gradient"></div>
+              <div class="gridmarket__container_line1-col1">
+                <div class="gridmarket__container_background">
 
                   <div v-if="productsGetterLimited?.length > 0">
                     <img :src="'http://localhost:5000/static/files/' + productsGetterLimited[gridLine1Col1].photo_name"
@@ -286,34 +290,34 @@
                     <img src="../assets/icons/camera-off-line.svg" alt="camera-off-line" class="marketplace-picture" />
                   </div>
 
-                  <div class="button_14">
-                    <div data-variant="25" class="component-1_05">
+                  <div class="gridmarket__container_background_button">
+                    <div data-variant="25" class=".gridmarket__container__card_component-camera">
 
                     </div>
                   </div>
-                  <div class="container_09">
-                    <div class="background_01">
+                  <div class="gridmarket__container_type">
+                    <div class="gridmarket__container_type_background">
                       <div class="mobilier_01"><span class="mobilier_01_span">Mobilier</span></div>
                     </div>
                   </div>
                 </div>
-                <div class="container_10">
-                  <div class="heading-3">
+                <div class="gridmarket__contener__description">
+                  <div class="gridmarket__contener__description-heading">
                     <div class="commode-transition-louis-xv_01"><span class="commodetransitionlouisxv_01_span">{{
                       productsGetterLimited[gridLine1Col1].name }} : {{
                           productsGetterLimited[gridLine1Col1].description }}</span></div>
                   </div>
-                  <div class="container_11">
+                  <div class="gridmarket__contener__description-antiquaire">
                     <div class="antiquits-martin-paris"><span class="antiquitsmartinparis_span">Antiquités Martin •
                         Paris</span></div>
                   </div>
-                  <div class="container_12">
-                    <div class="container_13">
+                  <div class="gridmarket__contener__description_price">
+                    <div class="gridmarket__contener__description_amount">
                       <div class="text-1-890-"><span class="f890_span">{{
                         divideBy100(productsGetterLimited[gridLine1Col1].price_cents) }} €</span></div>
                     </div>
                     <div class="container_14">
-                      <div data-variant="26" class="component-1_06">
+                      <div data-variant="26" class="gridmarket__container__card_component_12">
 
                       </div>
                       <img src="../assets/icons/eye.svg" alt="eye" />
@@ -326,9 +330,9 @@
           </RouterLink>
           <RouterLink :to="`/product-detail/${gridLine1Col2}`" class="no-underline">
             <div class="background-border-shadow background-border-shadow-line1-col2">
-              <div class="gradient_01"></div>
-              <div class="container_15">
-                <div class="background_02">
+              <div class="gridmarket__container_gradient"></div>
+              <div class="gridmarket__container_line1-col2">
+                <div class="gridmarket__container_background">
 
                   <div v-if="productsGetterLimited?.length > 0">
                     <img :src="'http://localhost:5000/static/files/' + productsGetterLimited[gridLine1Col2].photo_name"
@@ -337,34 +341,34 @@
                   <div v-else class="marketplace-empty">
                     <img src="../assets/icons/camera-off-line.svg" alt="camera-off-line" class="marketplace-picture" />
                   </div>
-                  <div class="button_15">
-                    <div data-variant="27" class="component-1_07">
+                  <div class="gridmarket__container_background_button">
+                    <div data-variant="27" class="gridmarket__container__card_component_16">
                       <div class="vector_30"></div>
                     </div>
                   </div>
-                  <div class="container_16">
-                    <div class="background_03">
+                  <div class="gridmarket__container_type">
+                    <div class="gridmarket__container_type_background">
                       <div class="art-dcoratif_01"><span class="artdcoratif_01_span">Art Décoratif</span></div>
                     </div>
                   </div>
                 </div>
-                <div class="container_17">
-                  <div class="heading-3_01">
+                <div class="gridmarket__contener__description">
+                  <div class="gridmarket__contener__description-heading">
                     <div class="vase-gall-art-nouveau_01"><span class="vasegallartnouveau_01_span">{{
                       productsGetterLimited[gridLine1Col2].name }} : {{
                           productsGetterLimited[gridLine1Col2].description }}</span></div>
                   </div>
-                  <div class="container_18">
+                  <div class="contagridmarket__contener__antiquaire">
                     <div class="collection-prive-lyon"><span class="collectionprivelyon_span">Collection Privée •
                         Lyon</span></div>
                   </div>
-                  <div class="container_19">
-                    <div class="container_20">
+                  <div class="contagridmarket__contener__price">
+                    <div class="gridmarket__contener__amount">
                       <div class="text-650-"><span class="f50_span">{{
                         divideBy100(productsGetterLimited[gridLine1Col2].price_cents) }} €</span></div>
                     </div>
                     <div class="container_21">
-                      <div data-variant="28" class="component-1_08">
+                      <div data-variant="28" class="gridmarket__container__card_component_12">
                       </div>
                       <img src="../assets/icons/eye.svg" alt="eye" />
                       <div class="text-28"><span class="f8_span">28</span></div>
@@ -376,9 +380,9 @@
           </RouterLink>
           <RouterLink :to="`/product-detail/${gridLine1Col3}`" class="no-underline">
             <div class="background-border-shadow background-border-shadow-line1-col3">
-              <div class="gradient_02"></div>
-              <div class="container_22">
-                <div class="background_04">
+              <div class="gridmarket__container_gradient"></div>
+              <div class="gridmarket__container_line1-col3">
+                <div class="gridmarket__container_background">
 
                   <div v-if="productsGetterLimited?.length > 0">
 
@@ -390,35 +394,35 @@
                     <img src="../assets/icons/camera-off-line.svg" alt="camera-off-line" class="marketplace-picture" />
                   </div>
 
-                  <div class="button_16">
-                    <div data-variant="29" class="component-1_09">
+                  <div class="gridmarket__container_background_button">
+                    <div data-variant="29" class="gridmarket__container__card_component_16">
                       <div class="vector_33"></div>
 
                     </div>
                   </div>
-                  <div class="container_23">
-                    <div class="background_05">
+                  <div class="gridmarket__container_type">
+                    <div class="gridmarket__container_type_background">
                       <div class="horlogerie_01"><span class="horlogerie_01_span">Horlogerie</span></div>
                     </div>
                   </div>
                 </div>
-                <div class="container_24">
-                  <div class="heading-3_02">
+                <div class="gridmarket__contener__description">
+                  <div class="gridmarket__contener__description-heading">
                     <div class="pendule-empire-bronze-dor_01"><span class="penduleempirebronzedor_01_span">{{
                       productsGetterLimited[gridLine1Col3].name }} : {{
                           productsGetterLimited[gridLine1Col3].description }}</span></div>
                   </div>
-                  <div class="container_25">
+                  <div class="gridmarket__contener__description-antiquaire">
                     <div class="maison-horlogre-versailles"><span class="maisonhorlogreversailles_span">Maison Horlogère
                         • Versailles</span></div>
                   </div>
-                  <div class="container_26">
-                    <div class="container_27">
+                  <div class="gridmarket__contener__description_price">
+                    <div class="gridmarket__contener__description_amount">
                       <div class="text-2-100-"><span class="f100_span">{{
                         divideBy100(productsGetterLimited[gridLine1Col3].price_cents) }} €</span></div>
                     </div>
                     <div class="container_28">
-                      <div data-variant="30" class="component-1_10">
+                      <div data-variant="30" class="gridmarket__container__card_component_12">
 
                       </div>
                       <img src="../assets/icons/eye.svg" alt="eye" />
@@ -431,9 +435,9 @@
           </RouterLink>
           <RouterLink :to="`/product-detail/${gridLine2Col1}`" class="no-underline">
             <div class="background-border-shadow background-border-shadow-line2-col1">
-              <div class="gradient_03"></div>
-              <div class="container_29">
-                <div class="background_06">
+              <div class="gridmarket__container_gradient"></div>
+              <div class="gridmarket__container_line2-col1">
+                <div class="gridmarket__container_background">
 
 
                   <div v-if="productsGetterLimited?.length > 0">
@@ -445,34 +449,34 @@
                     <img src="../assets/icons/camera-off-line.svg" alt="camera-off-line" class="marketplace-picture" />
                   </div>
 
-                  <div class="button_17">
-                    <div data-variant="31" class="component-1_11">
+                  <div class="gridmarket__container_background_button">
+                    <div data-variant="31" class="gridmarket__container__card_component_16">
                       <div class="vector_36"></div>
                     </div>
                   </div>
-                  <div class="container_30">
-                    <div class="background_07">
+                  <div class="gridmarket__container_type">
+                    <div class="gridmarket__container_type_background">
                       <div class="bijoux_01"><span class="bijoux_01_span">Bijoux</span></div>
                     </div>
                   </div>
                 </div>
-                <div class="container_31">
-                  <div class="heading-3_03">
+                <div class="gridmarket__contener__description">
+                  <div class="gridmarket__contener__description-heading">
                     <div class="broche-art-dco-diamants_01"><span class="brocheartdcodiamants_01_span">{{
                       productsGetterLimited[gridLine2Col1].name }} : {{
                           productsGetterLimited[gridLine2Col1].description }}</span></div>
                   </div>
-                  <div class="container_32">
+                  <div class="gridmarket__contener__description-antiquaire">
                     <div class="bijoux-prcieux-cannes"><span class="bijouxprcieuxcannes_span">Bijoux Précieux •
                         Cannes</span></div>
                   </div>
-                  <div class="container_33">
-                    <div class="container_34">
+                  <div class="gridmarket__contener__description_price">
+                    <div class="gridmarket__contener__description_amount">
                       <div class="text-1-200-"><span class="f200_span">{{ divideBy100(
                         productsGetterLimited[gridLine2Col1].price_cents) }} €</span></div>
                     </div>
                     <div class="container_35">
-                      <div data-variant="32" class="component-1_12">
+                      <div data-variant="32" class="gridmarket__container__card_component_12">
 
                       </div>
                       <img src="../assets/icons/eye.svg" alt="eye" />
@@ -485,9 +489,9 @@
           </RouterLink>
           <RouterLink :to="`/product-detail/${gridLine2Col2}`" class="no-underline">
             <div class="background-border-shadow background-border-shadow-line2-col2">
-              <div class="gradient_04"></div>
-              <div class="container_36">
-                <div class="background_08">
+              <div class="gridmarket__container_gradient"></div>
+              <div class="gridmarket__container_line1-col2">
+                <div class="gridmarket__container_background">
                   <div v-if="productsGetterLimited?.length > 0">
                     <img :src="'http://localhost:5000/static/files/' + productsGetterLimited[gridLine2Col2].photo_name"
                       :alt="productsGetterLimited[gridLine2Col2].name" class="marketplace-picture">
@@ -498,34 +502,34 @@
                     <img src="../assets/icons/camera-off-line.svg" alt="camera-off-line" class="marketplace-picture" />
                   </div>
 
-                  <div class="button_18">
-                    <div data-variant="33" class="component-1_13">
+                  <div class="gridmarket__container_background_button">
+                    <div data-variant="33" class="gridmarket__container__card_component_16">
                       <div class="vector_39"></div>
                     </div>
                   </div>
-                  <div class="container_37">
-                    <div class="background_09">
+                  <div class="gridmarket__container_type">
+                    <div class="gridmarket__container_type_background">
                       <div class="livres"><span class="livres_span">Livres</span></div>
                     </div>
                   </div>
                 </div>
-                <div class="container_38">
-                  <div class="heading-3_04">
+                <div class="gridmarket__contener__description">
+                  <div class="gridmarket__contener__description_heading">
                     <div class="collection-livres-anciens_01"><span class="collectionlivresanciens_01_span">{{
                       productsGetterLimited[gridLine2Col2].name }} : {{
                           productsGetterLimited[gridLine2Col2].description }}</span></div>
                   </div>
-                  <div class="container_39">
+                  <div class="gridmarket__contener__description-antiquaire">
                     <div class="librairie-du-faubourg-bordeaux"><span class="librairiedufaubourgbordeaux_span">Librairie
                         du Faubourg • Bordeaux</span></div>
                   </div>
-                  <div class="container_40">
-                    <div class="container_41">
+                  <div class="gridmarket__contener__description_price">
+                    <div class="gridmarket__contener__description_amount">
                       <div class="text-890-"><span class="f90_span">{{ divideBy100(
                         productsGetterLimited[gridLine2Col2].price_cents) }} €</span></div>
                     </div>
                     <div class="container_42">
-                      <div data-variant="34" class="component-1_14">
+                      <div data-variant="34" class="gridmarket__container__card_component_12">
 
                       </div>
                       <img src="../assets/icons/eye.svg" alt="eye" />
@@ -538,9 +542,9 @@
           </RouterLink>
           <RouterLink :to="`/product-detail/${gridLine2Col3}`" class="no-underline">
             <div class="background-border-shadow background-border-shadow-line2-col3">
-              <div class="gradient_05"></div>
-              <div class="container_43">
-                <div class="background_10">
+              <div class="gridmarket__container_gradient"></div>
+              <div class="gridmarket__container_line2-col3">
+                <div class="gridmarket__container_background">
 
                   <div v-if="productsGetterLimited?.length > 0">
                     <img :src="'http://localhost:5000/static/files/' + productsGetterLimited[gridLine2Col3].photo_name"
@@ -551,34 +555,34 @@
                     <img src="../assets/icons/camera-off-line.svg" alt="camera-off-line" class="marketplace-picture" />
                   </div>
 
-                  <div class="button_19">
-                    <div data-variant="35" class="component-1_15">
+                  <div class="gridmarket__container_background_button">
+                    <div data-variant="35" class="gridmarket__container__card_component_16">
                       <div class="vector_42"></div>
                     </div>
                   </div>
-                  <div class="container_44">
+                  <div class="gridmarket__container_type">
                     <div class="background_11">
                       <div class="orfvrerie"><span class="orfvrerie_span">Orfèvrerie</span></div>
                     </div>
                   </div>
                 </div>
-                <div class="container_45">
-                  <div class="heading-3_05">
+                <div class="gridmarket__contener__description">
+                  <div class="gridmarket__contener__description_heading">
                     <div class="chandelier-argent-massif_01"><span class="chandelierargentmassif_01_span">{{
                       productsGetterLimited[gridLine2Col3].name }} : {{
                           productsGetterLimited[gridLine2Col3].description }}</span></div>
                   </div>
-                  <div class="container_46">
+                  <div class="gridmarket__contener__description-antiquaire">
                     <div class="orfvrerie-ancienne-nancy"><span class="orfvrerieanciennenancy_span">Orfèvrerie Ancienne
                         • Nancy</span></div>
                   </div>
-                  <div class="container_47">
-                    <div class="container_48">
+                  <div class="gridmarket__contener__description_price">
+                    <div class="gridmarket__contener__description_amount">
                       <div class="text-750-"><span class="f50_span_01">{{
                         divideBy100(productsGetterLimited[gridLine2Col3].price_cents) }} €</span></div>
                     </div>
                     <div class="container_49">
-                      <div data-variant="36" class="component-1_16">
+                      <div data-variant="36" class="gridmarket__container__card_component_12">
 
                       </div>
                       <img src="../assets/icons/eye.svg" alt="eye" />
@@ -591,7 +595,7 @@
           </RouterLink>
         </div>
         <div class="grid__actionmore">
-          <div class="button_20">
+          <div class="gridmarket__container_background_button_yellow">
             <RouterLink to="/products" class="no-underline">
               <div class="voir-plus-dantiquits"><span class="voirplusdantiquits_span">Voir plus d'antiquités</span>
               </div>
@@ -600,134 +604,133 @@
         </div>
       </div>
     </div>
-    <div class="value-statements">
-      <div class="container_50">
-        <div class="container_51">
-          <div class="heading-2_01">
-            <div class="pourquoi-nous-faire-confiance-"><span class="pourquoinousfaireconfiance_span">Pourquoi nous
+    <div class="value__statements">
+      <div class="value__statements__container">
+        <div class="value__statements__cards">
+          <div class="value__statements__cards_text1">
+            <div class="value__statements__cards_text-pourquoi"><span
+                class="value__statements__cards_text-pourquoi-span">Pourquoi nous
                 faire confiance ?</span></div>
           </div>
-          <div class="container_52">
-            <div
-              class="market-hall-sengage-offrir-une-exprience-dachat-et-de-vente-scurise-pour-tous-les-passionns-dantiquits">
-              <span
-                class="markethallsengageoffriruneexpriencedachatetdeventescurisepourtouslespassionnsdantiquits_span">Market
+          <div class="value__statements__cards_text2">
+            <div class="value__statements__cards_text_market">
+              <span class="value__statements__cards_text_market-span">Market
                 Hall s'engage à offrir une expérience d'achat et de vente sécurisée pour tous les passionnés
                 d'antiquités</span>
             </div>
           </div>
-          <div class="container_53">
-            <div class="backgroundbordershadow_06">
-              <div class="container_54">
+          <div class="value__statements__cards_txt3">
+            <div class="value__statements__cards_background_border_shadow">
+              <div class="value__statements__cards_background__container_txt_3">
                 <div class="overlay">
-                  <div data-variant="37" class="component-1_17">
+                  <div data-variant="37" class="value__statements__cards_component_24">
                     <img src="../assets/icons/auth.svg" alt="authentification garantie" class="vector__auth_end" />
                   </div>
                 </div>
-                <div class="heading-3_06">
+                <div class="value__statements__cards_heading">
                   <div class="authentification-garantie"><span
                       class="authentificationgarantie_span">Authentification<br />garantie</span></div>
                 </div>
-                <div class="container_55">
-                  <div class="chaque-pice-est-expertise-par-nos-spcialistes-certifis-avant-mise-en-vente"><span
-                      class="chaquepiceestexpertiseparnosspcialistescertifisavantmiseenvente_span">Chaque pièce
+                <div class="value__statements__cards_background_txt">
+                  <div class="value__statements__cards_background_txt_specialite"><span
+                      class="value__statements__cards_background_txt_specialite_span">Chaque pièce
                       est<br />expertisée par nos<br />spécialistes certifiés<br />avant mise en vente</span></div>
                 </div>
               </div>
-              <div class="gradient_06"></div>
+              <div class="gridmarket__container_gradient_end"></div>
             </div>
-            <div class="backgroundbordershadow_07">
-              <div class="container_56">
+            <div class="value__statements__cards_background_border_shadow">
+              <div class="value__statements__cards_background__container">
                 <div class="overlay_01">
-                  <div data-variant="38" class="component-1_18">
+                  <div data-variant="38" class="value__statements__cards_component_24">
 
                     <img src="../assets/icons/quality.svg" alt="Qualite certifie" class="vector__quality_end" />
 
                   </div>
                 </div>
-                <div class="heading-3_07">
+                <div class="value__statements__cards_heading">
                   <div class="qualit-certifie"><span class="qualitcertifie_span">Qualité certifiée</span></div>
                 </div>
-                <div class="container_57">
-                  <div class="processus-rigoureux-de-slection-et-certification-de-ltat-des-antiquits"><span
-                      class="processusrigoureuxdeslectionetcertificationdeltatdesantiquits_span">Processus rigoureux
+                <div class="value__statements__cards_background_txt">
+                  <div class="value__statements__cards_processus"><span
+                      class="value__statements__cards_processus-span">Processus rigoureux
                       de<br />sélection et certification<br />de l'état des antiquités</span></div>
                 </div>
               </div>
-              <div class="gradient_07"></div>
+              <div class="gridmarket__container_gradient_end"></div>
             </div>
-            <div class="backgroundbordershadow_08">
-              <div class="container_58">
+            <div class="value__statements__cards_background_border_shadow">
+              <div class="value__statements__cards_background__container">
                 <div class="overlay_02">
-                  <div data-variant="39" class="component-1_19">
+                  <div data-variant="39" class="value__statements__cards_component_24">
                     <img src="../assets/icons/seller.svg" alt="nb antiquaires" class="vector__seller_end" />
 
 
                   </div>
                 </div>
-                <div class="heading-3_08">
+                <div class="value__statements__cards_heading">
                   <div class="vendeurs-vrifis"><span class="vendeursvrifis_span">Vendeurs vérifiés</span></div>
                 </div>
-                <div class="container_59">
-                  <div class="tous-nos-antiquaires-sont-vrifis-et-valus-par-la-communaut"><span
-                      class="tousnosantiquairessontvrifisetvalusparlacommunaut_span">Tous nos antiquaires<br />sont
+                <div class="value__statements__cards_background_txt">
+                  <div class="value__statements__cards_background_txt_antiquaire"><span
+                      class="value__statements__cards_background_txt_antiquaire_span">Tous nos antiquaires<br />sont
                       vérifiés et évalués<br />par la communauté</span></div>
                 </div>
               </div>
-              <div class="gradient_08"></div>
+              <div class="gridmarket__container_gradient_end"></div>
             </div>
-            <div class="backgroundbordershadow_09">
-              <div class="container_60">
+            <div class="value__statements__cards_background_border_shadow">
+              <div class="value__statements__cards_background__container">
                 <div class="overlay_03">
-                  <div data-variant="40" class="component-1_20">
+                  <div data-variant="40" class="value__statements__cards_component_24">
                     <img src="../assets/icons/payment.svg" alt="paiement" class="vector__payment_end" />
 
                   </div>
                 </div>
-                <div class="heading-3_09">
+                <div class="value__statements__cards_background_heading">
                   <div class="paiement-scuris"><span class="paiementscuris_span">Paiement sécurisé</span></div>
                 </div>
-                <div class="container_61">
-                  <div class="transactions-protges-avec-possibilit-de-retour-sous-14-jours"><span
-                      class="transactionsprotgesavecpossibilitderetoursous14jours_span">Transactions protégées<br />avec
+                <div class="value__statements__cards_background_txt">
+                  <div class="value__statements__cards_background_txt-transaction"><span
+                      class="value__statements__cards_background_txt-transaction_span">Transactions protégées<br />avec
                       possibilité de retour<br />sous 14 jours</span></div>
                 </div>
               </div>
-              <div class="gradient_09"></div>
+              <div class="gridmarket__container_gradient_end"></div>
             </div>
           </div>
         </div>
-        <div class="container_62">
-          <div class="container_63">
-            <div class="container_64">
+        <div class="value__statements__number">
+          <div class="value__statements__number_container">
+            <div class="value__statements__number_container_qte">
               <div class="text-10000"><span class="f0000_span">10,000+</span></div>
             </div>
-            <div class="container_65">
+            <div class="value__statements__number_container_qte">
               <div class="antiquaires-partenaires"><span class="antiquairespartenaires_span">Antiquaires
                   partenaires</span></div>
             </div>
           </div>
-          <div class="container_66">
-            <div class="container_67">
+          <div class="value__statements__number_container">
+            <div class="value__statements__number_container_qte">
               <div class="text-50000"><span class="f0000_span_01">50,000+</span></div>
             </div>
-            <div class="container_68">
+            <div class="value__statements__number_container_qte">
               <div class="pices-authentifies"><span class="picesauthentifies_span">Pièces authentifiées</span></div>
             </div>
           </div>
-          <div class="container_69">
-            <div class="container_70">
+          <div class="value__statements__number_container">
+            <div class="value__statements__number_container_qte">
               <div class="text-98"><span class="f8_span_01">98%</span></div>
             </div>
-            <div class="container_71">
+            <div class="value__statements__number_container_qte">
               <div class="satisfaction-client"><span class="satisfactionclient_span">Satisfaction client</span></div>
             </div>
           </div>
-          <div class="container_72">
-            <div class="container_73">
+          <div class="value__statements__number_container">
+            <div class="value__statements__number_container_qte">
               <div class="text-24h"><span class="f4h_span">24h</span></div>
             </div>
-            <div class="container_74">
+            <div class="value__statements__number_container_qte">
               <div class="temps-de-rponse-moyen"><span class="tempsderponsemoyen_span">Temps de réponse moyen</span>
               </div>
             </div>
@@ -735,37 +738,37 @@
         </div>
       </div>
     </div>
-    <div class="footer">
-      <div class="container_75">
-        <div class="container_76">
-          <div class="container_77">
-            <div class="container_78">
-              <div class="margin">
-                <div class="backgroundbordershadow_10">
-                  <div class="container_79">
+    <div class="footer__landing">
+      <div class="footer__container_landing">
+        <div class="footer__container_landing_list">
+          <div class="footer__list">
+            <div class="footer__part__un">
+              <div class="footer__margin">
+                <div class="footer__background__border__shadow__logo">
+                  <div class="footer__logo">
                     <div class="mh"><span class="mh_span">MH</span></div>
                     <img src="../assets/icons/logo.svg" alt="logo" class="mh_span" />
                   </div>
                 </div>
               </div>
-              <div class="paragraph">
+              <div class="footer__list_paragraph">
                 <div class="market"><span class="market_span">Market</span></div>
                 <div class="hall"><span class="hall_span">Hall</span></div>
               </div>
             </div>
-            <div class="container_80">
+            <div class="footer__part__deux">
               <div
-                class="le-marketplace-de-rfrence-pour-les-antiquits-authentiques-connecter-les-passionns-du-monde-entier">
+                class="footer__part__deux_txt">
                 <span
-                  class="lemarketplacederfrencepourlesantiquitsauthentiquesconnecterlespassionnsdumondeentier_span">Le
+                  class="footer__part__deux_txt_span">Le
                   marketplace de référence pour les antiquités<br />authentiques. Connecter les passionnés du
                   monde<br />entier.</span>
               </div>
             </div>
-            <div class="container_81">
+            <div class="footer__part__trois">
               <div class="buttonmargin">
                 <div class="button_21">
-                  <div data-variant="41" class="component-1_21">
+                  <div data-variant="41" class="footer__part__component_16">
                     <a href="https://facebook.com" target="_blank" class="social-link" title="Facebook">
                       <img src="../assets/icons/socials/facebook.svg" alt="facebook" class="vector__facebook" />
                     </a>
@@ -774,7 +777,7 @@
               </div>
               <div class="buttonmargin_01">
                 <div class="button_22">
-                  <div data-variant="42" class="component-1_22">
+                  <div data-variant="42" class="footer__part__component_16">
                     <a href="https://instagram.com" target="_blank" class="social-link" title="Facebook">
 
                       <img src="../assets/icons/socials/instagram.svg" alt="instagram" class="vector__instagram" />
@@ -784,7 +787,7 @@
                 </div>
               </div>
               <div class="button_23">
-                <div data-variant="43" class="component-1_23">
+                <div data-variant="43" class="footer__part__component_16">
                   <a href="https://twitter.com" target="_blank" class="social-link" title="Facebook">
 
                     <img src="../assets/icons/socials/twitter.svg" alt="twitter" class="vector__twitter" />
@@ -793,65 +796,65 @@
               </div>
             </div>
           </div>
-          <div class="container_82">
-            <div class="heading-4">
+          <div class="footer__colonnes">
+            <div class="footer__colonnes_heading">
               <div class="marketplace_01"><span class="marketplace_01_span">Marketplace</span></div>
             </div>
-            <div class="list">
+            <div class="footer__colonnes__item">
               <div class="item">
                 <div class="link-explorer"><span class="linkexplorer_span">Explorer</span></div>
               </div>
-              <div class="item_01">
+              <div class="footer__colonnes__item">
                 <div class="link-catgories"><span class="linkcatgories_span">Catégories</span></div>
               </div>
-              <div class="item_02">
+              <div class="footer__colonnes__item">
                 <div class="link-pices-dexception"><span class="linkpicesdexception_span">Pièces d'exception</span>
                 </div>
               </div>
-              <div class="item_03">
+              <div class="footer__colonnes__item">
                 <div class="link-nouveauts"><span class="linknouveauts_span">Nouveautés</span></div>
               </div>
-              <div class="item_04">
+              <div class="footer__colonnes__item">
                 <div class="link-favoris"><span class="linkfavoris_span">Favoris</span></div>
               </div>
             </div>
           </div>
-          <div class="container_83">
-            <div class="heading-4_01">
-              <div class="vendeurs"><span class="vendeurs_span">Vendeurs</span></div>
+          <div class="footer__colonnes">
+            <div class="footer__colonnes_heading">
+              <div class="footer__colonnes_seller"><span class="footer__colonnes_seller_span">Vendeurs</span></div>
             </div>
-            <div class="list_01">
-              <div class="item_05">
+            <div class="footer__colonnes__list">
+              <div class="footer__colonnes__item">
                 <div class="link-commencer-vendre"><span class="linkcommencervendre_span">Commencer à vendre</span>
                 </div>
               </div>
-              <div class="item_06">
+              <div class="footer__colonnes__item">
                 <div class="link-guide-du-vendeur"><span class="linkguideduvendeur_span">Guide du vendeur</span></div>
               </div>
-              <div class="item_07">
+              <div class="footer__colonnes__item">
                 <div class="link-frais-et-commission"><span class="linkfraisetcommission_span">Frais et
                     commission</span></div>
               </div>
-              <div class="item_08">
+              <div class="footer__colonnes__item">
                 <div class="link-outils-vendeur"><span class="linkoutilsvendeur_span">Outils vendeur</span></div>
               </div>
-              <div class="item_09">
+              <div class="footer__colonnes__item">
                 <div class="link-support"><span class="linksupport_span">Aide et assistance</span></div>
               </div>
             </div>
           </div>
-          <div class="container_84">
-            <div class="heading-4_02">
+          <div class="footer__colonnes">
+            <div class="footer__heading-newsletter">
               <div class="newsletter"><span class="newsletter_span">Newsletter</span></div>
             </div>
-            <div class="container_85">
+            <div class="footer__colonne__newsletter">
               <div class="recevez-les-dernires-nouveauts-et-pices-dexception"><span
                   class="recevezlesderniresnouveautsetpicesdexception_span">Recevez les dernières nouveautés et pièces
                   d'exception</span></div>
             </div>
-            <div class="container_86">
-              <div class="input">
-                <div class="container_87">
+            <div class="footer__newsletter__mail">
+              <div class="footer__newsletter__input">
+                <div class="footer__newsletter__mail__input">
                   <div class="votre-email">
                     <span class="votreemail_span">
                       <input type="email" v-model="userEmail" class="input-email" placeholder="Votre email" />
@@ -859,10 +862,9 @@
                     <p>Email saisi : {{ userEmail }}</p>
                   </div>
                 </div>
-                <div class="container_88"></div>
               </div>
               <div class="button_24">
-                <div data-variant="44" class="component-1_24">
+                <div data-variant="44" class="footer__part__component_16">
                   <RouterLink to="/contactus'" class="no-underline">
                     <img src="../assets/icons/mailbox.svg" alt="boite au lettre" class="vector__mailbox" />
 
@@ -872,69 +874,71 @@
             </div>
           </div>
         </div>
-        <div class="horizontal-divider"></div>
-        <div class="container_89">
-          <div class="container_90">
-            <div class="link">
-              <div class="conditions-dutilisation"><span class="conditionsdutilisation_span">Conditions
+        <div class="footer__horizontal-divider"></div>
+        <div class="footer__horizontal__list">
+          <div class="footer__horizontal__link">
+            <div class="footer__link">
+              <div class="footer__horizontal_conditions"><span class="footer__horizontal_condition_span">Conditions
                   d'utilisation</span></div>
             </div>
-            <div class="link_01">
-              <div class="politique-de-confidentialit"><span class="politiquedeconfidentialit_span">Politique de
+            <div class="footer__link">
+              <div class="footer__horizontal_conditions"><span class="footer__horizontal_condition_span">Politique de
                   confidentialité</span></div>
             </div>
-            <div class="link_02">
-              <div class="mentions-lgales"><span class="mentionslgales_span">Mentions légales</span></div>
+            <div class="footer__link">
+              <div class="footer__horizontal_conditions"><span class="footer__horizontal_condition_span">Mentions
+                  légales</span></div>
             </div>
-            <div class="link_03">
-              <div class="contact"><span class="contact_span">Contact</span></div>
+            <div class="footer__link">
+              <div class="footer__horizontal_conditions"><span class="footer__horizontal_condition_span">Contact</span>
+              </div>
             </div>
           </div>
-          <div class="container_91">
-            <div class="text--2024-market-hall-tous-droits-rservs"><span class="f024markethalltousdroitsrservs_span">©
+          <div class="footer__droits__reserve">
+            <div class="footer__droits__reserve_txt"><span class="footer__droits__reserve_span">©
                 2025 Market Hall. Tous droits réservés.</span></div>
           </div>
         </div>
       </div>
     </div>
-    <div data-headstate="Default" class="header">
-      <div class="container_92">
-        <div class="logo">
-          <div class="type">
-            <div class="mh_01"><span class="mh_01_span">MH</span></div>
+    <div data-headstate="Default" class="header__landing">
+      <div class="header__landing__container__logo">
+        <div class="header__landing__logo">
+          <div class="header__landing__logo__type">
+            <div class="header__landing__logo__type_mh"><span class="header__landing__logo__type_mh_span">MH</span></div>
           </div>
         </div>
         <div class="usermenu">
           <div class="wishlist">
             <div class="button_25">
-              <div data-variant="45" class="component-1_25">
-                <div class="vector_61"></div>
+              <div data-variant="45" class="header__landing__component-15">
+                <div class="header__landing__component_v7"></div>
               </div>
             </div>
           </div>
 
           <div class="usercart">
             <div class="button_26">
-              <div data-variant="46" class="component-1_26">
-                <div class="vector_62"></div>
-                <div class="vector_64"></div>
+              <div data-variant="46" class="header__landing__component-15">
+                <div class="header__landing__component_v5"></div>
+                <div class="header__landing__component_v6"></div>
               </div>
             </div>
           </div>
           <div class="useraccount">
-            <div class="button_27">
-              <div data-variant="47" class="component-1_27">
+            <div class="button_useraccount">
+              <div data-variant="47" class="header__landing__component-15">
 
-                <div class="vector_65"></div>
-                <div class="vector_66"></div>
+                <div class="header__landing__component_v3"></div>
+                <div class="header__landing__component_v4"></div>
               </div>
             </div>
           </div>
         </div>
-        <div data-variant="45" class="component-2">
+        <div data-variant="45" class="header__landing__component-22">
 
-          <div class="vector_67"></div>
-          <div class="vector_68"></div>
+          <div class="header__landing__component_v1"></div>
+          <div class="header__landing__component_v2"></div>
         </div>
       </div>
     </div>
@@ -963,7 +967,6 @@ const slideRefs = ref<HTMLElement[]>([])
 const prevButton = ref<HTMLElement>()
 const nextButton = ref<HTMLElement>()
 const userEmail = ref<string>('')
-//const selectedId = ref<number>(0);
 const selectedId = computed(() => currentSlide.value);
 // State
 const currentSlide = ref(0)
@@ -986,12 +989,6 @@ let tl: gsap.core.Timeline
 
 
 //const randomSelectedId = 0;  //Math.floor(Math.random() * productsGetterLimited.value.length) + 1;
-//currentSlide.value = randomSelectedId;
-
-
-//console.log("* randomSelectedId " + currentSlide.value);
-
-
 
 
 // Calculated 
@@ -1022,23 +1019,18 @@ const animateToSlide = (slideIndex: number, direction: 'next' | 'prev' = 'next')
 const nextSlide = () => {
   const nextIndex = (currentSlide.value + 1) % productsGetterLimited.value.length
   currentSlide.value = nextIndex
-  console.log("> currentSlide.value " + currentSlide.value);
-  //selectedId = currentSlide.value;
   animateToSlide(nextIndex, 'next')
 }
 
 const prevSlide = () => {
   const prevIndex = (currentSlide.value - 1 + productsGetterLimited.value.length) % productsGetterLimited.value.length
   currentSlide.value = prevIndex
-  console.log("< currentSlide.value " + currentSlide.value);
-  //selectedId = currentSlide.value;
   animateToSlide(prevIndex, 'prev')
 }
 
 const goToSlide = (index: number) => {
   const direction = index > currentSlide.value ? 'next' : 'prev'
   currentSlide.value = index
-  //selectedId = currentSlide.value;
   animateToSlide(index, direction)
 }
 
@@ -1163,18 +1155,17 @@ function divideBy100(montantString) {
 }
 
 
-.title_span_01,
-.title_span_03 {
+.hero__title_span_white {
   color: var(--color-grey-95, #F6F3EE);
 
 }
 
-.title_span_02 {
+.hero__title_span_yellow {
   color: var(--color-yellow-52, #D4AF37);
 
 }
 
-.title {
+.hero__title {
   align-self: stretch;
   text-align: center;
   justify-content: center;
@@ -1186,7 +1177,7 @@ function divideBy100(montantString) {
   text-shadow: 0px 1px 2px rgba(44, 37, 31, 0.10);
 }
 
-.subtitle_span {
+.hero__subtitle__span {
   color: var(--color-orange-68, #C4B895);
   font-size: 22.12px;
   font-family: Inter;
@@ -1195,7 +1186,7 @@ function divideBy100(montantString) {
   word-wrap: break-word;
 }
 
-.subtitle {
+.hero__subtitle {
   text-align: center;
   justify-content: center;
   display: flex;
@@ -1203,16 +1194,15 @@ function divideBy100(montantString) {
 }
 
 .vector__auth {
-  width: 10.67px;
-  height: 13.34px;
-  left: 2.67px;
-  top: 1.33px;
+  width: 18px;
+  height: 18px;
+  left: 2px;
   position: absolute;
   /*  outline: 1.33px var(--color-yellow-52, #D4AF37) solid;*/
   /*  outline-offset: -0.67px;*/
 }
 
-.value__string_span {
+.hero__props__single__value__span {
   color: var(--color-orange-68, #C4B895);
   font-size: 13.12px;
   font-family: Inter;
@@ -1221,7 +1211,7 @@ function divideBy100(montantString) {
   word-wrap: break-word;
 }
 
-.value__string {
+.hero__props__single__value__str {
   text-align: center;
   justify-content: center;
   display: flex;
@@ -1229,82 +1219,23 @@ function divideBy100(montantString) {
 }
 
 .vector__seller {
-  width: 20px;
-  /* 9.33px;*/
-  height: 10px;
-  /* 4px*/
-  left: 2.67px;
-  top: 2.33px;
+  width: 18px;
+  height: 18px;
+  left: 3px;
   position: absolute;
-  /* outline: 1.33px var(--color-yellow-52, #D4AF37) solid;*/
-  /*   outline-offset: -0.67px;*/
+
 }
 
-.value__string_01_span {
-  color: var(--color-orange-68, #C4B895);
-  font-size: 13.02px;
-  font-family: Inter;
-  font-weight: 400;
-  line-height: 20px;
-  word-wrap: break-word;
-}
-
-.value__string_01 {
-  text-align: center;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-}
 
 .vector__payment {
-  width: 20px;
-  /* 2.67px;*/
-  height: 10px;
-  /* 5.33px;*/
-  left: 8px;
-  top: 1.33px;
+  width: 18px;
+  height: 18px;
   position: absolute;
-  /*  outline: 1.33px var(--color-yellow-52, #D4AF37) solid;
-  outline-offset: -0.67px;*/
 }
 
-.vector_05 {
-  width: 2.67px;
-  height: 5.33px;
-  left: 8px;
-  top: 4px;
-  position: absolute;
-  outline: 1.33px var(--color-yellow-52, #D4AF37) solid;
-  outline-offset: -0.67px;
-}
 
-.vector_06 {
-  width: 13.33px;
-  height: 13.33px;
-  left: 1.33px;
-  top: 1.33px;
-  position: absolute;
-  outline: 1.33px var(--color-yellow-52, #D4AF37) solid;
-  outline-offset: -0.67px;
-}
 
-.value__string_02_span {
-  color: var(--color-orange-68, #C4B895);
-  font-size: 12.69px;
-  font-family: Inter;
-  font-weight: 400;
-  line-height: 20px;
-  word-wrap: break-word;
-}
-
-.value__string_02 {
-  text-align: center;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-}
-
-.commencervendre_span {
+.hero__cta__seller__span {
   color: var(--color-orange-9, #1A1612);
   font-size: 16.88px;
   font-family: Inter;
@@ -1313,11 +1244,12 @@ function divideBy100(montantString) {
   word-wrap: break-word;
 }
 
-.commencer-vendre {
+.hero__cta__seller {
   text-align: center;
   justify-content: center;
+  align-items: center;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .vector__arrow {
@@ -1328,7 +1260,7 @@ function divideBy100(montantString) {
   position: absolute;
 }
 
-.explorerlesantiquits_span {
+.hero__cta__browse__span {
   color: var(--color-yellow-52, #D4AF37);
   font-size: 17.02px;
   font-family: Inter;
@@ -1337,7 +1269,7 @@ function divideBy100(montantString) {
   word-wrap: break-word;
 }
 
-.explorer-les-antiquits {
+.hero__cta__browse {
   text-align: center;
   justify-content: center;
   display: flex;
@@ -1351,20 +1283,8 @@ function divideBy100(montantString) {
   border-radius: 33554400px;
 }
 
-.button_01 {
-  width: 8px;
-  height: 8px;
-  background: var(--color-orange-20, #3A342E);
-  border-radius: 33554400px;
-}
-
-.button_02 {
-  width: 8px;
-  height: 8px;
-  background: var(--color-orange-20, #3A342E);
-  border-radius: 33554400px;
-}
-
+.button_01 ,
+.button_02 ,
 .button_03 {
   width: 8px;
   height: 8px;
@@ -1380,16 +1300,12 @@ function divideBy100(montantString) {
 }
 
 .vector__heart {
-  width: 18px;
-  /* 13.33px;*/
-  height: 18px;
-  ;
-  /* 11.34px;*/
+  width: 18px; 
+  height: 18px; 
   position: absolute;
 }
 
-.carousel__description-name_span {
-  /*  color: var(--color-grey-95, #F6F3EE);*/
+.hero__carousel__description-name_span {
   color: var(--color-grey-95, #F6F3EE);
   font-size: 22.12px;
   font-family: Inter;
@@ -1398,7 +1314,7 @@ function divideBy100(montantString) {
   word-wrap: break-word;
 }
 
-.carousel__description-name {
+.hero__carousel__description-name {
   align-self: stretch;
   text-align: center;
   justify-content: center;
@@ -1498,10 +1414,7 @@ function divideBy100(montantString) {
   left: 1.33px;
   top: 2.66px;
   position: absolute;
-  /*
-  outline: 1.33px var(--color-orange-68, #C4B895) solid;
-  outline-offset: -0.67px;
-  */
+
 }
 
 .product__statsstring_01_span {
@@ -1529,7 +1442,7 @@ function divideBy100(montantString) {
   word-wrap: break-word;
 }
 
-.buttontext {
+.product__actionseller_buttontext {
   text-align: center;
   justify-content: center;
   display: flex;
@@ -1543,13 +1456,6 @@ function divideBy100(montantString) {
   font-weight: 500;
   line-height: 20px;
   word-wrap: break-word;
-}
-
-.buttontext_01 {
-  text-align: center;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
 }
 
 .notreslection_span {
@@ -1568,7 +1474,7 @@ function divideBy100(montantString) {
   flex-direction: column;
 }
 
-.slectionnesparnosexpertspourleurauthenticitetleurbeaut_span {
+.hero__carousel__select--text {
   color: var(--color-orange-68, #C4B895);
   font-size: 14.75px;
   font-family: Inter;
@@ -1577,7 +1483,7 @@ function divideBy100(montantString) {
   word-wrap: break-word;
 }
 
-.slectionnes-par-nos-experts-pour-leur-authenticit-et-leur-beaut {
+.hero__carousel__select--span {
   text-align: center;
   justify-content: center;
   display: flex;
@@ -1586,7 +1492,7 @@ function divideBy100(montantString) {
 
 
 
-.marketplace_span {
+.gridmarket__marketplace_span {
   color: var(--color-grey-95, #F6F3EE);
   font-size: 28.36px;
   font-family: Inter;
@@ -1595,13 +1501,13 @@ function divideBy100(montantString) {
   word-wrap: break-word;
 }
 
-.marketplace {
+.gridmarket__marketplace {
   justify-content: center;
   display: flex;
   flex-direction: column;
 }
 
-.dcouvreznotreslectiondantiquitsauthentifies_span {
+.gridmarket__container__card__heading__container-authentifies-span {
   color: var(--color-orange-68, #C4B895);
   font-size: 14.75px;
   font-family: Inter;
@@ -1610,7 +1516,7 @@ function divideBy100(montantString) {
   word-wrap: break-word;
 }
 
-.dcouvrez-notre-slection-dantiquits-authentifies {
+.gridmarket__container__card__heading__container-authentifies {
   justify-content: center;
   display: flex;
   flex-direction: column;
@@ -1767,16 +1673,7 @@ function divideBy100(montantString) {
   display: flex;
   flex-direction: column;
 }
-
-.gradient {
-  width: 483.33px;
-  height: 627.34px;
-  left: 1px;
-  top: 1px;
-  position: absolute;
-  background: linear-gradient(128deg, var(--color-yellow-52-2p, rgba(212, 175, 55, 0.02)) 0%, var(--color-yellow-52-0p, rgba(212, 175, 55, 0)) 50%, var(--color-orange-44-2p, rgba(139, 115, 85, 0.02)) 100%);
-}
-
+ 
 .marketplace-picture {
   width: 100%;
   height: 483px;
@@ -1863,12 +1760,7 @@ function divideBy100(montantString) {
   flex-direction: column;
 }
 
-.gradient_01,
-.gradient_02,
-.gradient_03,
-.gradient_04,
-.gradient_05,
-.gradient_06 {
+.gridmarket__container_gradient  {
   width: 483.33px;
   height: 627.34px;
   left: 1px;
@@ -2338,7 +2230,7 @@ function divideBy100(montantString) {
   flex-direction: column;
 }
 
-.pourquoinousfaireconfiance_span {
+.value__statements__cards_text-pourquoi-span {
   color: var(--color-grey-95, #F6F3EE);
   font-size: 28.01px;
   font-family: Inter;
@@ -2347,7 +2239,7 @@ function divideBy100(montantString) {
   word-wrap: break-word;
 }
 
-.pourquoi-nous-faire-confiance- {
+.value__statements__cards_text-pourquoi {
   align-self: stretch;
   text-align: center;
   justify-content: center;
@@ -2355,7 +2247,7 @@ function divideBy100(montantString) {
   flex-direction: column;
 }
 
-.markethallsengageoffriruneexpriencedachatetdeventescurisepourtouslespassionnsdantiquits_span {
+.value__statements__cards_text_market-span {
   color: var(--color-orange-68, #C4B895);
   font-size: 14.75px;
   font-family: Inter;
@@ -2364,7 +2256,7 @@ function divideBy100(montantString) {
   word-wrap: break-word;
 }
 
-.market-hall-sengage-offrir-une-exprience-dachat-et-de-vente-scurise-pour-tous-les-passionns-dantiquits {
+.value__statements__cards_text_market {
   align-self: stretch;
   text-align: center;
   justify-content: center;
@@ -2400,7 +2292,7 @@ function divideBy100(montantString) {
   flex-direction: column;
 }
 
-.chaquepiceestexpertiseparnosspcialistescertifisavantmiseenvente_span {
+.value__statements__cards_background_txt_specialite_span {
   color: var(--color-orange-68, #C4B895);
   font-size: 12.69px;
   font-family: Inter;
@@ -2409,7 +2301,8 @@ function divideBy100(montantString) {
   word-wrap: break-word;
 }
 
-.chaque-pice-est-expertise-par-nos-spcialistes-certifis-avant-mise-en-vente {
+.value__statements__cards_background_txt_specialite {
+  margin-top: 20px;
   text-align: center;
   justify-content: center;
   display: flex;
@@ -2419,12 +2312,8 @@ function divideBy100(montantString) {
 
 .vector__quality_end {
   width: 16px;
-  height: 20px;
-
-  /*  width: 10px;
-  height: 9.11px;*/
-  left: 7px;
-  /*  top: 12.89px;*/
+  height: 20px; 
+  left: 7px; 
   top: 2px;
   position: absolute;
   /*
@@ -2450,7 +2339,7 @@ function divideBy100(montantString) {
   flex-direction: column;
 }
 
-.processusrigoureuxdeslectionetcertificationdeltatdesantiquits_span {
+.value__statements__cards_processus-span {
   color: var(--color-orange-68, #C4B895);
   font-size: 12.80px;
   font-family: Inter;
@@ -2459,14 +2348,14 @@ function divideBy100(montantString) {
   word-wrap: break-word;
 }
 
-.processus-rigoureux-de-slection-et-certification-de-ltat-des-antiquits {
+.value__statements__cards_processus{
   text-align: center;
   justify-content: center;
   display: flex;
   flex-direction: column;
 }
 
-.gradient_07 {
+.gridmarket__container_gradient_end {
   width: 204px;
   height: 248px;
   left: 1px;
@@ -2478,8 +2367,8 @@ function divideBy100(montantString) {
 .vector__seller_end {
   width: 16px;
   height: 20px;
-  left: 2px;
-  top: 15px;
+  left: 3px;
+  top: 1px;
   position: absolute;
   /*
   outline: 2px var(--color-yellow-52, #D4AF37) solid;
@@ -2503,7 +2392,7 @@ function divideBy100(montantString) {
   flex-direction: column;
 }
 
-.tousnosantiquairessontvrifisetvalusparlacommunaut_span {
+.value__statements__cards_background_txt_antiquaire_span {
   color: var(--color-orange-68, #C4B895);
   font-size: 12.80px;
   font-family: Inter;
@@ -2512,27 +2401,19 @@ function divideBy100(montantString) {
   word-wrap: break-word;
 }
 
-.tous-nos-antiquaires-sont-vrifis-et-valus-par-la-communaut {
+.value__statements__cards_background_txt_antiquaire {
   text-align: center;
   justify-content: center;
   display: flex;
   flex-direction: column;
 }
-
-.gradient_08 {
-  width: 204px;
-  height: 248px;
-  left: 1px;
-  top: 1px;
-  position: absolute;
-  background: linear-gradient(129deg, var(--color-yellow-52-2p, rgba(212, 175, 55, 0.02)) 0%, var(--color-yellow-52-0p, rgba(212, 175, 55, 0)) 50%, var(--color-orange-44-2p, rgba(139, 115, 85, 0.02)) 100%);
-}
+ 
 
 .vector__payment_end {
   width: 20px;
   height: 20px;
-  left: 12px;
-  top: 6px;
+  left: 4px;
+  top: 1px;
   position: absolute;
   /*
   outline: 2px var(--color-yellow-52, #D4AF37) solid;
@@ -2557,7 +2438,7 @@ function divideBy100(montantString) {
   flex-direction: column;
 }
 
-.transactionsprotgesavecpossibilitderetoursous14jours_span {
+.value__statements__cards_background_txt-transaction_span {
   color: var(--color-orange-68, #C4B895);
   font-size: 13.02px;
   font-family: Inter;
@@ -2566,21 +2447,14 @@ function divideBy100(montantString) {
   word-wrap: break-word;
 }
 
-.transactions-protges-avec-possibilit-de-retour-sous-14-jours {
+.value__statements__cards_background_txt-transaction {
   text-align: center;
   justify-content: center;
   display: flex;
   flex-direction: column;
 }
 
-.gradient_09 {
-  width: 204px;
-  height: 248px;
-  left: 1px;
-  top: 1px;
-  position: absolute;
-  background: linear-gradient(129deg, var(--color-yellow-52-2p, rgba(212, 175, 55, 0.02)) 0%, var(--color-yellow-52-0p, rgba(212, 175, 55, 0)) 50%, var(--color-orange-44-2p, rgba(139, 115, 85, 0.02)) 100%);
-}
+ 
 
 .f0000_span {
   color: var(--color-yellow-52, #D4AF37);
@@ -2764,7 +2638,7 @@ function divideBy100(montantString) {
   flex-direction: column;
 }
 
-.lemarketplacederfrencepourlesantiquitsauthentiquesconnecterlespassionnsdumondeentier_span {
+.footer__part__deux_txt_span {
   color: var(--color-grey-95-80p, rgba(246.01, 242.96, 237.96, 0.80));
   font-size: 12.91px;
   font-family: Inter;
@@ -2773,7 +2647,7 @@ function divideBy100(montantString) {
   word-wrap: break-word;
 }
 
-.le-marketplace-de-rfrence-pour-les-antiquits-authentiques-connecter-les-passionns-du-monde-entier {
+.footer__part__deux_txt {
   align-self: stretch;
   justify-content: center;
   display: flex;
@@ -2782,9 +2656,7 @@ function divideBy100(montantString) {
 
 .vector__facebook {
   width: 32px;
-  /*7.33px;*/
   height: 32px;
-  /*13.33px;*/
   left: 4.67px;
   top: 1.33px;
   position: absolute;
@@ -2794,9 +2666,7 @@ function divideBy100(montantString) {
 
 .vector__instagram {
   width: 32px;
-  /*width: 13.33px;*/
   height: 32px;
-  /*height: 13.33px;*/
   left: 1.33px;
   top: 1.33px;
   position: absolute;
@@ -2805,12 +2675,10 @@ function divideBy100(montantString) {
 
 .vector__twitter {
   width: 32px;
-  /*width: 13.33px;*/
   height: 32px;
-  /*  height: 11.34px;*/
   left: 1.33px;
   top: 2.66px;
-  position: absolute;
+  position: absolute; 
   /*
   outline: 1.33px var(--color-grey-95-80%, rgba(246.01, 242.96, 237.96, 0.80)) solid;
   outline-offset: -0.67px;
@@ -2913,7 +2781,7 @@ function divideBy100(montantString) {
   flex-direction: column;
 }
 
-.vendeurs_span {
+.footer__colonnes_seller_span {
   color: var(--color-grey-95, #F6F3EE);
   font-size: 14.62px;
   font-family: Inter;
@@ -2922,7 +2790,7 @@ function divideBy100(montantString) {
   word-wrap: break-word;
 }
 
-.vendeurs {
+.footer__colonnes_seller {
   align-self: stretch;
   justify-content: center;
   display: flex;
@@ -3055,37 +2923,19 @@ function divideBy100(montantString) {
   flex-direction: column;
 }
 
-.container_88 {
-  width: 278px;
-  height: 19px;
-  left: 13px;
-  top: 8.50px;
-  position: absolute;
-}
-
-
-.horizontal-divider {
+.footer__horizontal-divider {
   align-self: stretch;
-  height: 1px;
+  height: 2px;
   background: var(--color-grey-95-20p, rgba(246.01, 242.96, 237.96, 0.20));
 }
 
-.conditionsdutilisation_span {
-  color: var(--color-grey-95-80p, rgba(246.01, 242.96, 237.96, 0.80));
-  font-size: 13.23px;
-  font-family: Inter;
-  font-weight: 400;
-  line-height: 20px;
-  word-wrap: break-word;
-}
-
-.conditions-dutilisation {
+.footer__horizontal_conditions {
   justify-content: center;
   display: flex;
   flex-direction: column;
 }
 
-.politiquedeconfidentialit_span {
+.footer__horizontal_condition_span {
   color: var(--color-grey-95-80p, rgba(246.01, 242.96, 237.96, 0.80));
   font-size: 13.12px;
   font-family: Inter;
@@ -3094,43 +2944,7 @@ function divideBy100(montantString) {
   word-wrap: break-word;
 }
 
-.politique-de-confidentialit {
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-}
-
-.mentionslgales_span {
-  color: var(--color-grey-95-80p, rgba(246.01, 242.96, 237.96, 0.80));
-  font-size: 13.12px;
-  font-family: Inter;
-  font-weight: 400;
-  line-height: 20px;
-  word-wrap: break-word;
-}
-
-.mentions-lgales {
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-}
-
-.contact_span {
-  color: var(--color-grey-95-80p, rgba(246.01, 242.96, 237.96, 0.80));
-  font-size: 12.69px;
-  font-family: Inter;
-  font-weight: 400;
-  line-height: 20px;
-  word-wrap: break-word;
-}
-
-.contact {
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-}
-
-.f024markethalltousdroitsrservs_span {
+.footer__droits__reserve_span {
   color: var(--color-grey-95-60p, rgba(246.01, 242.96, 237.96, 0.60));
   font-size: 12.80px;
   font-family: Inter;
@@ -3139,13 +2953,13 @@ function divideBy100(montantString) {
   word-wrap: break-word;
 }
 
-.text--2024-market-hall-tous-droits-rservs {
+.footer__droits__reserve_txt {
   justify-content: center;
   display: flex;
   flex-direction: column;
 }
 
-.mh_01_span {
+.header__landing__logo__type_mh_span {
   color: var(--color-orange-9, #1A1612);
   font-size: 13.30px;
   font-family: Inter;
@@ -3155,13 +2969,13 @@ function divideBy100(montantString) {
   word-wrap: break-word;
 }
 
-.mh_01 {
+.header__landing__logo__type_mh {
   justify-content: center;
   display: flex;
   flex-direction: column;
 }
 
-.vector_61 {
+.header__landing__component_v7 {
   width: 12.67px;
   height: 10.78px;
   left: 1.27px;
@@ -3171,7 +2985,7 @@ function divideBy100(montantString) {
   outline-offset: -0.63px;
 }
 
-.vector_62 {
+.header__landing__component_v5 {
   width: 5.07px;
   height: 2.53px;
   left: 5.07px;
@@ -3181,7 +2995,7 @@ function divideBy100(montantString) {
   outline-offset: -0.63px;
 }
 
-.vector_64 {
+.header__landing__component_v6 {
   width: 11.40px;
   height: 12.67px;
   left: 1.90px;
@@ -3191,7 +3005,7 @@ function divideBy100(montantString) {
   outline-offset: -0.63px;
 }
 
-.vector_65 {
+.header__landing__component_v3 {
   width: 8.87px;
   height: 3.80px;
   left: 3.17px;
@@ -3201,7 +3015,7 @@ function divideBy100(montantString) {
   outline-offset: -0.63px;
 }
 
-.vector_66 {
+.header__landing__component_v4 {
   width: 5.07px;
   height: 5.07px;
   left: 5.07px;
@@ -3211,7 +3025,7 @@ function divideBy100(montantString) {
   outline-offset: -0.63px;
 }
 
-.vector_67 {
+.header__landing__component_v1 {
   width: 3.98px;
   height: 3.98px;
   left: 15.27px;
@@ -3221,7 +3035,7 @@ function divideBy100(montantString) {
   outline-offset: -1px;
 }
 
-.vector_68 {
+.header__landing__component_v2 {
   width: 14.67px;
   height: 14.67px;
   left: 2.75px;
@@ -3231,7 +3045,7 @@ function divideBy100(montantString) {
   outline-offset: -1px;
 }
 
-.hero__container-heading {
+.hero__heading {
   align-self: stretch;
   flex-direction: column;
   justify-content: flex-start;
@@ -3240,7 +3054,7 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.call__browse {
+.hero__call__browse {
   height: 40px;
   padding-left: 33px;
   padding-right: 33px;
@@ -3304,7 +3118,7 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.heading-2 {
+.gridmarket__container__card__heading {
   align-self: stretch;
   flex-direction: column;
   justify-content: flex-start;
@@ -3312,7 +3126,7 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.container_04 {
+.gridmarket__container__card__heading__container {
   align-self: stretch;
   flex-direction: column;
   justify-content: flex-start;
@@ -3320,7 +3134,7 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.button_07 {
+.gridmarket__button_yellow {
   height: 32px;
   padding-top: 5.50px;
   padding-bottom: 6.50px;
@@ -3333,7 +3147,7 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.button_08 {
+.gridmarket__button_black  {
   height: 32px;
   padding-top: 5.50px;
   padding-bottom: 6.50px;
@@ -3347,83 +3161,41 @@ function divideBy100(montantString) {
   align-items: center;
   display: flex;
 }
+ 
 
-.button_09 {
-  height: 32px;
-  padding-top: 5.50px;
-  padding-bottom: 6.50px;
-  padding-left: 13px;
-  padding-right: 13px;
-  background: var(--color-orange-9, #1A1612);
-  border-radius: 10px;
-  outline: 1px var(--color-yellow-52-30p, rgba(212, 175, 55, 0.30)) solid;
-  outline-offset: -1px;
-  justify-content: center;
-  align-items: center;
+.gridmarket__contener__description-heading {
+  align-self: stretch;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   display: flex;
 }
 
-.button_10 {
-  height: 32px;
-  padding-top: 5.50px;
-  padding-bottom: 6.50px;
-  padding-left: 13px;
-  padding-right: 13px;
-  background: var(--color-orange-9, #1A1612);
-  border-radius: 10px;
-  outline: 1px var(--color-yellow-52-30p, rgba(212, 175, 55, 0.30)) solid;
-  outline-offset: -1px;
-  justify-content: center;
-  align-items: center;
+.gridmarket__contener__description-antiquaire {
+  align-self: stretch;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: flex;
+}
+  
+.contagridmarket__contener__antiquaire {
+  align-self: stretch;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   display: flex;
 }
 
-.button_11 {
-  height: 32px;
-  padding-top: 5.50px;
-  padding-bottom: 6.50px;
-  padding-left: 13px;
-  padding-right: 13px;
-  background: var(--color-orange-9, #1A1612);
-  border-radius: 10px;
-  outline: 1px var(--color-yellow-52-30p, rgba(212, 175, 55, 0.30)) solid;
-  outline-offset: -1px;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-}
+.gridmarket__contener__amount {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: inline-flex;
+} 
 
-.button_12 {
-  height: 32px;
-  padding-top: 5.50px;
-  padding-bottom: 6.50px;
-  padding-left: 13px;
-  padding-right: 13px;
-  background: var(--color-orange-9, #1A1612);
-  border-radius: 10px;
-  outline: 1px var(--color-yellow-52-30p, rgba(212, 175, 55, 0.30)) solid;
-  outline-offset: -1px;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-}
-
-.button_13 {
-  height: 32px;
-  padding-top: 5.50px;
-  padding-bottom: 6.50px;
-  padding-left: 13px;
-  padding-right: 13px;
-  background: var(--color-orange-9, #1A1612);
-  border-radius: 10px;
-  outline: 1px var(--color-yellow-52-30p, rgba(212, 175, 55, 0.30)) solid;
-  outline-offset: -1px;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-}
-
-.background_01 {
+.gridmarket__container_type_background {
   padding-left: 8px;
   padding-right: 8px;
   padding-top: 4px;
@@ -3435,7 +3207,7 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.heading-3 {
+.gridmarket__contener__description_heading {
   align-self: stretch;
   overflow: hidden;
   flex-direction: column;
@@ -3443,166 +3215,14 @@ function divideBy100(montantString) {
   align-items: flex-start;
   display: flex;
 }
-
-.container_11 {
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.container_13 {
+ 
+.gridmarket__contener__description_amount {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   display: inline-flex;
 }
-
-.background_03 {
-  padding-left: 8px;
-  padding-right: 8px;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  background: var(--color-yellow-52, #D4AF37);
-  border-radius: 4px;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: inline-flex;
-}
-
-.heading-3_01 {
-  align-self: stretch;
-  overflow: hidden;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.container_18 {
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.container_20 {
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: inline-flex;
-}
-
-.background_05 {
-  padding-left: 8px;
-  padding-right: 8px;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  background: var(--color-yellow-52, #D4AF37);
-  border-radius: 4px;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: inline-flex;
-}
-
-.heading-3_02 {
-  align-self: stretch;
-  overflow: hidden;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.container_25 {
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.container_27 {
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: inline-flex;
-}
-
-.background_07 {
-  padding-left: 8px;
-  padding-right: 8px;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  background: var(--color-yellow-52, #D4AF37);
-  border-radius: 4px;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: inline-flex;
-}
-
-.heading-3_03 {
-  align-self: stretch;
-  overflow: hidden;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.container_32 {
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.container_34 {
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: inline-flex;
-}
-
-.background_09 {
-  padding-left: 8px;
-  padding-right: 8px;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  background: var(--color-yellow-52, #D4AF37);
-  border-radius: 4px;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: inline-flex;
-}
-
-.heading-3_04 {
-  align-self: stretch;
-  overflow: hidden;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.container_39 {
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.container_41 {
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: inline-flex;
-}
-
+ 
 .background_11 {
   padding-left: 8px;
   padding-right: 8px;
@@ -3614,32 +3234,10 @@ function divideBy100(montantString) {
   align-items: flex-start;
   display: inline-flex;
 }
+ 
+ 
 
-.heading-3_05 {
-  align-self: stretch;
-  overflow: hidden;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.container_46 {
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.container_48 {
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: inline-flex;
-}
-
-.button_20 {
+.gridmarket__container_background_button_yellow {
   height: 36px;
   padding-top: 7.50px;
   padding-bottom: 8.50px;
@@ -3654,7 +3252,9 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.heading-2_01 {
+
+.value__statements__cards_text1,
+.value__statements__cards_text2 {
   align-self: stretch;
   flex-direction: column;
   justify-content: flex-start;
@@ -3662,15 +3262,18 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.container_52 {
-  align-self: stretch;
+.value__statements__cards_heading {
+  width: 156px;
+  left: 24px;
+  top: 88px;
+  position: absolute;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  display: flex;
+  display: inline-flex;
 }
-
-.heading-3_06 {
+  
+.value__statements__cards_background_heading {
   width: 156px;
   left: 24px;
   top: 88px;
@@ -3681,29 +3284,7 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.container_55 {
-  width: 156px;
-  left: 24px;
-  top: 144px;
-  position: absolute;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  display: inline-flex;
-}
-
-.heading-3_07 {
-  width: 156px;
-  left: 24px;
-  top: 88px;
-  position: absolute;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  display: inline-flex;
-}
-
-.container_57 {
+.value__statements__cards_background_txt {
   width: 156px;
   left: 24px;
   top: 120px;
@@ -3713,52 +3294,8 @@ function divideBy100(montantString) {
   align-items: center;
   display: inline-flex;
 }
-
-.heading-3_08 {
-  width: 156px;
-  left: 24px;
-  top: 88px;
-  position: absolute;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  display: inline-flex;
-}
-
-.container_59 {
-  width: 156px;
-  left: 24px;
-  top: 120px;
-  position: absolute;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  display: inline-flex;
-}
-
-.heading-3_09 {
-  width: 156px;
-  left: 24px;
-  top: 88px;
-  position: absolute;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  display: inline-flex;
-}
-
-.container_61 {
-  width: 156px;
-  left: 24px;
-  top: 120px;
-  position: absolute;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  display: inline-flex;
-}
-
-.container_64 {
+ 
+.value__statements__number_container_qte {
   align-self: stretch;
   flex-direction: column;
   justify-content: flex-start;
@@ -3766,77 +3303,21 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.container_65 {
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  display: flex;
-}
-
-.container_67 {
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  display: flex;
-}
-
-.container_68 {
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  display: flex;
-}
-
-.container_70 {
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  display: flex;
-}
-
-.container_71 {
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  display: flex;
-}
-
-.container_73 {
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  display: flex;
-}
-
-.container_74 {
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  display: flex;
-}
-
-.container_79 {
+.footer__logo {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   display: inline-flex;
 }
 
-.paragraph {
+.footer__list_paragraph {
   justify-content: flex-start;
   align-items: flex-start;
   gap: 6px;
   display: flex;
 }
 
-.container_80 {
+.footer__part__deux {
   align-self: stretch;
   flex-direction: column;
   justify-content: flex-start;
@@ -3844,7 +3325,7 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.heading-4 {
+.footer__colonnes_heading   {
   align-self: stretch;
   flex-direction: column;
   justify-content: flex-start;
@@ -3852,7 +3333,7 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.item {
+.footer__colonnes__item {
   align-self: stretch;
   flex-direction: column;
   justify-content: flex-start;
@@ -3860,7 +3341,8 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.item_01 {
+.footer__colonne__newsletter,
+.footer__heading-newsletter {
   align-self: stretch;
   flex-direction: column;
   justify-content: flex-start;
@@ -3868,95 +3350,7 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.item_02 {
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.item_03 {
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.item_04 {
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.heading-4_01 {
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.item_05 {
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.item_06 {
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.item_07 {
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.item_08 {
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.item_09 {
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.heading-4_02 {
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.container_85 {
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.container_87 {
+.footer__newsletter__mail__input {
   height: 19px;
   padding-right: 200px;
   left: 13px;
@@ -3969,7 +3363,7 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.link {
+.footer__link {
   align-self: stretch;
   flex-direction: column;
   justify-content: flex-start;
@@ -3977,67 +3371,22 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.link_01 {
-  align-self: stretch;
+.header__landing__logo__type,
+.footer__droits__reserve {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   display: inline-flex;
 }
 
-.link_02 {
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: inline-flex;
-}
 
-.link_03 {
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: inline-flex;
-}
-
-.container_91 {
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: inline-flex;
-}
-
-.type {
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: inline-flex;
-}
-
-.svgprop {
+.hero__props__single__svgprop {
   width: 16px;
   height: 16px;
   position: relative;
 }
 
-.svgprop_01 {
-  width: 16px;
-  height: 16px;
-  position: relative;
-}
 
-.svgprop_02 {
-  width: 16px;
-  height: 16px;
-  position: relative;
-}
-
-.component-1 {
-  width: 16px;
-  flex: 1 1 0;
-  position: relative;
-}
 
 .carousel-progression-buttons {
   width: 896px;
@@ -4049,12 +3398,7 @@ function divideBy100(montantString) {
   gap: 8px;
   display: inline-flex;
 }
-
-.component-1_01 {
-  width: 16px;
-  height: 16px;
-  position: relative;
-}
+ 
 
 .product__statsicon_01 {
   width: 16px;
@@ -4066,10 +3410,7 @@ function divideBy100(montantString) {
 .vector__left_carousel {
   width: 38;
   height: 32;
-  /*
-  width: 4px;
-  height: 8px;
-  */
+   
   left: 6px;
   top: 4px;
 
@@ -4096,163 +3437,56 @@ function divideBy100(montantString) {
 }
 
 
-.component-1_02 {
+.gridmarket__container__card_component-filter {
   width: 16px;
   flex: 1 1 0;
   position: relative;
 }
 
-.component-1_03 {
+.gridmarket__container__card_component-camera,
+.gridmarket__container__card_component-list,
+.gridmarket__container__card_component-grid {
   width: 16px;
   height: 16px;
   position: relative;
 }
 
-.component-1_04 {
-  width: 16px;
-  height: 16px;
-  position: relative;
-}
 
-.component-1_05 {
-  width: 16px;
-  height: 16px;
-  position: relative;
-}
-
-.component-1_06 {
+.gridmarket__container__card_component_12 {
   width: 12px;
   height: 12px;
   position: relative;
 }
 
-.component-1_07 {
+.hero__container__component_16,
+.gridmarket__container__card_component_16  {
   width: 16px;
   height: 16px;
   position: relative;
 }
 
-.component-1_08 {
-  width: 12px;
-  height: 12px;
-  position: relative;
-}
 
-.component-1_09 {
-  width: 16px;
-  height: 16px;
-  position: relative;
-}
-
-.component-1_10 {
-  width: 12px;
-  height: 12px;
-  position: relative;
-}
-
-.component-1_11 {
-  width: 16px;
-  height: 16px;
-  position: relative;
-}
-
-.component-1_12 {
-  width: 12px;
-  height: 12px;
-  position: relative;
-}
-
-.component-1_13 {
-  width: 16px;
-  height: 16px;
-  position: relative;
-}
-
-.component-1_14 {
-  width: 12px;
-  height: 12px;
-  position: relative;
-}
-
-.component-1_15 {
-  width: 16px;
-  height: 16px;
-  position: relative;
-}
-
-.component-1_16 {
-  width: 12px;
-  height: 12px;
-  position: relative;
-}
-
-.component-1_17 {
+.value__statements__cards_component_24 {
   width: 24px;
   height: 24px;
   position: relative;
 }
 
-.component-1_18 {
-  width: 24px;
-  height: 24px;
-  position: relative;
-}
 
-.component-1_19 {
-  width: 24px;
-  height: 24px;
-  position: relative;
-}
-
-.component-1_20 {
-  width: 24px;
-  height: 24px;
-  position: relative;
-}
-
-.component-1_21 {
+.footer__part__component_16 {
   width: 16px;
   height: 16px;
   position: relative;
 }
 
-.component-1_22 {
-  width: 16px;
-  height: 16px;
-  position: relative;
-}
-
-.component-1_23 {
-  width: 16px;
-  height: 16px;
-  position: relative;
-}
-
-.component-1_24 {
-  width: 16px;
-  height: 16px;
-  position: relative;
-}
-
-.component-1_25 {
+ 
+.header__landing__component-15 {
   width: 15.20px;
   height: 15.20px;
   position: relative;
 }
 
-.component-1_26 {
-  width: 15.20px;
-  height: 15.20px;
-  position: relative;
-}
-
-.component-1_27 {
-  width: 15.20px;
-  height: 15.20px;
-  position: relative;
-}
-
-.component-2 {
+.header__landing__component-22 {
   width: 22px;
   height: 22px;
   left: 674px;
@@ -4269,7 +3503,7 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.container_03 {
+.gridmarket__container__card__header {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
@@ -4277,7 +3511,7 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.container_06 {
+.gridmarket__container__label {
   align-self: stretch;
   justify-content: flex-start;
   align-items: flex-start;
@@ -4286,63 +3520,8 @@ function divideBy100(montantString) {
   flex-wrap: wrap;
   align-content: flex-start;
 }
-
-.container_09 {
-  padding-top: 1px;
-  left: 12px;
-  top: 447.33px;
-  position: absolute;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.container_16 {
-  padding-top: 1px;
-  left: 12px;
-  top: 447.33px;
-  position: absolute;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.container_23 {
-  padding-top: 1px;
-  left: 12px;
-  top: 447.34px;
-  position: absolute;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.container_30 {
-  padding-top: 1px;
-  left: 12px;
-  top: 447.33px;
-  position: absolute;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.container_37 {
-  padding-top: 1px;
-  left: 12px;
-  top: 447.33px;
-  position: absolute;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.container_44 {
+  
+.gridmarket__container_type {
   padding-top: 1px;
   left: 12px;
   top: 447.35px;
@@ -4361,7 +3540,7 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.container_63 {
+.value__statements__number_container  {
   width: 352px;
   align-self: stretch;
   flex-direction: column;
@@ -4371,37 +3550,7 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.container_66 {
-  width: 352px;
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 8px;
-  display: inline-flex;
-}
-
-.container_69 {
-  width: 352px;
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 8px;
-  display: inline-flex;
-}
-
-.container_72 {
-  width: 352px;
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 8px;
-  display: inline-flex;
-}
-
-.backgroundbordershadow_10 {
+.footer__background__border__shadow__logo {
   width: 44px;
   height: 44px;
   padding: 1px;
@@ -4416,7 +3565,8 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.list {
+
+.footer__colonnes__list {
   align-self: stretch;
   flex-direction: column;
   justify-content: flex-start;
@@ -4425,16 +3575,7 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.list_01 {
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 8px;
-  display: flex;
-}
-
-.input {
+.footer__newsletter__input {
   flex: 1 1 0;
   height: 36px;
   position: relative;
@@ -4445,7 +3586,7 @@ function divideBy100(montantString) {
   outline-offset: -1px;
 }
 
-.container_90 {
+.footer__horizontal__link {
   justify-content: flex-start;
   align-items: flex-start;
   gap: 24px;
@@ -4454,7 +3595,7 @@ function divideBy100(montantString) {
   align-content: flex-start;
 }
 
-.logo {
+.header__landing__logo {
   width: 41.80px;
   height: 41.80px;
   padding: 1px;
@@ -4469,41 +3610,15 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.single__value {
+.hero__props__single__value {
   height: 20px;
   justify-content: flex-start;
   align-items: center;
   gap: 8px;
   display: flex;
 }
-
-.single__value_01 {
-  height: 20px;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 8px;
-  display: flex;
-}
-
-.single__value_02 {
-  height: 20px;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 8px;
-  display: flex;
-}
-
-.svg {
-  width: 16px;
-  height: 16px;
-  overflow: hidden;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-}
-
-.favbutton {
+ 
+.hero__carousel__favbutton {
   height: 32px;
   padding-left: 10px;
   padding-right: 10px;
@@ -4548,17 +3663,7 @@ function divideBy100(montantString) {
 }
 
 
-.svg_01 {
-  width: 16px;
-  height: 16px;
-  overflow: hidden;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-}
-
-.button_05 {
+.gridmarket__container__card__button-grid {
   height: 32px;
   padding-left: 10px;
   padding-right: 10px;
@@ -4570,7 +3675,7 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.button_06 {
+.gridmarket__container__card__button-list{
   height: 32px;
   padding-left: 10px;
   padding-right: 10px;
@@ -4581,7 +3686,7 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.button_14 {
+.gridmarket__container_background_button {
   height: 32px;
   padding-left: 10px;
   padding-right: 10px;
@@ -4602,43 +3707,14 @@ function divideBy100(montantString) {
   gap: 4px;
   display: flex;
 }
-
-.button_15 {
-  height: 32px;
-  padding-left: 10px;
-  padding-right: 10px;
-  left: 435.33px;
-  top: 12px;
-  position: absolute;
-  opacity: 0;
-  background: var(--color-white--80p, rgba(255, 254.99, 254.98, 0.80));
-  border-radius: 10px;
-  justify-content: center;
-  align-items: center;
-  display: inline-flex;
-}
-
+ 
 .container_21 {
   justify-content: flex-start;
   align-items: center;
   gap: 4px;
   display: flex;
 }
-
-.button_16 {
-  height: 32px;
-  padding-left: 10px;
-  padding-right: 10px;
-  left: 435.34px;
-  top: 12px;
-  position: absolute;
-  opacity: 0;
-  background: var(--color-white--80p, rgba(255, 254.99, 254.98, 0.80));
-  border-radius: 10px;
-  justify-content: center;
-  align-items: center;
-  display: inline-flex;
-}
+ 
 
 .container_28 {
   justify-content: flex-start;
@@ -4646,21 +3722,7 @@ function divideBy100(montantString) {
   gap: 4px;
   display: flex;
 }
-
-.button_17 {
-  height: 32px;
-  padding-left: 10px;
-  padding-right: 10px;
-  left: 435.33px;
-  top: 12px;
-  position: absolute;
-  opacity: 0;
-  background: var(--color-white--80p, rgba(255, 254.99, 254.98, 0.80));
-  border-radius: 10px;
-  justify-content: center;
-  align-items: center;
-  display: inline-flex;
-}
+ 
 
 .container_35 {
   justify-content: flex-start;
@@ -4668,21 +3730,7 @@ function divideBy100(montantString) {
   gap: 4px;
   display: flex;
 }
-
-.button_18 {
-  height: 32px;
-  padding-left: 10px;
-  padding-right: 10px;
-  left: 435.33px;
-  top: 12px;
-  position: absolute;
-  opacity: 0;
-  background: var(--color-white--80p, rgba(255, 254.99, 254.98, 0.80));
-  border-radius: 10px;
-  justify-content: center;
-  align-items: center;
-  display: inline-flex;
-}
+ 
 
 .container_42 {
   justify-content: flex-start;
@@ -4690,21 +3738,7 @@ function divideBy100(montantString) {
   gap: 4px;
   display: flex;
 }
-
-.button_19 {
-  height: 32px;
-  padding-left: 10px;
-  padding-right: 10px;
-  left: 435.34px;
-  top: 12px;
-  position: absolute;
-  opacity: 0;
-  background: var(--color-white--80p, rgba(255, 254.99, 254.98, 0.80));
-  border-radius: 10px;
-  justify-content: center;
-  align-items: center;
-  display: inline-flex;
-}
+ 
 
 .container_49 {
   justify-content: flex-start;
@@ -4828,7 +3862,7 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.button_27 {
+.button_useraccount {
   height: 30.40px;
   padding-left: 9.50px;
   padding-right: 9.50px;
@@ -4838,7 +3872,7 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.container_62 {
+.value__statements__number {
   align-self: stretch;
   justify-content: center;
   align-items: flex-start;
@@ -4846,7 +3880,7 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.margin {
+.footer__margin {
   width: 56px;
   height: 44px;
   padding-right: 12px;
@@ -4856,7 +3890,7 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.container_82 {
+.footer__colonnes {
   width: 352px;
   align-self: stretch;
   flex-direction: column;
@@ -4866,24 +3900,15 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.container_83 {
-  width: 352px;
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 16px;
-  display: inline-flex;
-}
 
-.container_89 {
+.footer__horizontal__list {
   align-self: stretch;
   justify-content: space-between;
   align-items: center;
   display: inline-flex;
 }
 
-.value__props {
+.hero__value__props {
   align-self: stretch;
   padding-top: 8px;
   justify-content: center;
@@ -4894,14 +3919,20 @@ function divideBy100(montantString) {
   align-content: flex-start;
 }
 
-.svgmargin {
-  width: 24px;
+.hero__cta__seller__svg {
+  width: 16px;
   height: 16px;
-  padding-left: 8px;
+
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+
+
+  flex: 1 1 0;
+  position: relative;
+
 }
 
 .link-carousel-link {
@@ -4909,7 +3940,7 @@ function divideBy100(montantString) {
   background: transparent;
 }
 
-.carousel__image {
+.hero__carousel__image {
   width: 424px;
   padding: 1px;
   position: relative;
@@ -4941,7 +3972,7 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.svgmargin_01 {
+.gridmarket__container__card__button-filter-svgmargin {
   width: 24px;
   height: 16px;
   padding-right: 8px;
@@ -4950,6 +3981,19 @@ function divideBy100(montantString) {
   align-items: flex-start;
   display: inline-flex;
 }
+
+
+.gridmarket__container__card__button-filter-svg {
+  width: 16px;
+  height: 16px;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+
 
 .border {
   padding: 1px;
@@ -4961,20 +4005,9 @@ function divideBy100(montantString) {
   display: flex;
 }
 
+ 
 
-.container_12 {
-  align-self: stretch;
-  justify-content: space-between;
-  align-items: center;
-  display: inline-flex;
-}
-
-.background,
-.background_02,
-.background_04,
-.background_06,
-.background_08,
-.background_10 {
+.gridmarket__container_background {
   align-self: stretch;
   position: relative;
   background: var(--color-orange-20, #3A342E);
@@ -4987,7 +4020,7 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.container_19 {
+.contagridmarket__contener__price {
   align-self: stretch;
   justify-content: flex-start;
   align-items: center;
@@ -4995,62 +4028,27 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-
-.container_26 {
+  
+.gridmarket__contener__description_price {
   align-self: stretch;
   justify-content: space-between;
   align-items: center;
   display: inline-flex;
 }
 
-
-.container_33 {
-  align-self: stretch;
-  justify-content: space-between;
-  align-items: center;
-  display: inline-flex;
-}
-
-
-.container_40 {
-  align-self: stretch;
-  justify-content: space-between;
-  align-items: center;
-  display: inline-flex;
-}
-
-
-
-.container_47 {
-  align-self: stretch;
-  justify-content: space-between;
-  align-items: center;
-  display: inline-flex;
-}
-
-.container_54 {
+.value__statements__cards_background__container_txt_3 {
   align-self: stretch;
   height: 248px;
   position: relative;
 }
 
-.container_56 {
+.value__statements__cards_background__container{
   align-self: stretch;
   height: 204px;
   position: relative;
 }
-
-.container_58 {
-  align-self: stretch;
-  height: 204px;
-  position: relative;
-}
-
-.container_60 {
-  align-self: stretch;
-  height: 204px;
-  position: relative;
-}
+ 
+ 
 
 .buttonmargin {
   height: 32px;
@@ -5070,7 +4068,7 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.container_86 {
+.footer__newsletter__mail {
   align-self: stretch;
   justify-content: flex-start;
   align-items: flex-start;
@@ -5099,14 +4097,14 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.container_78 {
+.footer__part__un {
   align-self: stretch;
   justify-content: flex-start;
   align-items: center;
   display: inline-flex;
 }
 
-.call__sell {
+.hero__call__sell {
   height: 40px;
   padding: 16px;
   background: linear-gradient(170deg, var(--color-yellow-52, #D4AF37) 0%, var(--color-orange-47, #C19B2E) 100%);
@@ -5119,7 +4117,7 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.carousel__description {
+.hero__carousel__description {
   width: 424px;
   flex-direction: column;
   justify-content: flex-start;
@@ -5140,7 +4138,7 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.button_04 {
+.gridmarket__container__card__button-filter {
   height: 32px;
   padding-top: 5.50px;
   padding-bottom: 6.50px;
@@ -5155,8 +4153,9 @@ function divideBy100(montantString) {
   gap: 6px;
   display: flex;
 }
+ 
 
-.container_10 {
+.gridmarket__contener__description {
   align-self: stretch;
   padding: 16px;
   flex-direction: column;
@@ -5166,57 +4165,7 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.container_17 {
-  align-self: stretch;
-  padding: 16px;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 8px;
-  display: flex;
-}
-
-.container_24 {
-  align-self: stretch;
-  padding: 16px;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 8px;
-  display: flex;
-}
-
-.container_31 {
-  align-self: stretch;
-  padding: 16px;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 8px;
-  display: flex;
-}
-
-.container_38 {
-  align-self: stretch;
-  padding: 16px;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 8px;
-  display: flex;
-}
-
-.container_45 {
-  align-self: stretch;
-  padding: 16px;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 8px;
-  display: flex;
-}
-
-.backgroundbordershadow_06 {
+.value__statements__cards_background_border_shadow  {
   width: 206px;
   align-self: stretch;
   padding: 1px;
@@ -5233,73 +4182,13 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.backgroundbordershadow_07 {
-  width: 206px;
-  align-self: stretch;
-  padding: 1px;
-  position: relative;
-  background: var(--color-orange-14, #2A241E);
-  box-shadow: 0px 4px 20px rgba(212, 175, 55, 0.15);
-  overflow: hidden;
-  border-radius: 16px;
-  outline: 1px var(--color-yellow-52-30p, rgba(212, 175, 55, 0.30)) solid;
-  outline-offset: -1px;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: inline-flex;
-}
-
-.backgroundbordershadow_08 {
-  width: 206px;
-  align-self: stretch;
-  padding: 1px;
-  position: relative;
-  background: var(--color-orange-14, #2A241E);
-  box-shadow: 0px 4px 20px rgba(212, 175, 55, 0.15);
-  overflow: hidden;
-  border-radius: 16px;
-  outline: 1px var(--color-yellow-52-30p, rgba(212, 175, 55, 0.30)) solid;
-  outline-offset: -1px;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: inline-flex;
-}
-
-.backgroundbordershadow_09 {
-  width: 206px;
-  align-self: stretch;
-  padding: 1px;
-  position: relative;
-  background: var(--color-orange-14, #2A241E);
-  box-shadow: 0px 4px 20px rgba(212, 175, 55, 0.15);
-  overflow: hidden;
-  border-radius: 16px;
-  outline: 1px var(--color-yellow-52-30p, rgba(212, 175, 55, 0.30)) solid;
-  outline-offset: -1px;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: inline-flex;
-}
-
-.container_81 {
+.footer__part__trois {
   align-self: stretch;
   justify-content: flex-start;
   align-items: flex-start;
   display: inline-flex;
 }
 
-.container_84 {
-  width: 352px;
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 16px;
-  display: inline-flex;
-}
 
 .usermenu {
   padding-left: 0.90px;
@@ -5312,7 +4201,7 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.call__toaction {
+.hero__call__toaction {
   align-self: stretch;
   padding-bottom: 24px;
   justify-content: center;
@@ -5321,7 +4210,7 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.carousel__view {
+.hero__carousel__view {
   width: 880px;
   left: 8px;
   top: 88px;
@@ -5332,17 +4221,17 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.container_05 {
+.gridmarket__container__card__icons {
   justify-content: flex-start;
   align-items: center;
   gap: 16px;
   display: flex;
 }
 
-.container_08,
-.container_15,
-.container_29,
-.container_36 {
+.gridmarket__container_line1-col1,
+.gridmarket__container_line1-col2,
+.gridmarket__container_line2-col1,
+.gridmarket__container_line2-col2 {
   align-self: stretch;
   flex-direction: column;
   justify-content: flex-start;
@@ -5350,7 +4239,7 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.container_22 {
+.gridmarket__container_line1-col3 {
   align-self: stretch;
   flex-direction: column;
   justify-content: flex-start;
@@ -5359,7 +4248,7 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.container_43 {
+.gridmarket__container_line2-col3 {
   align-self: stretch;
   flex-direction: column;
   justify-content: flex-start;
@@ -5368,7 +4257,7 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.container_53 {
+.value__statements__cards_txt3 {
   align-self: stretch;
   padding-top: 32px;
   justify-content: center;
@@ -5377,7 +4266,7 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.container_77 {
+.footer__list {
   width: 352px;
   align-self: stretch;
   flex-direction: column;
@@ -5387,7 +4276,7 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.container_92 {
+.header__landing__container__logo {
   width: 1504px;
   height: 48px;
   left: 200px;
@@ -5399,13 +4288,13 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.carousel {
+.hero__carousel {
   align-self: stretch;
   height: 620px;
   position: relative;
 }
 
-.container_02 {
+.gridmarket__container__card {
   align-self: stretch;
   justify-content: space-between;
   align-items: center;
@@ -5435,24 +4324,19 @@ function divideBy100(montantString) {
 
 
 .background-border-shadow-line1-col1 {
-
   left: 0px;
   top: 0px;
 }
 
 
 .background-border-shadow-line1-col2 {
-
   left: 509.33px;
   top: 0px;
-
 }
 
 .background-border-shadow-line1-col3 {
-
   left: 1018.66px;
   top: 0px;
-
 }
 
 .background-border-shadow-line2-col1 {
@@ -5471,7 +4355,7 @@ function divideBy100(montantString) {
 }
 
 
-.container_51 {
+.value__statements__cards {
   width: 896px;
   max-width: 896px;
   flex-direction: column;
@@ -5481,7 +4365,7 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.container_76 {
+.footer__container_landing_list {
   align-self: stretch;
   justify-content: center;
   align-items: flex-start;
@@ -5489,7 +4373,7 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.header {
+.header__landing {
   width: 1905px;
   height: 74px;
   left: 0px;
@@ -5517,13 +4401,13 @@ function divideBy100(montantString) {
   display: inline-flex;
 }
 
-.container_07 {
+.gridmarket__list__cards {
   align-self: stretch;
   height: 1282.69px;
   position: relative;
 }
 
-.container_50 {
+.statements__container {
   width: 100%;
   max-width: 1536px;
   padding-left: 16px;
@@ -5535,7 +4419,7 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.container_75 {
+.footer__container_landing {
   width: 100%;
   max-width: 1536px;
   padding-left: 16px;
@@ -5552,13 +4436,11 @@ function divideBy100(montantString) {
 .hero {
   align-self: stretch;
   height: 1050px;
-
-
   position: relative;
   background: var(--color-orange-9, #1A1612);
 }
 
-.container_01 {
+.gridmarket__container {
   width: 100%;
   max-width: 1536px;
   padding-left: 16px;
@@ -5570,7 +4452,7 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.value-statements {
+.value__statements {
   align-self: stretch;
   padding-left: 184.50px;
   padding-right: 184.50px;
@@ -5583,7 +4465,7 @@ function divideBy100(montantString) {
   display: flex;
 }
 
-.footer {
+.footer__landing {
   width: 1905px;
   padding-left: 184.50px;
   padding-right: 184.50px;
@@ -5616,8 +4498,6 @@ function divideBy100(montantString) {
   justify-content: flex-start;
   align-items: flex-start;
   display: inline-flex;
-
-
 }
 
 .no-underline {
@@ -5636,15 +4516,10 @@ function divideBy100(montantString) {
 
 
 .vector__mailbox {
-
   width: 16px;
-  /*13.33px;*/
   height: 16px;
-  /*10.67px;*/
   left: 0px;
-  /*  1.33px;*/
   top: 0px;
-  /* 2.67px;*/
   position: absolute;
 
 }
@@ -5668,5 +4543,19 @@ function divideBy100(montantString) {
 .controls {
   text-align: center;
   margin-top: 1.5rem;
+}
+
+
+
+.value__statements__container {
+  width: 100%;
+  max-width: 1536px;
+  padding-left: 16px;
+  padding-right: 16px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 64px;
+  display: flex;
 }
 </style>
