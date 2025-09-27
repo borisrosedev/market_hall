@@ -1,9 +1,9 @@
 <template>
   
   <ToastOverlay />
-  <NavBar />
+  <!--<NavBar />-->
   <RouterView />
-  <FooterBar />
+  <!--<FooterBar />-->
 </template>
 <script setup lang="ts">
 import NavBar from "./layout/NavBar.vue";

@@ -15,7 +15,6 @@ import CartPage from "./pages/session-required-pages/CartPage.vue";
 import OrderPage from "./pages/session-required-pages/OrderPage.vue";
 import OrderAddress from "./pages/session-required-pages/order-pages/OrderAddress.vue";
 import OrderSummary from "./pages/session-required-pages/order-pages/OrderSummary.vue";
-import LandingPageTest from "./pages/LandingPageTest.vue"; //En Test  
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -25,12 +24,6 @@ const router = createRouter({
       component: LandingPage,
       alias: "/landing",
     }, 
-    {
-      path: "/test",
-      component: LandingPageTest,
-      alias: "/landingtest", 
-    }, 
-    
     {
       path: "/login",
       component: LoginPage,
