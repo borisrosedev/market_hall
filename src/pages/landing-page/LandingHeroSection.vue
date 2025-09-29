@@ -13,7 +13,9 @@
             <CustomIconShortMessageComponent v-for="(v, i) of valuePropositions" :key="i" :data="v" />
         </section>
         <section class="landing__hero-cta-section">
-            <CustomButtonWithOptionalIcon v-for="(cta, i) of heroCallToActions" :key="i" :data="cta" />
+            <RouterLink to="/products"   class="no-underline">
+                <CustomButtonWithOptionalIcon v-for="(cta, i) of heroCallToActions" :key="i" :data="cta" />
+            </RouterLink>
         </section>
         <section class="landing__hero-carousel-and-best-products-sections">
 
@@ -22,7 +24,7 @@
                 <CustomCarouselIntroductionWithLeftRightButtons :data="carouselIntroductionData" />
             </section>
             <section class="landing__hero-carousel-best-products-section">
-                <CustomBestProductCard  :data="customBestProductCardExample" />
+                <CustomBestProductCard :data="customBestProductCardExample" />
             </section>
 
         </section>
@@ -62,7 +64,7 @@ const customBestProductCardExample = {
     likes: 25,
     views: 129,
     price_cents: 2850,
-    seller : 'Maison Dubois Antiquités'
+    seller: 'Maison Dubois Antiquités'
 }
 
 const valuePropositions = [
@@ -107,17 +109,15 @@ const heroCallToActions = [
 </script>
 
 <style lang="scss">
-
 .landing__hero-carousel-and-best-products-sections {
     margin-block: 30px;
     width: 50%;
 }
-.landing__hero-carousel-best-products-section {
-    
-}
-.landing__hero-carousel-introduction-section {
 
-}
+.landing__hero-carousel-best-products-section {}
+
+.landing__hero-carousel-introduction-section {}
+
 .landing__hero-value-propositions-section {
     display: flex;
     justify-content: space-between;
@@ -129,6 +129,7 @@ const heroCallToActions = [
     margin-block: 20px;
     width: 40%;
     justify-content: space-between;
+
     button {
         margin-inline: 10px;
     }
@@ -188,15 +189,16 @@ const heroCallToActions = [
 .hero__cta--primary {
     background-color: #D4AF37;
     color: #271f17;
+
     img {
         margin-inline-start: 5px;
     }
 }
 
 .hero__cta--secondary {
- background-color: #403327;
- color:  #D4AF37;
- border: solid #D4AF37 1px;
+    background-color: #403327;
+    color: #D4AF37;
+    border: solid #D4AF37 1px;
 
 }
 
@@ -216,4 +218,13 @@ const heroCallToActions = [
         }
     }
 }
+
+
+.no-underline {
+  text-decoration: none;
+  display: flex;
+  color: inherit;
+}
+
+
 </style>
