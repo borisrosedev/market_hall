@@ -3,15 +3,15 @@
         <section class="landing_best-examples-header">
             <CustomTitleBestExampleElement :data="titleComponentData" />
         </section>
-        <section class="landing_best-examples-category">
-
+        <section class="landing_best-examples-category"> 
+            <CustomCardCategoryBestProduct :category="listCategoryComponentData" />
         </section>
         <section class="landing_best-examples-grid-container">
             <section class="landing_best-examples-grid">
                 <CardGridBestProduct :grid="gridComponentDataLine1Col1" />
                 <CardGridBestProduct :grid="gridComponentDataLine1Col2" />
                 <CardGridBestProduct :grid="gridComponentDataLine1Col3" />
-              <CardGridBestProduct :grid="gridComponentDataLine2Col1" />
+                <CardGridBestProduct :grid="gridComponentDataLine2Col1" />
                 <CardGridBestProduct :grid="gridComponentDataLine2Col2" />
                 <CardGridBestProduct :grid="gridComponentDataLine2Col3" />
             </section>
@@ -22,6 +22,7 @@
 <script setup lang="ts">
 import CustomTitleBestExampleElement from "../../components/shared-components/CustomTitleBestExampleElement.vue"
 import CardGridBestProduct from "../../components/card-components/CardGridBestProduct.vue"
+import CustomCardCategoryBestProduct from "../../components/shared-components/CustomCardCategoryBestProduct.vue"
 
 const titleComponentData = {
     title: "Marketplace",
@@ -31,7 +32,37 @@ const titleComponentData = {
     hasFilter: true
 }
 
-const gridComponentDataLine1Col1 = { 
+
+const listCategoryComponentData = {
+  
+    
+     tags: [
+        
+        {
+            content: 'Mobilier',
+            className : 'mobilier_span' 
+            
+        }, {
+            content: 'Art Décoratif',
+            className : 'mobilier_span'
+        }, {
+            content: 'Horlogerie',
+            className : 'mobilier_span'
+        }, {
+            content: 'Peinture',
+            className : 'mobilier_span'
+        }, {
+            content: 'Luminaires',
+            className : 'mobilier_span'
+        }
+        , {
+            content: 'Bijoux',
+            className : 'mobilier_span'
+        }
+    ]
+}
+
+const gridComponentDataLine1Col1 = {
     className: "background-border-shadow-line1-col1"
 }
 
@@ -43,7 +74,7 @@ const gridComponentDataLine1Col3 = {
     className: "background-border-shadow-line1-col3"
 }
 
-const gridComponentDataLine2Col1 = { 
+const gridComponentDataLine2Col1 = {
     className: "background-border-shadow-line2-col1"
 }
 
@@ -59,18 +90,12 @@ const gridComponentDataLine2Col3 = {
 </script>
 <style lang="scss">
 .landing_best-examples-category {
-    align-self: stretch;
-    padding-left: 184.50px;
-    padding-right: 184.50px;
-    padding-top: 64px;
-    padding-bottom: 64px;
-    background: var(--color-orange-9, #1A1612);
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    display: flex;
-
-
+   
+   display: flex;
+  align-items: flex-start; /* Alignement vertical en haut */
+  justify-content: flex-start; /* Alignement horizontal à gauche */
+  gap: 10px; /* Espacement entre les div (optionnel) */
+//  border: 1px solid #ccc; /* Pour visualiser le conteneur */
 }
 
 .landing_best-examples-grid-container {
@@ -93,12 +118,13 @@ const gridComponentDataLine2Col3 = {
 }
 
 .landing__best-examples-section {
+    
     background-color: #1c1710;
     min-height: 100vh;
     padding: 20px;
     display: flex;
     flex-direction: column;
-
+gap:32px;
     align-items: center;
 }
 
@@ -108,7 +134,7 @@ const gridComponentDataLine2Col3 = {
     flex-direction: column;
     align-items: center;
 }
- 
+
 .best-examples__title-color {
     color: var(--color-grey-95, #F6F3EE);
     font-size: 28.36px;
