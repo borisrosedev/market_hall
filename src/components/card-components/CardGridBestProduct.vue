@@ -1,0 +1,369 @@
+<template>
+    
+    <RouterLink :to="`/product-detail/${grid.gridLine1Col1}`" >
+        <p>{{  grid.className  ?? ''}}</br></p>
+        <section :class="grid.className ?? ''" class="cards-grid-border-shadow">
+ 
+        </section>
+    </RouterLink>
+ 
+</template>
+<script setup lang="ts">
+import { ref, computed } from 'vue'
+
+import { gsap } from 'gsap'
+import { useProductsStore } from "../../stores/products-store"
+import { storeToRefs } from "pinia"
+
+
+const productsStore = useProductsStore()
+const { getProductByNb } = productsStore
+const { productsGetterLimited } = storeToRefs(productsStore)
+
+
+
+
+// References
+const carouselWrapper = ref<HTMLElement>()
+const carouselTrack = ref<HTMLElement>()
+
+// State
+const currentSlide = ref(0)
+const slideWidth = ref(0)
+
+// Currently we start with 0 
+const gridLine1Col1 = 0;
+
+
+
+// GSAP Variables 
+let autoPlayInterval: NodeJS.Timeout | null = null
+let tl: gsap.core.Timeline
+
+
+// Calculated 
+const calculateSlideWidth = () => {
+    if (carouselWrapper.value) {
+        slideWidth.value = carouselWrapper.value.offsetWidth
+    }
+}
+
+
+
+
+
+function divideBy100(montantString) {
+    /*
+     const montant = parseFloat(montantString);
+     if (isNaN(montant)) {
+         return '<span style="color: red;">Erreur : Montant invalide</span>';
+     }
+     const resultat = montant / 100;
+     */
+    const resultat = "0"
+    return `${resultat}`;
+}
+
+const bestProductCallToActions = [
+    {
+        context: 'detail',
+        content: 'Voir les détails',
+        classNames: 'custom-best-product-card-cta custom-best-product-card-cta--primary',
+        ariaLabel: 'the button to show detail'
+    },
+    {
+        context: 'contact',
+        content: 'Contacter le veudeur',
+        classNames: 'custom-best-product-card-cta custom-best-product-card-cta--secondary',
+        ariaLabel: 'the button to contact the seller'
+    }
+]
+const userId = ref(0);
+interface CardGridBestProductProps {
+    grid: {
+
+        name?: string
+        gridLine1Col1: BigInteger
+        photo_name?: string
+        className : string
+    }
+}
+
+
+const props = defineProps<CardGridBestProductProps>();
+
+</script>
+
+<style lang="scss">
+.no-underline {
+    text-decoration: none;
+    color: inherit;
+}
+
+.custom-best-product-card {
+    display: flex;
+
+}
+
+.custom-best-product-card__price {
+    font-size: 25px;
+    font-weight: 400;
+}
+
+.custom-best-product-card__seller-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #d3bf80;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+    margin-block: 10px;
+}
+
+.custom-best-product-card__social-proof {
+    display: flex;
+    color: #d3bf80;
+
+    article {
+        margin-inline-end: 10px;
+        margin-block: 10px;
+        display: flex;
+        align-items: center;
+
+        span {
+            margin-inline-start: 10px;
+        }
+    }
+
+}
+
+
+.custom-best-product-card__cta-section {
+    display: flex;
+    margin-block: 10px;
+}
+
+.custom-best-product-card__h3 {
+    font-size: 18px;
+    text-align: center;
+    color: #ffffff;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+}
+
+.custom-best-product-card__figure {
+    position: relative;
+    display: flex;
+    width: 40%;
+
+    img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+
+    button {
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 10px;
+        right: 10px;
+        top: 10px;
+        z-index: 10;
+    }
+}
+
+
+.custom-best-product-card__info {
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    width: 60%;
+
+}
+
+.custom-best-product-card__tag {
+    background-color: #403327;
+    color: #D4AF37;
+    border-radius: 20px;
+    font-size: 11px;
+    padding-inline: 10px;
+    padding-block: 4px;
+}
+
+
+
+.custom-best-product-card-cta {
+    border-radius: 10px;
+    padding-inline: 35px;
+    padding-block: 10px;
+    font-size: 12px;
+    margin-inline-end: 10px;
+    border: none;
+    display: flex;
+    align-items: center;
+}
+
+.custom-best-product-card-cta--primary {
+    background-color: #D4AF37;
+    color: #271f17;
+
+    img {
+        margin-inline-start: 5px;
+    }
+}
+
+.custom-best-product-card-cta--secondary {
+    background-color: #403327;
+    color: #D4AF37;
+    border: solid #D4AF37 1px;
+
+}
+
+
+.cards-grid-border-shadow {
+
+     
+    width: 485.33px;
+    padding-top: 1px;
+    padding-bottom: 25.01px;
+    padding-left: 1px;
+    padding-right: 1px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    background: var(--color-orange-14, #2A241E);
+    box-shadow: 0px 4px 20px rgba(212, 175, 55, 0.15);
+    overflow: hidden;
+    border-radius: 16px;
+    outline: 1px var(--color-yellow-52-30p, rgba(212, 175, 55, 0.30)) solid;
+    outline-offset: -1px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: inline-flex;
+
+     width: 483.33px;
+  height: 627.34px;
+  left: 1px;
+  top: 1px;
+  position: absolute;
+  background: linear-gradient(128deg, var(--color-yellow-52-2p, rgba(212, 175, 55, 0.02)) 0%, var(--color-yellow-52-0p, rgba(212, 175, 55, 0)) 50%, var(--color-orange-44-2p, rgba(139, 115, 85, 0.02)) 100%);
+ 
+  align-self: stretch;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: flex;
+
+   align-self: stretch;
+  position: relative;
+  background: var(--color-orange-20, #3A342E);
+  overflow: hidden;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: flex;
+width: 485.33px;
+  padding-top: 1px;
+  padding-bottom: 25.01px;
+  padding-left: 1px;
+  padding-right: 1px;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  background: var(--color-orange-14, #2A241E);
+  box-shadow: 0px 4px 20px rgba(212, 175, 55, 0.15);
+  overflow: hidden;
+  border-radius: 16px;
+  outline: 1px var(--color-yellow-52-30p, rgba(212, 175, 55, 0.30)) solid;
+  outline-offset: -1px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: inline-flex;
+
+}
+ 
+.background-border-shadow-line1-col1 {
+
+  left: 0px;
+  top: 0px;
+}
+
+
+.background-border-shadow-line1-col2 {
+
+  left: 509.33px;
+  top: 0px;
+
+}
+
+.background-border-shadow-line1-col3 {
+
+  left: 1018.66px;
+  top: 0px;
+
+}
+
+.background-border-shadow-line2-col1 {
+  left: 0px;
+  top: 653.34px;
+}
+
+.background-border-shadow-line2-col2 {
+  left: 509.33px;
+  top: 653.34px;
+}
+
+.background-border-shadow-line2-col3 {
+  left: 1018.66px;
+  top: 653.34px;
+}
+
+
+.cards-grid-border-contener {
+    width: 483.33px;
+    height: 627.34px;
+    left: 1px;
+    top: 1px;
+    position: absolute;
+    background: linear-gradient(128deg, var(--color-yellow-52-2p, rgba(212, 175, 55, 0.02)) 0%, var(--color-yellow-52-0p, rgba(212, 175, 55, 0)) 50%, var(--color-orange-44-2p, rgba(139, 115, 85, 0.02)) 100%);
+}
+
+.cards-grid-border-contener-image {
+    align-self: stretch;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: flex;
+}
+
+.cards-grid-border-contener-image-background {
+    align-self: stretch;
+    position: relative;
+    background: var(--color-orange-20, #3A342E);
+    overflow: hidden;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: flex;
+}
+
+
+.cards-grid-border-contener-image-detail {
+    align-self: stretch;
+    padding: 16px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 8px;
+    display: flex;
+}
+</style>
