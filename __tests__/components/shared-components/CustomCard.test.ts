@@ -10,6 +10,7 @@ test('it should get a alt with the name of the objet on the ui', () => {
             obj: {
                 url:"http://zouk./",
                 name: "Old Piano",
+                price_cents: price,
                 listItems: [
                     {
                     content: `price: ${price}`
@@ -20,7 +21,7 @@ test('it should get a alt with the name of the objet on the ui', () => {
         }
     })
 
-    expect(getByText(`price: ${price}`)).toBeTruthy()
+    expect(getByText(`${price} €`)).toBeTruthy()
     expect(getByAltText("Image of Old Piano")).toBeTruthy()
 
 
@@ -30,11 +31,12 @@ test('it should get a alt with the name of the objet on the ui', () => {
 
 test('it should get a 50.00 price on the ui', () => {
     const price = 50.00
-    const { getByAltText, getByText  } = render(CustomCard, {
+    const { getByAltText, getByText ,container } = render(CustomCard, {
         props: {
             obj: {
                 url:"http://zouk./",
                 name: "Old Piano",
+                price_cents: price,
                 listItems: [
                     {
                     content: `price: ${price}`
@@ -44,8 +46,8 @@ test('it should get a 50.00 price on the ui', () => {
             }
         }
     })
-
-    expect(getByText(`price: ${price}`)).toBeTruthy()
+    
+    expect(getByText(`${price} €`)).toBeTruthy()
 
 
 
