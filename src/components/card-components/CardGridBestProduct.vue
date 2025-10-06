@@ -1,23 +1,56 @@
 <template>
-    <p>num {{ grid.gridId }} {{ productsGetterLimited?.length }}</p>
     <RouterLink :to="`/product-detail/${grid.gridId}`">
-        <p>{{ grid.className ?? '' }}</br></p>
         <div v-if="productsGetterLimited?.length > 0">
 
-
             <section :class="grid.className ?? ''" class="cards-grid-border-marketplace">
-                <figure :class="grid.className ?? ''" class="cards-grid-border-img">
+
+
+                <figure :class="grid.className ?? ''" class="cards-grid-marketplace-img">
+
                     <img :src="'http://localhost:5000/static/files/' + productsGetterLimited[grid.gridId].photo_name"
                         :alt="productsGetterLimited[grid.gridId].name" class="marketplace-picture">
-                </figure>
-            </section>
-            <section :class="grid.className ?? ''" class="cards-grid-border-shadow">
+                    <div class="cards-grid-marketplace-label-card"><span
+                            class="cards-grid-marketplace-label-card-span">Label</span>
 
+                    </div>
+
+                </figure>
+
+                <section class="cards-grid-marketplace-description">
+                    <section class="cards-grid-marketplace-product-name"><span
+                            class="cards-grid-marketplace-product-name-span">{{ productsGetterLimited[grid.gridId].name
+                            }} : {{ productsGetterLimited[grid.gridId].description }}</span>
+                    </section>
+                    <section class="cards-grid-marketplace-product-seller"><span
+                            class="cards-grid-marketplace-product-seller-span">Antiquités Martin •
+                            Paris</span>
+                    </section>
+
+                    <section class="cards-grid-marketplace-product-price">
+                        <span class="cards-grid-marketplace-product-price-span">{{
+                            divideBy100(productsGetterLimited[grid.gridId].price_cents) }}
+                            €</span>
+                        <div class="cards-grid-marketplace-product-price-spacing">
+
+                        </div>
+
+                        <img src="/src/assets/icons/eye.svg" alt="eye"
+                            class="cards-grid-marketplace-product-see-icon" />
+                        <span class="cards-grid-marketplace-product-see-span">45</span>
+                        <section class="cards-grid-marketplace-product-nb-vue">
+                        </section>
+
+                    </section>
+                </section>
             </section>
+
         </div>
-        <div v-else class="cards-grid-border-marketplace-empty">
-            <img src="../assets/icons/camera-off-line.svg" alt="camera-off-line" class="marketplace-picture" />
+        <div v-else :class="grid.className ?? ''"
+            class="cards-grid-border-marketplace cards-grid-border-marketplace-empty">
+            <img src="/src/assets/icons/camera-off-line.svg" alt="camera-off-line" class="cards-grid-marketplace-img" />
         </div>
+
+
     </RouterLink>
 
 </template>
@@ -66,14 +99,14 @@ const calculateSlideWidth = () => {
 
 
 function divideBy100(montantString) {
-    /*
-     const montant = parseFloat(montantString);
-     if (isNaN(montant)) {
-         return '<span style="color: red;">Erreur : Montant invalide</span>';
-     }
-     const resultat = montant / 100;
-     */
-    const resultat = "0"
+
+    const montant = parseFloat(montantString);
+    if (isNaN(montant)) {
+        return '<span style="color: red;">Erreur : Montant invalide</span>';
+    }
+    const resultat = montant / 100;
+
+
     return `${resultat}`;
 }
 
@@ -246,16 +279,12 @@ onMounted(async () => {
 
 
 .cards-grid-border-marketplace {
- 
-
     height: 627.34px;
-    
     width: 485.33px;
     padding-top: 1px;
     padding-bottom: 25.01px;
     padding-left: 1px;
     padding-right: 1px;
-   
     position: absolute;
     background: var(--color-orange-14, #2A241E);
     box-shadow: 0px 4px 20px rgba(212, 175, 55, 0.15);
@@ -346,5 +375,126 @@ onMounted(async () => {
     align-items: flex-start;
     gap: 8px;
     display: flex;
+}
+
+.cards-grid-marketplace-label-card {
+    left: 12px;
+    top: 447.33px;
+    position: absolute;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    background: var(--color-yellow-52, #D4AF37);
+    border-radius: 4px;
+    align-items: flex-start;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.cards-grid-marketplace-label-card-span {
+    color: var(--color-orange-9, #1A1612);
+    font-size: 10.50px;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: 16px;
+    word-wrap: break-word;
+}
+
+.cards-grid-marketplace-description {
+    align-self: stretch;
+    padding: 16px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 8px;
+    display: flex;
+}
+
+.cards-grid-marketplace-product-name {
+    overflow: hidden;
+    align-items: flex-start;
+
+    align-self: stretch;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.cards-grid-marketplace-product-name-span {
+
+    color: var(--color-grey-95, #F6F3EE);
+    font-size: 15px;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: 24px;
+    word-wrap: break-word;
+}
+
+.cards-grid-marketplace-product-seller-span {
+    align-items: flex-start;
+    align-self: stretch;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: var(--color-orange-68, #C4B895);
+    font-size: 12.91px;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: 20px;
+    word-wrap: break-word;
+}
+
+.cards-grid-marketplace-product-price {
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+    display: flex;
+}
+
+.cards-grid-marketplace-product-price-span {
+    color: var(--color-yellow-52, #D4AF37);
+    font-size: 18.28px;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: 28px;
+    word-wrap: break-word;
+}
+
+.cards-grid-marketplace-product-see-span {
+    align-items: center;
+    gap: 4px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: var(--color-orange-68, #C4B895);
+    font-size: 10.50px;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: 16px;
+    word-wrap: break-word;
+}
+
+
+.cards-grid-marketplace-product-see-icon {
+    width: 16px;
+    height: 20px;
+    align-self: stretch;
+    padding-top: 1.50px;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+    display: flex;
+}
+
+.cards-grid-marketplace-product-nb-vue {
+    align-items: left;
+}
+
+.cards-grid-marketplace-product-price-spacing {
+    width: 320px;
+    height: 12px;
+    position: relative;
 }
 </style>
