@@ -1,15 +1,28 @@
 <template>
-    
-    <RouterLink :to="`/product-detail/${grid.gridLine1Col1}`" >
-        <p>{{  grid.className  ?? ''}}</br></p>
-        <section :class="grid.className ?? ''" class="cards-grid-border-shadow">
- 
-        </section>
+    <p>num {{ grid.gridId }} {{ productsGetterLimited?.length }}</p>
+    <RouterLink :to="`/product-detail/${grid.gridId}`">
+        <p>{{ grid.className ?? '' }}</br></p>
+        <div v-if="productsGetterLimited?.length > 0">
+
+
+            <section :class="grid.className ?? ''" class="cards-grid-border-marketplace">
+                <figure :class="grid.className ?? ''" class="cards-grid-border-img">
+                    <img :src="'http://localhost:5000/static/files/' + productsGetterLimited[grid.gridId].photo_name"
+                        :alt="productsGetterLimited[grid.gridId].name" class="marketplace-picture">
+                </figure>
+            </section>
+            <section :class="grid.className ?? ''" class="cards-grid-border-shadow">
+
+            </section>
+        </div>
+        <div v-else class="cards-grid-border-marketplace-empty">
+            <img src="../assets/icons/camera-off-line.svg" alt="camera-off-line" class="marketplace-picture" />
+        </div>
     </RouterLink>
- 
+
 </template>
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
 import { gsap } from 'gsap'
 import { useProductsStore } from "../../stores/products-store"
@@ -64,6 +77,8 @@ function divideBy100(montantString) {
     return `${resultat}`;
 }
 
+
+
 const bestProductCallToActions = [
     {
         context: 'detail',
@@ -83,14 +98,21 @@ interface CardGridBestProductProps {
     grid: {
 
         name?: string
-        gridLine1Col1: BigInteger
+        gridId: BigInteger
         photo_name?: string
-        className : string
+        className: string
     }
 }
 
 
 const props = defineProps<CardGridBestProductProps>();
+
+
+
+onMounted(async () => {
+
+    await getProductByNb(5)
+})
 
 </script>
 
@@ -223,16 +245,17 @@ const props = defineProps<CardGridBestProductProps>();
 }
 
 
-.cards-grid-border-shadow {
+.cards-grid-border-marketplace {
+ 
 
-     
+    height: 627.34px;
+    
     width: 485.33px;
     padding-top: 1px;
     padding-bottom: 25.01px;
     padding-left: 1px;
     padding-right: 1px;
-    left: 0px;
-    top: 0px;
+   
     position: absolute;
     background: var(--color-orange-14, #2A241E);
     box-shadow: 0px 4px 20px rgba(212, 175, 55, 0.15);
@@ -245,84 +268,42 @@ const props = defineProps<CardGridBestProductProps>();
     align-items: flex-start;
     display: inline-flex;
 
-     width: 483.33px;
-  height: 627.34px;
-  left: 1px;
-  top: 1px;
-  position: absolute;
-  background: linear-gradient(128deg, var(--color-yellow-52-2p, rgba(212, 175, 55, 0.02)) 0%, var(--color-yellow-52-0p, rgba(212, 175, 55, 0)) 50%, var(--color-orange-44-2p, rgba(139, 115, 85, 0.02)) 100%);
- 
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-
-   align-self: stretch;
-  position: relative;
-  background: var(--color-orange-20, #3A342E);
-  overflow: hidden;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-width: 485.33px;
-  padding-top: 1px;
-  padding-bottom: 25.01px;
-  padding-left: 1px;
-  padding-right: 1px;
-  left: 0px;
-  top: 0px;
-  position: absolute;
-  background: var(--color-orange-14, #2A241E);
-  box-shadow: 0px 4px 20px rgba(212, 175, 55, 0.15);
-  overflow: hidden;
-  border-radius: 16px;
-  outline: 1px var(--color-yellow-52-30p, rgba(212, 175, 55, 0.30)) solid;
-  outline-offset: -1px;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: inline-flex;
-
 }
- 
+
 .background-border-shadow-line1-col1 {
 
-  left: 0px;
-  top: 0px;
+    left: 0px;
+    top: 0px;
 }
 
 
 .background-border-shadow-line1-col2 {
 
-  left: 509.33px;
-  top: 0px;
+    left: 509.33px;
+    top: 0px;
 
 }
 
 .background-border-shadow-line1-col3 {
 
-  left: 1018.66px;
-  top: 0px;
+    left: 1018.66px;
+    top: 0px;
 
 }
 
 .background-border-shadow-line2-col1 {
-  left: 0px;
-  top: 653.34px;
+    left: 0px;
+    top: 653.34px;
 }
 
 .background-border-shadow-line2-col2 {
-  left: 509.33px;
-  top: 653.34px;
+    left: 509.33px;
+    top: 653.34px;
 }
 
 .background-border-shadow-line2-col3 {
-  left: 1018.66px;
-  top: 653.34px;
+    left: 1018.66px;
+    top: 653.34px;
 }
 
 
