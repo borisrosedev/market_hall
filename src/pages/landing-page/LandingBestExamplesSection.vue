@@ -63,27 +63,33 @@ const listCategoryComponentData = {
 }
 
 const gridComponentDataLine1Col1 = {
-    className: "background-border-shadow-line1-col1"
+    className: "background-border-shadow-line1-col1",
+    gridId: 1
 }
 
 const gridComponentDataLine1Col2 = {
-    className: "background-border-shadow-line1-col2"
+    className: "background-border-shadow-line1-col2",
+    gridId: 2
 }
 
 const gridComponentDataLine1Col3 = {
-    className: "background-border-shadow-line1-col3"
+    className: "background-border-shadow-line1-col3",
+    gridId: 3
 }
 
 const gridComponentDataLine2Col1 = {
-    className: "background-border-shadow-line2-col1"
+    className: "background-border-shadow-line2-col1",
+    gridId: 4
 }
 
 const gridComponentDataLine2Col2 = {
-    className: "background-border-shadow-line2-col2"
+    className: "background-border-shadow-line2-col2",
+    gridId: 5
 }
 
 const gridComponentDataLine2Col3 = {
-    className: "background-border-shadow-line2-col3"
+    className: "background-border-shadow-line2-col3",
+    gridId: 6
 }
 
 
