@@ -447,10 +447,11 @@ onMounted(async () => {
 }
 
 .cards-grid-marketplace-product-price {
-    justify-content: flex-start;
+    
     align-items: center;
     gap: 4px;
     display: flex;
+    justify-content: space-between;
 }
 
 .cards-grid-marketplace-product-price-span {
