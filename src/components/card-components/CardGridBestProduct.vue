@@ -10,10 +10,8 @@
                     <img :src="'http://localhost:5000/static/files/' + productsGetterLimited[grid.gridId].photo_name"
                         :alt="productsGetterLimited[grid.gridId].name" class="marketplace-picture">
                     <div class="cards-grid-marketplace-label-card"><span
-                            class="cards-grid-marketplace-label-card-span">Label</span>
-
-                    </div>
-
+                            class="cards-grid-marketplace-label-card-span">Label</span> 
+                    </div> 
                 </figure>
 
                 <section class="cards-grid-marketplace-description">
