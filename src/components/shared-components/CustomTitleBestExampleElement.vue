@@ -181,9 +181,7 @@ defineProps<CustomTitleBestExampleElementProps>()
     justify-content: center;
     align-items: center;
     display: flex;
-
-
-
+ 
     width: 16px;
     height: 16px;
     position: relative;
