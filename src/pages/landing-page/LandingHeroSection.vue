@@ -137,7 +137,7 @@ const heroCallToActions = [
 
 .landing__hero-section {
     background-color: #1c1710;
-    min-height: 100vh;
+    //min-height: 100vh;
     padding: 20px;
     display: flex;
     flex-direction: column;

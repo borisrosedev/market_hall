@@ -3,7 +3,7 @@
         <section class="landing_best-examples-header">
             <CustomTitleBestExampleElement :data="titleComponentData" />
         </section>
-        <section class="landing_best-examples-category"> 
+        <section class="landing_best-examples-category">
             <CustomCardCategoryBestProduct :category="listCategoryComponentData" />
         </section>
         <section class="landing_best-examples-grid-container">
@@ -15,7 +15,19 @@
                 <CardGridBestProduct :grid="gridComponentDataLine2Col2" />
                 <CardGridBestProduct :grid="gridComponentDataLine2Col3" />
             </section>
+            <section class="landing_best-examples-grid-button">
+                <section class="landing_best-examples-grid-cta">
+                    <RouterLink to="/products">
+                        <div class="landing_best-examples-grid-cta-name"><span
+                                class="landing_best-examples-grid-cta_span">Voir plus
+                                d'antiquités</span>
+                        </div>
+                    </RouterLink>
+                </section>
+            </section>
+
         </section>
+
     </section>
 </template>
 
@@ -34,30 +46,30 @@ const titleComponentData = {
 
 
 const listCategoryComponentData = {
-  
-    
-     tags: [
-        
+
+
+    tags: [
+
         {
             content: 'Mobilier',
-            className : 'mobilier_span' 
-            
+            className: 'mobilier_span'
+
         }, {
             content: 'Art Décoratif',
-            className : 'mobilier_span'
+            className: 'mobilier_span'
         }, {
             content: 'Horlogerie',
-            className : 'mobilier_span'
+            className: 'mobilier_span'
         }, {
             content: 'Peinture',
-            className : 'mobilier_span'
+            className: 'mobilier_span'
         }, {
             content: 'Luminaires',
-            className : 'mobilier_span'
+            className: 'mobilier_span'
         }
         , {
             content: 'Bijoux',
-            className : 'mobilier_span'
+            className: 'mobilier_span'
         }
     ]
 }
@@ -96,12 +108,15 @@ const gridComponentDataLine2Col3 = {
 </script>
 <style lang="scss">
 .landing_best-examples-category {
-   
-   display: flex;
-  align-items: flex-start; /* Alignement vertical en haut */
-  justify-content: flex-start; /* Alignement horizontal à gauche */
-  gap: 10px; /* Espacement entre les div (optionnel) */
-//  border: 1px solid #ccc; /* Pour visualiser le conteneur */
+
+    display: flex;
+    align-items: flex-start;
+    /* Alignement vertical en haut */
+    justify-content: flex-start;
+    /* Alignement horizontal à gauche */
+    gap: 10px;
+    /* Espacement entre les div (optionnel) */
+    //  border: 1px solid #ccc; /* Pour visualiser le conteneur */
 }
 
 .landing_best-examples-grid-container {
@@ -124,13 +139,13 @@ const gridComponentDataLine2Col3 = {
 }
 
 .landing__best-examples-section {
-    
+
     background-color: #1c1710;
     min-height: 100vh;
     padding: 20px;
     display: flex;
     flex-direction: column;
-gap:32px;
+    gap: 32px;
     align-items: center;
 }
 
@@ -200,4 +215,54 @@ gap:32px;
     align-items: flex-start;
     display: inline-flex;
 }
+
+.landing_best-examples-grid-cta-name {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.landing_best-examples-grid-cta_span {
+    text-decoration: none;
+    color: var(--color-yellow-52, #D4AF37);
+    font-size: 13.45px;
+    font-family: Inter;
+    font-weight: 500;
+    line-height: 20px;
+    word-wrap: break-word;
+}
+
+
+.landing_best-examples-grid-cta {
+
+
+    height: 36px;
+    padding-top: 7.50px;
+    padding-bottom: 8.50px;
+    padding-left: 17px;
+    padding-right: 17px;
+    background: var(--color-orange-9, #1A1612);
+    border-radius: 10px;
+    outline: 1px var(--color-yellow-52, #D4AF37) solid;
+    outline-offset: -1px;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+
+}
+
+
+.landing_best-examples-grid-button{ 
+     
+    transform: translate( 400%, 50%);  
+}
+
+a {
+    text-decoration: none;
+}
+
+
 </style>

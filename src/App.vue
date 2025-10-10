@@ -1,7 +1,7 @@
 <template>
   
   <ToastOverlay />
-  <!--<NavBar />-->
+  <NavBar />
   <RouterView />
   <!--<FooterBar />-->
 </template>

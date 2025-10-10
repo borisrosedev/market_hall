@@ -16,16 +16,16 @@
                         </section>
                         <section class="custom-best-title-product-card__border">
                             <section class="custom-best-title-product-card__button__grid">
-                                
+
                                 <section class="custom-best-title-product-card__button__grid-border">
                                     <img src="/src/assets/icons/grid.svg" alt="grid"
                                         class="custom-best-title-product-card__button__grid-border-grid" />
-                                   
+
                                 </section>
                             </section>
                             <section class="custom-best-title-product-card__button__list">
-                                     <img src="/src/assets/icons/list.svg" alt="list"
-                                        class="custom-best-title-product-card__button__grid-border-list" />
+                                <img src="/src/assets/icons/list.svg" alt="list"
+                                    class="custom-best-title-product-card__button__grid-border-list" />
                             </section>
                         </section>
                     </section>
@@ -102,18 +102,18 @@ defineProps<CustomTitleBestExampleElementProps>()
 }
 
 .custom-best-title-product-card__button__grid {
-  
-  
 
-     height: 32px;
-  padding-left: 10px;
-  padding-right: 10px;
-  background: var(--color-yellow-52, #D4AF37);
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  justify-content: center;
-  align-items: center;
-  display: flex;
+
+
+    height: 32px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background: var(--color-yellow-52, #D4AF37);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 
 }
 
@@ -152,32 +152,9 @@ defineProps<CustomTitleBestExampleElementProps>()
 }
 
 .custom-best-title-product-card__button__grid-border {
- width: 16px;
-  height: 16px;
-  position: relative;
-    /*
-    height: 32px;
-    padding-top: 5.50px;
-    padding-bottom: 6.50px;
-    padding-left: 11px;
-    padding-right: 11px;
-    background: var(--color-orange-9, #1A1612);
-    border-radius: 10px;
-    outline: 1px var(--color-yellow-52-30p, rgba(212, 175, 55, 0.30)) solid;
-    outline-offset: -1px;
-    gap: 2px;
-    align-self: stretch;
-    justify-content: space-between;
-    align-items: center;
-    display: inline-flex;
-
-    img {
-        object-fit: cover;
-        width: 16px; //100%;
-        height: 16px; //100%; 
-    }
-*/
-
+    width: 16px;
+    height: 16px;
+    position: relative;
 }
 
 .custom-best-title-product-card__button__grid-border-grid {
@@ -204,35 +181,32 @@ defineProps<CustomTitleBestExampleElementProps>()
     justify-content: center;
     align-items: center;
     display: flex;
-
-
-
+ 
     width: 16px;
     height: 16px;
     position: relative;
 }
 
-.custom-best-title-product-card__border{
-  padding: 1px;
-  border-radius: 12px;
-  outline: 1px var(--color-yellow-52-30p, rgba(212, 175, 55, 0.30)) solid;
-  outline-offset: -1px;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
+.custom-best-title-product-card__border {
+    padding: 1px;
+    border-radius: 12px;
+    outline: 1px var(--color-yellow-52-30p, rgba(212, 175, 55, 0.30)) solid;
+    outline-offset: -1px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: flex;
 
 }
 
-.custom-best-title-product-card__button__list{
-     height: 32px;
-  padding-left: 10px;
-  padding-right: 10px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  justify-content: center;
-  align-items: center;
-  display: flex;
+.custom-best-title-product-card__button__list {
+    height: 32px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 
 }
-
 </style>

@@ -11,9 +11,7 @@
                         :alt="productsGetterLimited[grid.gridId].name" class="marketplace-picture">
                     <div class="cards-grid-marketplace-label-card"><span
                             class="cards-grid-marketplace-label-card-span">Label</span>
-
                     </div>
-
                 </figure>
 
                 <section class="cards-grid-marketplace-description">
@@ -447,7 +445,7 @@ onMounted(async () => {
 }
 
 .cards-grid-marketplace-product-price {
-    
+
     align-items: center;
     gap: 4px;
     display: flex;
@@ -497,5 +495,13 @@ onMounted(async () => {
     width: 320px;
     height: 12px;
     position: relative;
+}
+
+.marketplace-picture {
+    width: 100%;
+    height: 483px;
+    max-width: 483px;
+    position: relative;
+    background-color: white;
 }
 </style>
