@@ -2,25 +2,25 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [vue()],
   test: {
-    // enable jest-like global test APIs
     globals: true,
-    // simulate DOM with happy-dom
-    // (requires installing happy-dom as a peer dependency)
     environment: "happy-dom",
-    coverage: {
-      reporter: ["text", "json", "html"],
-    },
+    coverage: { reporter: ["text", "json", "html"] },
   },
   server: {
+    proxy: {
+      "/api/v1": {
+        target: "http://localhost:5000",
+        changeOrigin: true,
+        timeout: 0,
+        proxyTimeout: 0,
+      },
+    },
     host: "0.0.0.0",
     port: 5173,
     strictPort: true,
-    watch: {
-      usePolling: true, // Pour Windows/WSL
-    },
+    watch: { usePolling: true },
   },
 });

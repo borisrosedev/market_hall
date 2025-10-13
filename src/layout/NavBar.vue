@@ -17,9 +17,9 @@
       </a>
     </li>
      <li>
-      <a href="/">
+      <router-link to="login">
          <img src="../assets/icons/id.svg" alt="image of a person"/>
-      </a>
+      </router-link>
     </li>
   </ul>
 </header>
