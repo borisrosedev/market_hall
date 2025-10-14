@@ -278,7 +278,7 @@ onMounted(async () => {
 
 .cards-grid-border-marketplace {
     height: 627.34px;
-    width: 485.33px;
+    width: 30% ;//485.33px;
     padding-top: 1px;
     padding-bottom: 25.01px;
     padding-left: 1px;
@@ -288,7 +288,7 @@ onMounted(async () => {
     box-shadow: 0px 4px 20px rgba(212, 175, 55, 0.15);
     overflow: hidden;
     border-radius: 16px;
-    outline: 1px var(--color-yellow-52-30p, rgba(212, 175, 55, 0.30)) solid;
+ //   outline: 1px var(--color-yellow-52-30p, rgba(212, 175, 55, 0.30)) solid;
     outline-offset: -1px;
     flex-direction: column;
     justify-content: flex-start;
@@ -305,15 +305,14 @@ onMounted(async () => {
 
 
 .background-border-shadow-line1-col2 {
-
-    left: 509.33px;
+    left : 35%;  //  left: 509.33px;
     top: 0px;
 
 }
 
 .background-border-shadow-line1-col3 {
 
-    left: 1018.66px;
+    left : 70%;  // left: 1018.66px;
     top: 0px;
 
 }
@@ -324,12 +323,12 @@ onMounted(async () => {
 }
 
 .background-border-shadow-line2-col2 {
-    left: 509.33px;
+    left : 35%;  //left: 509.33px;
     top: 653.34px;
 }
 
 .background-border-shadow-line2-col3 {
-    left: 1018.66px;
+    left : 70%;  //left: 1018.66px;
     top: 653.34px;
 }
 

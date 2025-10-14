@@ -54,18 +54,19 @@ defineProps<CustomTitleBestExampleElementProps>()
 
 <style lang="scss">
 .custom-best-title-product-card {
+    width: 100%;
     background: var(--color-orange-9, #1A1612);
-    padding-right: 184.50px;
+    //padding-right: 184.50px;
     display: flex;
     flex-direction: column;
 }
 
 .custom-best-title-product-card__header {
     display: flex;
-    justify-content: space-between; // Aligne le titre à gauche et les boutons à droite
-    align-items: center; // Centre verticalement tout le contenu
+    justify-content: space-between;  
+    align-items: center;  
     width: 100%;
-    padding: 0 16px; // Ajoute un peu d'espace sur les côtés si nécessaire
+    padding: 0 16px;  
 }
 
 .custom-best-title-product-card__titre {
