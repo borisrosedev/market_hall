@@ -6,7 +6,7 @@ const routes = [
     path: "/",
     name: "Home",
     component: () => import("../views/Home.vue"),
-  }, 
+  },
   {
     path: "/catalog",
     name: "Catalog",
@@ -99,6 +99,13 @@ const routes = [
     path: "/:pathMatch(.*)*",
     name: "NotFound",
     component: () => import("../views/NotFound.vue"),
+  },
+
+  // Un nouvelle route pour la page À propos de nous
+  {
+    path: "/about",
+    name: "AboutUs",
+    component: () => import("../pages/AboutUsPage.vue"),
   },
 ];
 

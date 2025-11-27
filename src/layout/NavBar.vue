@@ -5,6 +5,9 @@
   <section class="app__searchbar">
     <img src="../assets/icons/loupe.svg" alt="image of a loupe" />
   </section>
+   <!-- Add About Us link  -->
+  <RouterLink to="/about" class="nav-link">À propos</RouterLink>
+
   <ul class="app__navbar">
     <li>
       <a href="/">
