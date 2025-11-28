@@ -68,7 +68,7 @@ import { RouterLink } from "vue-router";
     </p>
     <!-- p>{{ footerText }}</!-->
   </footer>
-</template>
+</template> 
 
 <style scoped>
 .app__footer {

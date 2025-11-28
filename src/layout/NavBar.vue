@@ -7,6 +7,8 @@
   </section>
    <!-- Add About Us link  -->
   <RouterLink to="/about" class="nav-link">À propos</RouterLink>
+  <!-- Contac us link -->
+  <RouterLink to="/contactus" class="nav-link">Nous contacter</RouterLink>
 
   <ul class="app__navbar">
     <li>
