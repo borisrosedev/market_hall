@@ -1,4 +1,5 @@
 // router/index.ts
+import path from "path";
 import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
@@ -106,6 +107,12 @@ const routes = [
     path: "/about",
     name: "AboutUs",
     component: () => import("../pages/AboutUsPage.vue"),
+  },
+
+  {
+    path: "/contact",
+    name: "/Contactus",
+    component: () => import("../pages/ContactUs.vue"),
   },
 ];
 
