@@ -1,13 +1,15 @@
+<main>
 <template>
  
 
   <LandingHeroSection />
   <LandingBestExamplesSection />
+  <BaseTransition/>
 
 </main>
 
 
-</template>
+<template />
 
 <script setup lang="ts">
 import LandingHeroSection from './landing-page/LandingHeroSection.vue';
