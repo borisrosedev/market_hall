@@ -9,8 +9,8 @@ import { RouterLink } from "vue-router";
 
         <ul class="app__footer-ul">
           <h3>About</h3>
-          <li class="nav-item"><a href="#">Our story</a></li>
-          <li class="nav-item"><a href="#">Our team</a></li>
+          <li class="nav-item"><RouterLink to="/about">Our story</RouterLink></li>
+          <li class="nav-item"><RouterLink to="/team">Our team</RouterLink></li>
         </ul>
       </div>
 
@@ -35,7 +35,8 @@ import { RouterLink } from "vue-router";
             <RouterLink class="nav-link" to="/contactus">Contact Us</RouterLink>
           </li>
 
-          <li class="nav-item"><a href="#">Service client</a></li>
+          <li class="nav-item"><RouterLink to="/support">Service client</RouterLink></li>
+
         </ul>
       </div>
 

@@ -15,6 +15,7 @@ import CartPage from "./pages/session-required-pages/CartPage.vue";
 import OrderPage from "./pages/session-required-pages/OrderPage.vue";
 import OrderAddress from "./pages/session-required-pages/order-pages/OrderAddress.vue";
 import OrderSummary from "./pages/session-required-pages/order-pages/OrderSummary.vue";
+import AboutUs from "./pages/AboutUs.vue";
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -23,7 +24,7 @@ const router = createRouter({
       path: "/",
       component: LandingPage,
       alias: "/landing",
-    }, 
+    },
     {
       path: "/login",
       component: LoginPage,
@@ -50,7 +51,14 @@ const router = createRouter({
     {
       path: "/cart",
       component: CartPage,
-      name: "cart"
+      name: "cart",
+    },
+
+    // About us
+    {
+      path: "/about",
+      component: AboutUs,
+      name: "about",
     },
     {
       path: "/order",
@@ -59,13 +67,13 @@ const router = createRouter({
       children: [
         {
           path: "",
-          component: OrderAddress
+          component: OrderAddress,
         },
         {
           path: "summary",
-          component: OrderSummary
-        }
-      ]
+          component: OrderSummary,
+        },
+      ],
     },
     {
       path: "/:pathMatch(.*)*",
@@ -75,37 +83,31 @@ const router = createRouter({
   ],
 });
 
-const app = createApp(App)
-  
-app.use(createPinia())
-  .use(createVuePlugin())
-  .use(router)
-  .mount("#app");
+const app = createApp(App);
 
+app.use(createPinia()).use(createVuePlugin()).use(router).mount("#app");
 
-app.directive('mix', {
+app.directive("mix", {
   created(el, binding, vnode) {
-    console.log('🌍 [Global Directive / mix ] activated ✅')
-    console.log('--> dom-element', el)
-    console.log('--> arg', binding.arg)
-    console.log('--> value', binding.value)
-    console.log('--> modifiers', binding.modifiers)
-    
-    if(binding.modifiers){
-      if('success' in binding.modifiers) el.classList.add('text-success')
-      if('alert' in binding.modifiers) el.classList.add('text-danger')
+    console.log("🌍 [Global Directive / mix ] activated ✅");
+    console.log("--> dom-element", el);
+    console.log("--> arg", binding.arg);
+    console.log("--> value", binding.value);
+    console.log("--> modifiers", binding.modifiers);
+
+    if (binding.modifiers) {
+      if ("success" in binding.modifiers) el.classList.add("text-success");
+      if ("alert" in binding.modifiers) el.classList.add("text-danger");
     }
 
-    if(!binding.arg && binding.value) {
-      if( 'color' in binding.value) el.style.color = binding.value.color;
-      if( 'fw' in binding.value) el.style.fontWeight = binding.value.fw;
+    if (!binding.arg && binding.value) {
+      if ("color" in binding.value) el.style.color = binding.value.color;
+      if ("fw" in binding.value) el.style.fontWeight = binding.value.fw;
     }
 
     if (binding.arg) {
-      if( binding.arg == 'color' ) el.style.color = binding.value.color;
-      if( binding.arg == 'fw') el.style.fontWeight = binding.value.fw;
+      if (binding.arg == "color") el.style.color = binding.value.color;
+      if (binding.arg == "fw") el.style.fontWeight = binding.value.fw;
     }
-
-
-  }
-})
+  },
+});

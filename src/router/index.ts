@@ -1,4 +1,6 @@
 // router/index.ts
+import { Component } from "lucide";
+import path from "path";
 import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
@@ -6,7 +8,7 @@ const routes = [
     path: "/",
     name: "Home",
     component: () => import("../views/Home.vue"),
-  }, 
+  },
   {
     path: "/catalog",
     name: "Catalog",
@@ -94,6 +96,13 @@ const routes = [
     name: "Warranty",
     component: () => import("../views/Warranty.vue"),
   },
+
+  {
+    path: "/about",
+    namespace: "AboutUs",
+    Component: () => import("../pages/AboutUs.vue"),
+  },
+
   // Gestion des erreurs 404
   {
     path: "/:pathMatch(.*)*",
