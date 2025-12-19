@@ -86,6 +86,12 @@ const routes = [
     name: "BuyingGuide",
     component: () => import("../views/BuyingGuide.vue"),
   },
+
+  {
+    path: "/product/:id",
+    name: "ProductDetail",
+    component: () => import("../pages/ProductDetail.vue"),
+  },
   {
     path: "/delivery",
     name: "Delivery",
@@ -103,6 +109,17 @@ const routes = [
     Component: () => import("../pages/AboutUs.vue"),
   },
 
+  {
+    path: "/seller/:id",
+    name: "Seller",
+    component: () => import("../pages/Seller.vue"),
+  },
+
+  {
+    path: "/order-review",
+    name: "OrderReview",
+    component: () => import("../pages/OrderReview.vue"),
+  },
   // Gestion des erreurs 404
   {
     path: "/:pathMatch(.*)*",

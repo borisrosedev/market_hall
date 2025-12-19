@@ -16,6 +16,9 @@ import OrderPage from "./pages/session-required-pages/OrderPage.vue";
 import OrderAddress from "./pages/session-required-pages/order-pages/OrderAddress.vue";
 import OrderSummary from "./pages/session-required-pages/order-pages/OrderSummary.vue";
 import AboutUs from "./pages/AboutUs.vue";
+import ProducDetail from "./pages/ProductDetail.vue";
+// import OrderReview from "./pages/OrderReview.vue";
+import Seller from "./pages/Saller.vue";
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -39,6 +42,11 @@ const router = createRouter({
       path: "/products",
       component: ProductsPage,
     },
+
+    {
+      path: "/product-detail",
+      component: ProducDetail,
+    },
     {
       path: "/contactus",
       component: ContactUs,
@@ -47,6 +55,12 @@ const router = createRouter({
       path: "/dashboard",
       component: DashboardPage,
       name: "dashboard",
+    },
+
+    {
+      path: "/seller",
+      component: Seller,
+      name: "seller",
     },
     {
       path: "/cart",
