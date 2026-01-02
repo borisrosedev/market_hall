@@ -18,7 +18,7 @@ import OrderSummary from "./pages/session-required-pages/order-pages/OrderSummar
 import AboutUs from "./pages/AboutUs.vue";
 import ProducDetail from "./pages/ProductDetail.vue";
 // import OrderReview from "./pages/OrderReview.vue";
-import Seller from "./pages/Saller.vue";
+import Seller from "./pages/Seller.vue";
 
 const router = createRouter({
   history: createWebHashHistory(),
