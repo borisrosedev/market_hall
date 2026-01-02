@@ -4,40 +4,40 @@
 
             <section :class="grid.className ?? ''" class="cards-grid-border-marketplace">
 
-
                 <figure :class="grid.className ?? ''" class="cards-grid-marketplace-img">
-
-                    <img :src="'http://localhost:5000/static/files/' + productsGetterLimited[grid.gridId].photo_name"
-                        :alt="productsGetterLimited[grid.gridId].name" class="marketplace-picture">
-                    <div class="cards-grid-marketplace-label-card"><span
-                            class="cards-grid-marketplace-label-card-span">Label</span>
+                    <!--Utilise 'currentProduct' au lieu d'accéder directement au tableau -->
+                    <img 
+                        v-if="currentProduct"
+                        :src="'http://localhost:5000/static/files/' + currentProduct.photo_name"
+                        :alt="currentProduct.name" 
+                        class="marketplace-picture">
+                    <div class="cards-grid-marketplace-label-card">
+                        <span class="cards-grid-marketplace-label-card-span">Label</span>
                     </div>
                 </figure>
 
                 <section class="cards-grid-marketplace-description">
-                    <section class="cards-grid-marketplace-product-name"><span
-                            class="cards-grid-marketplace-product-name-span">{{ productsGetterLimited[grid.gridId].name
-                            }} : {{ productsGetterLimited[grid.gridId].description }}</span>
+                    <section class="cards-grid-marketplace-product-name" v-if="currentProduct">
+                        <span class="cards-grid-marketplace-product-name-span">
+                            {{ currentProduct.name }} : {{ currentProduct.description }}
+                        </span>
                     </section>
-                    <section class="cards-grid-marketplace-product-seller"><span
-                            class="cards-grid-marketplace-product-seller-span">Antiquités Martin •
-                            Paris</span>
+                    <section class="cards-grid-marketplace-product-seller">
+                        <span class="cards-grid-marketplace-product-seller-span">
+                            Antiquités Martin • Paris
+                        </span>
                     </section>
 
-                    <section class="cards-grid-marketplace-product-price">
-                        <span class="cards-grid-marketplace-product-price-span">{{
-                            divideBy100(productsGetterLimited[grid.gridId].price_cents) }}
-                            €</span>
-                        <div class="cards-grid-marketplace-product-price-spacing">
-
-                        </div>
+                    <section class="cards-grid-marketplace-product-price" v-if="currentProduct">
+                        <span class="cards-grid-marketplace-product-price-span">
+                            {{ divideBy100(currentProduct.price_cents) }} €
+                        </span>
+                        <div class="cards-grid-marketplace-product-price-spacing"></div>
 
                         <img src="/src/assets/icons/eye.svg" alt="eye"
                             class="cards-grid-marketplace-product-see-icon" />
                         <span class="cards-grid-marketplace-product-see-span">45</span>
-                        <section class="cards-grid-marketplace-product-nb-vue">
-                        </section>
-
+                        <section class="cards-grid-marketplace-product-nb-vue"></section>
                     </section>
                 </section>
             </section>
@@ -48,24 +48,50 @@
             <img src="/src/assets/icons/camera-off-line.svg" alt="camera-off-line" class="cards-grid-marketplace-img" />
         </div>
 
-
     </RouterLink>
 
 </template>
+
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-
 import { gsap } from 'gsap'
 import { useProductsStore } from "../../stores/products-store"
 import { storeToRefs } from "pinia"
 
+// difinir l'interface du produit
+interface Product {
+    id?: number | BigInteger
+    name: string
+    description: string
+    photo_name: string
+    price_cents: string | number
+}
+
+interface CardGridBestProductProps {
+    grid: {
+        name?: string
+        gridId: BigInteger
+        photo_name?: string
+        className: string
+    }
+}
 
 const productsStore = useProductsStore()
 const { getProductByNb } = productsStore
 const { productsGetterLimited } = storeToRefs(productsStore)
 
-
-
+// Créer une computed property typée
+// Cela remplace les accès répétés à productsGetterLimited[Number(grid.gridId)]
+const currentProduct = computed<Product | null>(() => {
+    const productIndex = Number(props.grid.gridId)
+    const product = productsGetterLimited?.value?.[productIndex]
+    
+    // Vérifier que le produit existe avant de le retourner
+    if (product) {
+        return product as Product
+    }
+    return null
+})
 
 // References
 const carouselWrapper = ref<HTMLElement>()
@@ -75,40 +101,25 @@ const carouselTrack = ref<HTMLElement>()
 const currentSlide = ref(0)
 const slideWidth = ref(0)
 
-// Currently we start with 0 
-const gridLine1Col1 = 0;
+const gridLine1Col1 = 0
 
-
-
-// GSAP Variables 
 let autoPlayInterval: NodeJS.Timeout | null = null
 let tl: gsap.core.Timeline
 
-
-// Calculated 
 const calculateSlideWidth = () => {
     if (carouselWrapper.value) {
         slideWidth.value = carouselWrapper.value.offsetWidth
     }
 }
 
-
-
-
-
-function divideBy100(montantString) {
-
-    const montant = parseFloat(montantString);
+// Typer le paramètre de cette fonction
+function divideBy100(montantString: string | number): string {
+    const montant = parseFloat(String(montantString))
     if (isNaN(montant)) {
-        return '<span style="color: red;">Erreur : Montant invalide</span>';
+        return 'Erreur'
     }
-    const resultat = montant / 100;
-
-
-    return `${resultat}`;
+    return String(montant / 100)
 }
-
-
 
 const bestProductCallToActions = [
     {
@@ -119,33 +130,21 @@ const bestProductCallToActions = [
     },
     {
         context: 'contact',
-        content: 'Contacter le veudeur',
+        content: 'Contacter le vendeur',
         classNames: 'custom-best-product-card-cta custom-best-product-card-cta--secondary',
         ariaLabel: 'the button to contact the seller'
     }
 ]
-const userId = ref(0);
-interface CardGridBestProductProps {
-    grid: {
 
-        name?: string
-        gridId: BigInteger
-        photo_name?: string
-        className: string
-    }
-}
-
-
-const props = defineProps<CardGridBestProductProps>();
-
-
+const userId = ref(0)
+const props = defineProps<CardGridBestProductProps>()
 
 onMounted(async () => {
-
     await getProductByNb(5)
 })
 
 </script>
+
 
 <style lang="scss">
 .no-underline {
