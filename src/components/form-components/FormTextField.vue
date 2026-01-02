@@ -9,7 +9,7 @@
       class="form-control"
       :id="obj.id"
       :aria-describedby="obj.helpId"
-      v-on:input="(e) => onInput(e, obj.id)"
+      @input="(e) => onInput(e as Event, obj.id)"
     />
     <textarea 
       v-else
@@ -19,7 +19,7 @@
       :id="obj.id"
       style="resize:none; height: 200px;"
       class="form-control"
-      v-on:input="(e) => onInput(e, obj.id)"
+      @input="(e) => onInput(e as Event, obj.id)"
     >
     </textarea>
     <div v-if="obj.helpId" :id="obj.helpId" class="form-text">{{ obj.helpContent }}</div>
@@ -30,10 +30,15 @@
 import type { FormTextFieldInterface } from "../../interfaces/form-interfaces/FomTextFieldInterface";
 
 defineProps<{ obj: FormTextFieldInterface }>();
-const emit = defineEmits(["onInputUpdated"]);
+const emit = defineEmits<{
+  onInputUpdated: [payload: { value: string; name: string }]
+}>();
 
-const onInput = (event, name: string) => {
-  emit("onInputUpdated", { value: event.target.value, name: name });
+
+const onInput = (event: Event, fieldName: string) => {
+  const target = event.target as HTMLInputElement | HTMLTextAreaElement;
+  
+  // mettre l'événement parent avec le contenu mis à jour
+  emit("onInputUpdated", { value: target.value, name: fieldName });
 };
 </script>
-
