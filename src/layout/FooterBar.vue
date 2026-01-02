@@ -24,6 +24,12 @@ import { RouterLink } from "vue-router";
           <li class="nav-item">
             <RouterLink class="nav-link active" aria-current="page" to="/products">Products</RouterLink>
           </li>
+          <li class="nav-item">
+            <RouterLink class="nav-link active" aria-current="page" to="/product-detail">Products details</RouterLink>
+          </li>
+          <li class="nav-item">
+            <RouterLink class="nav-link active" aria-current="page" to="/seller">Saller</RouterLink>
+          </li>
         </ul>
       </div>
 
@@ -36,6 +42,7 @@ import { RouterLink } from "vue-router";
           </li>
 
           <li class="nav-item"><RouterLink to="/support">Service client</RouterLink></li>
+          
 
         </ul>
       </div>
