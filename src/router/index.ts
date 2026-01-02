@@ -1,107 +1,108 @@
 // router/index.ts
-import { Component } from "lucide";
 import path from "path";
-import { createRouter, createWebHistory } from "vue-router";
+import {
+  createRouter,
+  createWebHistory,
+  type RouteRecordRaw,
+} from "vue-router";
+
+// import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
   {
     path: "/",
     name: "Home",
-    component: () => import("../views/Home.vue"),
+    component: () => import("../pages/Home.vue"),
   },
-  {
-    path: "/catalog",
-    name: "Catalog",
-    component: () => import("../views/Catalog.vue"),
-  },
-  {
-    path: "/search",
-    name: "Search",
-    component: () => import("../views/Search.vue"),
-  },
-  {
-    path: "/cart",
-    name: "Cart",
-    component: () => import("../views/Cart.vue"),
-  },
-  {
-    path: "/account",
-    name: "Account",
-    component: () => import("../views/Account.vue"),
-    meta: { requiresAuth: true },
-  },
+  // {
+  //   path: "/catalog",
+  //   name: "Catalog",
+  //   component: () => import("../views/Catalog.vue"),
+  // },
+  // {
+  //   path: "/search",
+  //   name: "Search",
+  //   component: () => import("../pages/Search.vue"),
+  // },
+  // {
+  //   path: "/cart",
+  //   name: "Cart",
+  //   component: () => import("../pages/Cart.vue"),
+  // },
+  // {
+  //   path: "/account",
+  //   name: "Account",
+  //   component: () => import("../pages/AccountPage.vue"),
+  //   meta: { requiresAuth: true },
+  // },
   {
     path: "/login",
     name: "Login",
-    component: () => import("../views/Login.vue"),
+    component: () => import("../pages/LoginPage.vue"),
   },
   // Pages du footer
-  {
-    path: "/about",
-    name: "About",
-    component: () => import("../views/About.vue"),
-  },
+
   {
     path: "/contact",
     name: "Contact",
-    component: () => import("../views/Contact.vue"),
+    component: () => import("../pages/ContactUs.vue"),
   },
-  {
-    path: "/faq",
-    name: "FAQ",
-    component: () => import("../views/FAQ.vue"),
-  },
-  {
-    path: "/team",
-    name: "Team",
-    component: () => import("../views/Team.vue"),
-  },
-  {
-    path: "/values",
-    name: "Values",
-    component: () => import("../views/Values.vue"),
-  },
-  {
-    path: "/authentication",
-    name: "Authentication",
-    component: () => import("../views/Authentication.vue"),
-  },
-  {
-    path: "/support",
-    name: "Support",
-    component: () => import("../views/Support.vue"),
-  },
-  {
-    path: "/showroom",
-    name: "Showroom",
-    component: () => import("../views/Showroom.vue"),
-  },
-  {
-    path: "/appointment",
-    name: "Appointment",
-    component: () => import("../views/Appointment.vue"),
-  },
-  {
-    path: "/buying-guide",
-    name: "BuyingGuide",
-    component: () => import("../views/BuyingGuide.vue"),
-  },
+  // {
+  //   path: "/faq",
+  //   name: "FAQ",
+  //   component: () => import("../pages/FAQ.vue"),
+  // },
+  // {
+  //   path: "/team",
+  //   name: "Team",
+  //   component: () => import("../pages/Team.vue"),
+  // },
+  // {
+  //   path: "/values",
+  //   name: "Values",
+  //   component: () => import("../pages/Values.vue"),
+  // },
+  // {
+  //   path: "/authentication",
+  //   name: "Authentication",
+  //   component: () => import("../pages/Authentication.vue"),
+  // },
+  // {
+  //   path: "/support",
+  //   name: "Support",
+  //   component: () => import("../pages/Support.vue"),
+  // },
+  // {
+  //   path: "/showroom",
+  //   name: "Showroom",
+  //   component: () => import("../pages/Showroom.vue"),
+  // },
+  // {
+  //   path: "/appointment",
+  //   name: "Appointment",
+  //   component: () => import("../pages/Appointment.vue"),
+  // },
+  // {
+  //   path: "/buying-guide",
+  //   name: "BuyingGuide",
+  //   component: () => import("../pages/BuyingGuide.vue"),
+  // },
 
   {
     path: "/product/:id",
     name: "ProductDetail",
     component: () => import("../pages/ProductDetail.vue"),
   },
-  {
-    path: "/delivery",
-    name: "Delivery",
-    component: () => import("../views/Delivery.vue"),
-  },
-  {
-    path: "/warranty",
-    name: "Warranty",
-    component: () => import("../views/Warranty.vue"),
-  },
+  // {
+  //   path: "/delivery",
+  //   name: "Delivery",
+  //   component: () => import("../pages/Delivery.vue"),
+  // },
+  // {
+  //   path: "/warranty",
+  //   name: "Warranty",
+  //   component: () => import("../pages/Warranty.vue"),
+  // },
 
   {
     path: "/about",
@@ -124,7 +125,7 @@ const routes = [
   {
     path: "/:pathMatch(.*)*",
     name: "NotFound",
-    component: () => import("../views/NotFound.vue"),
+    component: () => import("../pages/NotFoundPage.vue"),
   },
 ];
 
