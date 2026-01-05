@@ -8,7 +8,7 @@ import {
 
 // import { createRouter, createWebHistory } from "vue-router";
 
-const routes = [
+const routes: any = [
   {
     path: "/",
     name: "Home",
