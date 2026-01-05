@@ -70,7 +70,7 @@ interface Product {
 interface CardGridBestProductProps {
     grid: {
         name?: string
-        gridId: BigInteger
+        gridId: BigInteger | number // ajouter un type de pour qu'il soit compatible avec 
         photo_name?: string
         className: string
     }

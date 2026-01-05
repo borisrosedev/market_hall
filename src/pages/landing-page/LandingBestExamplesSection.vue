@@ -8,12 +8,12 @@
         </section>
         <section class="landing_best-examples-grid-container">
             <section class="landing_best-examples-grid">
-                <CardGridBestProduct :grid="gridComponentDataLine1Col1" />
-                <CardGridBestProduct :grid="gridComponentDataLine1Col2" />
-                <CardGridBestProduct :grid="gridComponentDataLine1Col3" />
-                <CardGridBestProduct :grid="gridComponentDataLine2Col1" />
-                <CardGridBestProduct :grid="gridComponentDataLine2Col2" />
-                <CardGridBestProduct :grid="gridComponentDataLine2Col3" />
+                <CardGridBestProduct
+                v-for="grid in gridComponentData"
+                :key="grid.gridId"
+                :grid="grid"
+                />
+
             </section>
             <section class="landing_best-examples-grid-button">
                 <section class="landing_best-examples-grid-cta">
@@ -46,7 +46,9 @@ const titleComponentData = {
 
 
 const listCategoryComponentData = {
-
+    // ajoutre le titile et la className dans l'object pour 
+    title: "Catégories populaires",
+    className: "categories-card",
 
     tags: [
 
@@ -74,35 +76,15 @@ const listCategoryComponentData = {
     ]
 }
 
-const gridComponentDataLine1Col1 = {
-    className: "background-border-shadow-line1-col1",
-    gridId: 1
-}
-
-const gridComponentDataLine1Col2 = {
-    className: "background-border-shadow-line1-col2",
-    gridId: 2
-}
-
-const gridComponentDataLine1Col3 = {
-    className: "background-border-shadow-line1-col3",
-    gridId: 3
-}
-
-const gridComponentDataLine2Col1 = {
-    className: "background-border-shadow-line2-col1",
-    gridId: 4
-}
-
-const gridComponentDataLine2Col2 = {
-    className: "background-border-shadow-line2-col2",
-    gridId: 5
-}
-
-const gridComponentDataLine2Col3 = {
-    className: "background-border-shadow-line2-col3",
-    gridId: 6
-}
+// changer les constantes par un bableux des objects pour le boucler dans le template 
+const gridComponentData = [
+  { className: "background-border-shadow-line1-col1", gridId: 1 },
+  { className: "background-border-shadow-line1-col2", gridId: 2 },
+  { className: "background-border-shadow-line1-col3", gridId: 3 },
+  { className: "background-border-shadow-line2-col1", gridId: 4 },
+  { className: "background-border-shadow-line2-col2", gridId: 5 },
+  { className: "background-border-shadow-line2-col3", gridId: 6 },
+];
 
 
 </script>

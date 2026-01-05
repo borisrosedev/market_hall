@@ -50,7 +50,6 @@ import type { CustomMessageInterface } from "../interfaces/shared-interfaces/Cus
 import { useUserAuth } from "../composables/useUserAuth";
 import { useRouter } from "vue-router";
 import contactus from "../services/contactus-service";
-import { stringify } from "querystring";
 //--------------------------COMPOSABLES------------------
 
 const router = useRouter();
@@ -117,10 +116,13 @@ const fieldsValues = reactive<{
 });
 
 //-------------------------- HANDLERS --------------------------------------
-
-function onFormUpdated({ name, value }) {
+// modifier cette foction car le nom voulais un type explicitement
+function onFormUpdated(
+  { name, value }: { name: keyof typeof fieldsValues; value: string }
+) {
   fieldsValues[name] = value;
 }
+
 function onReset() {
   fieldsValues.message = "";
   fieldsValues.email = "";

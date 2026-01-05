@@ -12,7 +12,7 @@
                     bodyPriceCentsClassNames: 'align-self-center text-secondary'
                 }" :key="i">
                 <section class="product-card__buttons-section">
-                    <CustomButton @click="(e) => onAddToCart(e, prod)" :obj="{
+                    <CustomButton @click="(e : any) => onAddToCart(e, prod)" :obj="{
                         content: 'Add to Cart',
                         classNames: 'btn-warning'
                     }" />
@@ -67,7 +67,7 @@ function navigateHandler(to: string): void {
 }
 
 
-const onAddToCart = async (e, prod: any) => {
+const onAddToCart = async (e : any, prod: any) => {
     if (!isConnected.value) {
         showToast({
             summary: 'Session required',

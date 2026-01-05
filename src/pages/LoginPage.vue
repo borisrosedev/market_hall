@@ -79,9 +79,12 @@ const fieldsValues = reactive<{ email?: string; password?: string }>({}) ;
 
 //-------------------------- HANDLERS --------------------------------------
 
-const onFieldUpdated = ({ value, name }) => {
+function onFieldUpdated(
+  { name, value }: { name: keyof typeof fieldsValues; value: string }
+) {
   fieldsValues[name] = value;
-};
+}
+
 
 function onReset() {
   fieldsValues.email = "";

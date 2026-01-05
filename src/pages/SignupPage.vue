@@ -94,9 +94,12 @@ const fieldsValues = reactive<{
 
 //-------------------------- HANDLERS --------------------------------------
 
-function onFormUpdated({ name, value }) {
+function onFormUpdated(
+  { name, value }: { name: keyof typeof fieldsValues; value: string }
+) {
   fieldsValues[name] = value;
 }
+
 
 function onReset() {
   fieldsValues.confirmedPassword = "";
