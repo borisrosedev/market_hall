@@ -26,3 +26,7 @@ dist-ssr
 .node-version
 compose.yml  
 notes.md
+
+Home.vue 
+OrderReview.vue
+ProductDetail.vue 
