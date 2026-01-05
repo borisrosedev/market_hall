@@ -66,3 +66,26 @@ p {
   margin-bottom: 20px;
 }
 </style>
+
+<style lang="css">
+.contactus__main {
+  background-color: rgba(139, 69, 19, 0.3);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-bottom: 100px;
+}
+
+.contactus__message {
+  font-size: 14px;
+}
+
+.app__footer,
+.app_header {
+  background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
+  color: white;
+  padding: 3rem 0 1rem;
+  position: relative;
+  overflow: hidden;
+}
+</style>

@@ -114,9 +114,9 @@ const heroCallToActions = [
     width: 50%;
 }
 
-.landing__hero-carousel-best-products-section {}
+// .landing__hero-carousel-best-products-section {}
 
-.landing__hero-carousel-introduction-section {}
+// .landing__hero-carousel-introduction-section {}
 
 .landing__hero-value-propositions-section {
     display: flex;
