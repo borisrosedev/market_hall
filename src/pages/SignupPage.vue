@@ -10,7 +10,13 @@
         :onReset="onReset"
         :show-buttons="showButtons"
       />
+      <div class="my-3">
+        <p class="text-center fs-6">
+          Already have an account? Login <RouterLink to="/login">here</RouterLink>
+        </p>
+      </div>
     </section>
+    
   </main>
 </template>
 <script setup lang="ts">
