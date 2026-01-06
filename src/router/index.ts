@@ -9,11 +9,6 @@ import {
 // import { createRouter, createWebHistory } from "vue-router";
 
 const routes: any = [
-  {
-    path: "/",
-    name: "Home",
-    component: () => import("../pages/Home.vue"),
-  },
   // {
   //   path: "/catalog",
   //   name: "Catalog",
