@@ -12,7 +12,10 @@
         </button>
 
         <h2 class="modal-title">
-          Connectez-vous à votre<br />compte ou inscrivez-vous
+          Connectez-vous à votre<br />compte ou inscrivez-vous <RouterLink to="/register">Ici</RouterLink>
+          <div class="my-3">
+       
+      </div>
         </h2>
 
         <CustomForm
