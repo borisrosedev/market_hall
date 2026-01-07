@@ -227,6 +227,18 @@ async function onSubmit() {
 
 
 .modal-container {
+  position: relative !important;
+  background: white !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+  width: 90% !important;
+  max-width: 400px !important;
+  padding: 30px !important;
+  margin: 0 !important; 
+  flex: none !important;
+}
+
+.modal-container {
   position: relative;
   background: white;
   border-radius: 8px;
@@ -303,14 +315,10 @@ async function onSubmit() {
 
 .btn-gold-outline {
   background-color: transparent !important;
-  border: 2px solid #D4AF37 !important;
-  color: #D4AF37 !important;
+  border: 2px solid #d44e37 !important;
+  color: #9e2e03 !important;
   font-weight: bold;
   border-radius: 4px;
-}
-
-.btn-gold-outline:hover {
-  background-color: rgba(212, 175, 55, 0.1) !important;
 }
 
 .login__message {
