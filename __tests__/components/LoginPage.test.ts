@@ -1,3 +1,4 @@
+import { on } from "harlem";
 import { describe, it, beforeEach } from "vitest";
 import { ref, reactive } from "vue";
 
@@ -39,8 +40,20 @@ function onNoEmail(): void {
   }
 }
 
+function onFieldUpdated({
+  name,
+  value,
+}: {
+  name: string;
+  value: string;
+}): void {
+  if (name === "email" || name === "password") {
+    fieldsVlues[name as keyof typeof fieldsVlues] = value;
+  }
+}
+
 // les tests
-describe("Faire les 3 tests simples de LoginPage ", () => {
+describe("Faire les 4 tests unitaires de LoginPage ", () => {
   // avant de chaque test, il faut faire reset les champs
   beforeEach(() => {
     (fieldsVlues.email = ""), (fieldsVlues.password = "");
@@ -81,5 +94,14 @@ describe("Faire les 3 tests simples de LoginPage ", () => {
 
     expect(messages.value.length).toBe(1);
     expect(messages.value[0].content).toBe("You forgot the email");
+  });
+
+  // test 4
+  it("onFieldUpdated doit mettre à jour les champs email et password", () => {
+    expect(fieldsVlues.email).toBe("");
+
+    onFieldUpdated({ name: "email", value: "user@test.com" });
+
+    expect(fieldsVlues.email).toBe("user@test.com");
   });
 });
