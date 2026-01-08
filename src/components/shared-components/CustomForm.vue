@@ -11,8 +11,10 @@
         :key="i"
         :obj="field"
       />
+     
     </section>
-    <section v-if="showButtons">
+    <section v-if="showButtons" class="form-buttons">
+       <!-- ajouter une classe form-buttons pour le style -->
       <CustomButton v-for="(btn, i) in buttons" :obj="btn" :key="i" />
     </section>
     <section

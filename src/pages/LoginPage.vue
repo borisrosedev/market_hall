@@ -211,31 +211,18 @@ async function onSubmit() {
 </script>
 
 <style lang="css">
-/* Fond semi-transparent qui couvre la page */
+
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  width: 100dvw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
-}
-
-
-.modal-container {
-  position: relative !important;
-  background: white !important;
-  border-radius: 8px !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
-  width: 90% !important;
-  max-width: 400px !important;
-  padding: 30px !important;
-  margin: 0 !important; 
-  flex: none !important;
+  z-index: 99999;
 }
 
 .modal-container {
@@ -243,12 +230,12 @@ async function onSubmit() {
   background: white;
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  width: 90%;
-  max-width: 400px;
-  padding: 30px;
+  width: 100%;
+  max-width: 600px;
+  padding: 100px;
+  margin: 0;
   animation: slideIn 300ms ease-in-out;
 }
-
 
 @keyframes slideIn {
   from {
@@ -262,32 +249,21 @@ async function onSubmit() {
 }
 
 
-.modal-content {
-  position: relative;
-}
-
-
 .modal-close {
   position: absolute;
-  top: -10px;
-  right: -10px;
-  background: white;
+  top: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
   border: 2px solid #D4AF37;
   color: #D4AF37;
-  width: 32px;
-  height: 32px;
   border-radius: 50%;
+  font-size: 20px;
   cursor: pointer;
-  font-size: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 200ms;
-}
-
-.modal-close:hover {
-  background: #D4AF37;
-  color: white;
+  z-index: 10;
 }
 
 
@@ -296,34 +272,113 @@ async function onSubmit() {
   font-size: 18px;
   font-weight: bold;
   color: #333;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   line-height: 1.4;
 }
 
 
-.btn-gold {
-  background-color: #D4AF37 !important;
-  border: none !important;
-  color: white !important;
+.modal-container .btn-gold,
+.modal-container .btn-gold-outline {
+  width: 140px;
+  height: 40px;
+  padding: 10px 20px;
   font-weight: bold;
   border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
-.btn-gold:hover {
-  background-color: #C9A027 !important;
+.modal-container .btn-gold {
+background-color: #D4AF37; 
+  color: white;
 }
 
-.btn-gold-outline {
-  background-color: transparent !important;
-  border: 2px solid #d44e37 !important;
-  color: #9e2e03 !important;
-  font-weight: bold;
-  border-radius: 4px;
+.modal-container .btn-gold-outline {
+  background-color: transparent;
+   border: 2px solid #dc3545;
+   color: #dc3545;
+  
 }
 
-.login__message {
+.modal-container .btn-gold-outline:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+
+.modal-container .form-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+  justify-content: center;
+  width: 100%;
+}
+
+.modal-container .form-buttons > * {
+  flex: 1;
+  max-width: 180px;
+  
+}
+
+
+.modal-container form {
+  width: 100%;
+  font-size: large;
+  
+}
+.form-control {
+  border: 2px solid hwb(0 0% 100% / 0.227);
+  border-radius: 10px;
+  color: #000;
+ 
+}
+
+.btn-outline-danger
+{
+  border: 2px solid #dc3545;
+  
+
+}
+.modal-container .form-group {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.modal-container .form-control {
+  width: 100%;
+  font-size: 20px;
+}
+
+.modal-container .form-text {
+  width: 100%;
   font-size: 14px;
+  color: #6e7071;
+  margin-top: 6px;
+  line-height: 1.4;
+  white-space: normal;
+  word-break: break-word;
 }
 
 
+@media (max-width: 768px) {
+  .modal-container {
+    padding: 30px 20px;
+    width: 95%;
+  }
+  
+  
+
+  .modal-container .form-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .modal-container .btn-gold,
+  .modal-container .btn-gold-outline {
+    width: 100%;
+    max-width: 100%;
+  }
+}
 </style>
