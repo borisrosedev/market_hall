@@ -17,6 +17,7 @@ import OrderAddress from "./pages/session-required-pages/order-pages/OrderAddres
 import OrderSummary from "./pages/session-required-pages/order-pages/OrderSummary.vue";
 import AboutUs from "./pages/AboutUs.vue";
 import ProducDetail from "./pages/ProductDetail.vue";
+import OrderReview from "./pages/OrderReview.vue";
 // import OrderReview from "./pages/OrderReview.vue";
 import Seller from "./pages/Seller.vue";
 
@@ -89,6 +90,13 @@ const router = createRouter({
         },
       ],
     },
+
+    {
+      path: "/order-review",
+      component: OrderReview,
+      name: "order-review",
+    },
+
     {
       path: "/:pathMatch(.*)*",
       name: "not-found",

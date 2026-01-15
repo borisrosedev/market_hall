@@ -1,39 +1,33 @@
 <template>
   <main class="app__main login__main">
-    <section class="row justify-content-center w-100">
-      <!-- pour ouvrire les formulairs en dessus de la page d'accueil  -->
-  <div v-if="isModalOpen" class="modal-overlay">
-  
-    <div class="modal-container">
-      <section class="modal-content">
-        <!-- Bouton fermer X -->
-        <button class="modal-close" @click="closeModal">
-          ✕
-        </button>
+    <div class="modal-overlay">
+      <div class="modal-container">
+        <section class="modal-content">
 
-        <h2 class="modal-title">
-          Connectez-vous à votre<br />compte ou inscrivez-vous <RouterLink to="/register">Ici</RouterLink>
-          <div class="my-3">
-       
+          <button class="modal-close" @click="closeModal">✕</button>
+
+          <h2 class="modal-title">
+            Connectez-vous à votre<br />
+            compte ou
+            <RouterLink to="/register">inscrivez-vous</RouterLink>
+          </h2>
+
+          <CustomForm
+            :id="id"
+            @on-field-updated="onFieldUpdated"
+            :fields="fields"
+            :buttons="buttons"
+            :messages="messages"
+            :onReset="onReset"
+            :onSubmit="onSubmit"
+            :show-buttons="showButtons"
+          />
+        </section>
       </div>
-        </h2>
-
-        <CustomForm
-          :id="id"
-          @on-field-updated="onFieldUpdated"
-          :fields="fields"
-          :buttons="buttons"
-          :messages="messages"
-          :onReset="onReset"
-          :onSubmit="onSubmit"
-          :show-buttons="showButtons"
-        />
-      </section>
     </div>
-  </div>
-  </section>
   </main>
 </template>
+
 
 <script setup lang="ts">
 import { ref } from "vue";
@@ -46,11 +40,10 @@ import { useUserAuth } from "../composables/useUserAuth"
 import { useRouter } from "vue-router"
 
 const router = useRouter()
-const isModalOpen = ref(true); // Modal ouvert par défaut
-
 const closeModal = () => {
-  isModalOpen.value = false;
+  router.push('/')
 }
+
 
 const { id, buttons, fields } = {
   id: "login-form",
@@ -149,6 +142,7 @@ function onNoInputs() {
 
 async function onCompleteForm(fieldsValues : any) {
   showButtons.value = false
+    
     messages.value = [];
     const { loginUser } = useUserAuth()
     const isConnected = await loginUser({ email: fieldsValues.email, password: fieldsValues.password })
@@ -211,7 +205,6 @@ async function onSubmit() {
 </script>
 
 <style lang="css">
-
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -228,11 +221,11 @@ async function onSubmit() {
 .modal-container {
   position: relative;
   background: white;
-  border-radius: 8px;
+  border-radius: 5px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   width: 100%;
   max-width: 600px;
-  padding: 100px;
+  padding: 50px;
   margin: 0;
   animation: slideIn 300ms ease-in-out;
 }
@@ -248,7 +241,6 @@ async function onSubmit() {
   }
 }
 
-
 .modal-close {
   position: absolute;
   top: 15px;
@@ -263,43 +255,92 @@ async function onSubmit() {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10;
+  background: white;
+  transition: all 0.2s;
 }
 
+.modal-close:hover {
+  background: #D4AF37;
+  color: white;
+}
 
 .modal-title {
   text-align: center;
   font-size: 18px;
   font-weight: bold;
   color: #333;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
   line-height: 1.4;
 }
 
+.modal-container .form-control {
+  width: 100%;
+  padding: 15px 16px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  min-height: 45px;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #D4AF37;
+  box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
+}
+
+.modal-container .form-text {
+  width: 100%;
+  font-size: 13px;
+  color: #6e7071;
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+.modal-container .form-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.modal-container .form-buttons > * {
+  flex: 1;
+  min-width: 150px;
+  min-height: 50px;
+}
 
 .modal-container .btn-gold,
 .modal-container .btn-gold-outline {
-  width: 140px;
-  height: 40px;
-  padding: 10px 20px;
+  width: 100%;
+  padding: 12px 20px;
   font-weight: bold;
   border-radius: 4px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
 }
 
 .modal-container .btn-gold {
-background-color: #D4AF37; 
+  background-color: #D4AF37;
   color: white;
+}
+
+.modal-container .btn-gold:hover {
+  background-color: #C9A027;
 }
 
 .modal-container .btn-gold-outline {
   background-color: transparent;
-   border: 2px solid #dc3545;
-   color: #dc3545;
-  
+  border: 2px solid #dc3545;
+  color: #dc3545;
 }
 
 .modal-container .btn-gold-outline:hover {
@@ -307,60 +348,13 @@ background-color: #D4AF37;
   color: white;
 }
 
-
-.modal-container .form-buttons {
-  display: flex;
-  gap: 15px;
-  margin-top: 25px;
-  justify-content: center;
-  width: 100%;
+.btn-outline-danger {
+  border: 2px solid #dc3545;
 }
-
-.modal-container .form-buttons > * {
-  flex: 1;
-  max-width: 180px;
-  
-}
-
 
 .modal-container form {
   width: 100%;
-  font-size: large;
-  
 }
-.form-control {
-  border: 2px solid hwb(0 0% 100% / 0.227);
-  border-radius: 10px;
-  color: #000;
- 
-}
-
-.btn-outline-danger
-{
-  border: 2px solid #dc3545;
-  
-
-}
-.modal-container .form-group {
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.modal-container .form-control {
-  width: 100%;
-  font-size: 20px;
-}
-
-.modal-container .form-text {
-  width: 100%;
-  font-size: 14px;
-  color: #6e7071;
-  margin-top: 6px;
-  line-height: 1.4;
-  white-space: normal;
-  word-break: break-word;
-}
-
 
 @media (max-width: 768px) {
   .modal-container {
@@ -368,17 +362,25 @@ background-color: #D4AF37;
     width: 95%;
   }
   
-  
-
   .modal-container .form-buttons {
     flex-direction: column;
     gap: 10px;
   }
   
+  .modal-container .form-buttons > * {
+    width: 100%;
+    min-width: 100%;
+  }
+
   .modal-container .btn-gold,
   .modal-container .btn-gold-outline {
     width: 100%;
-    max-width: 100%;
+    min-height: 45px;
+  }
+
+  .modal-container .form-control {
+    min-height: 40px;
+    font-size: 16px;
   }
 }
-</style>
+</style> 
