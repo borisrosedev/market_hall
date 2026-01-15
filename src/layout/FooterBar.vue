@@ -8,9 +8,9 @@ import { RouterLink } from "vue-router";
       <div class="app__footer-section">
 
         <ul class="app__footer-ul">
-          <h3>About</h3>
-          <li class="nav-item"><RouterLink to="/about">Our story</RouterLink></li>
-          <li class="nav-item"><RouterLink to="/team">Our team</RouterLink></li>
+          <h3>A propos</h3>
+          <li class="nav-item"><RouterLink to="/about">Notre histoire</RouterLink></li>
+          <li class="nav-item"><RouterLink to="/team">Notre équipe</RouterLink></li>
         </ul>
       </div>
 
@@ -19,16 +19,16 @@ import { RouterLink } from "vue-router";
         <ul class="app__footer-ul">
           <h3>Link</h3>
           <li class="nav-item">
-            <RouterLink class="nav-link active" aria-current="page" to="/landing">Home</RouterLink>
+            <RouterLink class="nav-link active" aria-current="page" to="/landing">Acuueil</RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink class="nav-link active" aria-current="page" to="/products">Products</RouterLink>
+            <RouterLink class="nav-link active" aria-current="page" to="/products">Produits</RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink class="nav-link active" aria-current="page" to="/product-detail">Products details</RouterLink>
+            <RouterLink class="nav-link active" aria-current="page" to="/product-detail">Détails du produit</RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink class="nav-link active" aria-current="page" to="/seller">Saller</RouterLink>
+            <RouterLink class="nav-link active" aria-current="page" to="/seller">Vendeur</RouterLink>
           </li>
         </ul>
       </div>
@@ -36,12 +36,12 @@ import { RouterLink } from "vue-router";
       <div class="app__footer-section">
 
         <ul class="app__footer-ul">
-          <h3>Contact</h3>
+          <h3>Connexion</h3>
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/contactus">Contact Us</RouterLink>
+            <RouterLink class="nav-link" to="/contactus">Nous contacter</RouterLink>
           </li>
 
-          <li class="nav-item"><RouterLink to="/support">Service client</RouterLink></li>
+          <li class="nav-item"><RouterLink to="/support">Lien </RouterLink></li>
           
 
         </ul>
@@ -51,10 +51,12 @@ import { RouterLink } from "vue-router";
         <ul class="app__footer-ul">
           <h3>Connexion</h3>
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/signin">Login</RouterLink>
+            <RouterLink class="nav-link" to="/login">Se connecter</RouterLink>
           </li>
+
+
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/register">Signup</RouterLink>
+            <RouterLink class="nav-link" to="/register">S'inscrire</RouterLink>
           </li>
         </ul>
 
