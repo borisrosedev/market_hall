@@ -8,7 +8,7 @@
     <section class="about-content">
       <h2>Notre Histoire</h2>
       <p>
-        Market Hall est une plateforme e-commerce fondée en 2015. 
+        Market Hall est une plateforme e-commerce fondée en 2025 
         Nous connectons vendeurs et acheteurs dans un environnement de confiance.
       </p>
       
