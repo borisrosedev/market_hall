@@ -6,7 +6,6 @@ import vue from "@vitejs/plugin-vue";
 export default defineConfig({
   plugins: [vue()],
   test: {
-    setupFiles: "./vitest.setup.ts",
     // enable jest-like global test APIs
     globals: true,
     // simulate DOM with happy-dom
