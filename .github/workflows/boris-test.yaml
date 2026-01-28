@@ -32,7 +32,7 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       # ajouter --run pour que Vitest s'arrête après les tests
       - name: Run tests
