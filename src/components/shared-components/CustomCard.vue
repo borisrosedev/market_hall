@@ -10,9 +10,7 @@
   <div :class="'card-body ' + (obj.bodyClassNames ?? '')">
     <p :class="'card-text ' + (obj.bodyTitleClassNames ?? '')">
       <span v-if="obj.role" :class="'badge ' + getBadge(obj.role)">{{ obj.role }}</span>
-<!--       
-      <span v-mix="{fw: 'bold'}" :class="obj.role ? 'mx-2' : ''" >{{ obj.title ?? obj.name ?? obj.fullname }}</span> -->
-      <span class="fw-bold" :class="obj.role ? 'mx-2' : ''" >{{ obj.title ?? obj.name ?? obj.fullname }}</span>
+      <span v-mix="{fw: 'bold'}" :class="obj.role ? 'mx-2' : ''" >{{ obj.title ?? obj.name ?? obj.fullname }}</span>
     </p>
     <p v-if="obj.price_cents || obj.description" :class="'card-text ' + (obj.bodyPriceCentsClassNames ?? obj.bodyDescriptionClassNames ?? '')">{{ " "  + obj.price_cents ? obj.price_cents + ' €' : obj.description  }}</p>
   </div>
